@@ -1,0 +1,16 @@
+header{
+    display: flex;
+    background-color: rgb(28, 115, 177);
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+}
+.site_name{
+    display: flex;
+    align-self: center;
+}
+.login_icone{
+    display: flex;
+    align-self: right; 
+    align-content: center;
+}

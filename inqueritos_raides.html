@@ -4,8 +4,603 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inquéritos Raides</title>
+    <style>
+        :root {
+            --azul-primario: #007bff;
+            --azul-claro: #f0f7ff;
+            --borda-cor: #d1d1d1;
+            --bg-pagina: #f4f7f9;
+            --texto-cinza: #555;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background-color: var(--bg-pagina);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container-central-inque-raid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pergunta-row0-inque-raid {
+            width: 100%;
+            display: flex;
+            align-items: Center;
+        }
+
+        /* --- BARRA DE PESQUISA / INFORMAÇÃO INICIAL --- */
+        .barra-curso-topo-inque-raid {
+            background-color: #ffffff;
+            border: 1px solid var(--borda-cor);
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .texto-informativo-curso-inque-raid {
+            font-size: 15px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .seta-dropdown-inque-raid {
+            border: solid #666;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+        }
+
+        /* --- CARD DO INQUÉRITO RAIDES --- */
+        .card-inquerito-inque-raid {
+            background-color: #ffffff;
+            border: 1px solid var(--borda-cor);
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .titulo-principal-inque-raid {
+            text-align: center;
+            color: var(--azul-primario);
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .texto-ajuda-inque-raid {
+            font-size: 13px;
+            color: var(--texto-cinza);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        /* Secções Numeradas */
+        .seccao-titulo-inque-raid {
+            display: flex;
+            align-items: center;
+            color: var(--azul-primario);
+            font-size: 17px;
+            font-weight: bold;
+            margin: 35px 0 20px 0;
+        }
+
+        .circulo-azul-inque-raid {
+            background-color: var(--azul-primario);
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 13px;
+        }
+
+        /* Contentor principal */
+        .escolaridade-container-inque-raid {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        /* Estilo de cada item (caixa) */
+        .opcao-item-inque-raid {
+            display: flex;
+            align-items: center;
+            border: 1px solid #d1d1d1;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Esconder o rádio original para estilizar o círculo */
+        .opcao-item-inque-raid input[type="radio"] {
+            margin-right: 15px;
+            cursor: pointer;
+            transform: scale(1.3);
+        }
+
+        /* Texto da opção */
+        .opcao-item-inque-raid label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        /* --- ESTADO SELECIONADO --- */
+        .opcao-item-inque-raid:has(input[type="radio"]:checked) {
+            border: 2px solid #007bff;
+            background-color: #f0f7ff;
+        }
+
+        .opcao-item-inque-raid input[type="radio"]:checked + label {
+            font-weight: 500;
+        }
+
+        .radio-ponto-inque-raid {
+            width: 16px;
+            height: 16px;
+            border: 5px solid var(--azul-primario);
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #fff;
+        }
+
+        /* Grelha de Perguntas e Selects */
+        .pergunta-row-inque-raid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+
+        .pergunta-label-inque-raid {
+            font-size: 14px;
+            color: #444;
+            flex: 1;
+        }
+
+        .select-raides-inque-raid {
+            width: 100%;
+            max-width: 450px;
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #fff;
+            outline-color: var(--azul-primario);
+            min-width: 0;
+        }
+
+        /* BLOCO DE BOTÃO FINAL */
+        .bloco-acoes-final-inque-raid {
+            text-align: right;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-submeter-verde-inque-raid {
+            background-color: #198754;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submeter-verde-inque-raid:hover {
+            background-color: #157347;
+        }
+        
+        /* Estilo opcional para o HR se necessário */
+        .hr_raides-inque-raid {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        /* Responsividade para ecrãs pequenos */
+        * { box-sizing: border-box; }
+        .container-central-inque-raid { width: 100%; max-width: 900px; padding: 0 12px; }
+        .card-inquerito-inque-raid { padding: 24px; }
+        .pergunta-row-inque-raid, .pergunta-row0-inque-raid { gap: 12px; }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .card-inquerito-inque-raid { padding: 18px; }
+            .pergunta-row-inque-raid, .pergunta-row0-inque-raid {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .pergunta-label-inque-raid { margin-bottom: 6px; font-size: 14px; }
+            .select-raides-inque-raid { width: 100%; max-width: 100%; }
+            .texto-ajuda-inque-raid { font-size: 14px; padding: 0 8px; margin-bottom: 20px; }
+            .titulo-principal-inque-raid { font-size: 20px; }
+            .opcao-item-inque-raid { padding: 12px; }
+            .btn-submeter-verde-inque-raid { width: 100%; padding: 12px; border-radius: 6px; }
+            .bloco-acoes-final-inque-raid { text-align: center; }
+            .circulo-azul-inque-raid { width: 22px; height: 22px; font-size: 12px; }
+        }
+
+    </style>
 </head>
 <body>
+
+<div class="container-central-inque-raid">
+
+    <div class="pergunta-row0-inque-raid">
+        <span class="pergunta-label-inque-raid"></span>
+        <select class="select-raides-inque-raid">
+            <option value="2025_2026_CTESP_TPSI">2025_2026_CTESP_Técnologias de Programção e Sistemas de Informação</option>
+        </select>
+    </div>
+
+    <div class="card-inquerito-inque-raid">
+        <h1 class="titulo-principal-inque-raid">Avaliação / Inquérito RAIDES</h1>
+        
+        <p class="texto-ajuda-inque-raid">
+            Este Inquérito destina-se à recolha de dados, de acordo com as regras estabelecidas pela Direção-Geral de Estatísticas da Educação e Ciência, sendo de preenchimento obrigatório.
+        </p>
+        <div class="seccao-titulo-inque-raid">
+            <div class="circulo-azul-inque-raid">1</div>
+             Informações relativas à escolaridade completa mais elevada
+        </div>
+        <p><b>Ano Lectivo de Ingresso:</b>2025/2026</p>
+        <p><b>Forma de Ingresso</b>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional</p>
+        <div class="seccao-titulo-inque-raid">
+            <div class="circulo-azul-inque-raid">2</div> 
+            Informações relativas à escolaridade completa mais elevada
+        </div>
+
+        <form>
+            <div class="escolaridade-container-inque-raid">
+                
+                <div class="opcao-item-inque-raid">
+                    <input type="radio" id="opcao1-inque-raid" name="escolaridade" value="secundario" checked>
+                    <label for="opcao1-inque-raid">2018 - Ensino Secundário ou Equivalente (12º Ano Escolaridade) - Portugal</label>
+                </div>
+
+                <div class="opcao-item-inque-raid">
+                    <input type="radio" id="opcao2-inque-raid" name="escolaridade" value="tecnico">
+                    <label for="opcao2-inque-raid">2018 - Diploma de Técnico Superior Profissional - Outro Curso ( Técnico de Restauração Cozinha e Pastelaria ) - Outro Estabelecimento ( Escola Profissional de Hotelaria e Turismo de Lisboa ) - Portugal</label>
+                </div>
+
+                <div class="opcao-item-inque-raid">
+                    <input type="radio" id="opcao3-inque-raid" name="escolaridade" value="outro">
+                    <label for="opcao3-inque-raid">Caso a opção que procura não se encontre na lista acima, deve selecionar esta opção e inserir a informação na secção seguinte</label>
+                </div>
+
+            </div>
+
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Qual o nível de escolaridade mais elevado que possui?</span>
+                <select class="select-raides-inque-raid">
+                    <option></option>
+                    <option value="ensino_basico_1_ciclo">Ensino básico - 1.º ciclo (4.º ou 5.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="ensino_basico_2_ciclo">Ensino básico - 2.º ciclo (6.º, 7.º ou 8.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="ensino_basico_3_ciclo">Ensino básico - 3.º ciclo (9.º, 10.º ou 11.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="ensino_pos_secundario">Ensino pós-secundário não superior - curso de especialização tecnológica ou equivalente</option>
+                    <option value="ensino_secundario" selected>Ensino secundário (12.º ano de escolaridade completo) ou equivalente</option>
+                    <option value="ensino_superior_bacharelato">Ensino superior - bacharelato ou equivalente</option>
+                    <option value="ensino_superior_tecnico_profissional">Ensino superior - curso técnico superior profissional ou equivalente</option>
+                    <option value="ensino_superior_doutoramento">Ensino superior - doutoramento ou equivalente</option>
+                    <option value="ensino_superior_licenciatura">Ensino superior - licenciatura ou equivalente</option>
+                    <option value="ensino_superior_mestrado">Ensino superior - mestrado ou equivalente</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Em que país completou essa escolaridade?</span>
+                <select class="select-raides-inque-raid">
+                    <option>Portugal</option>
+                    <option value="afeganistao">Afeganistão</option>
+                    <option value="alemanha">Alemanha</option>
+                    <option value="angola">Angola</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="australia">Austrália</option>
+                    <option value="belgica">Bélgica</option>
+                    <option value="brasil">Brasil</option>
+                    <option value="cabo_verde">Cabo Verde</option>
+                    <option value="canada">Canadá</option>
+                    <option value="china">China</option>
+                    <option value="espanha">Espanha</option>
+                    <option value="estados_unidos">Estados Unidos</option>
+                    <option value="franca">França</option>
+                    <option value="guine_bissau">Guiné-Bissau</option>
+                    <option value="guine_equatorial">Guiné Equatorial</option>
+                    <option value="india">Índia</option>
+                    <option value="inglaterra">Inglaterra (Reino Unido)</option>
+                    <option value="italia">Itália</option>
+                    <option value="luxemburgo">Luxemburgo</option>
+                    <option value="macau">Macau</option>
+                    <option value="mocambique">Moçambique</option>
+                    <option value="portugal" selected>Portugal</option>
+                    <option value="sao_tome_principe">São Tomé e Príncipe</option>
+                    <option value="suica">Suíça</option>
+                    <option value="timor_leste">Timor-Leste</option>
+                    <option value="outro">Outro País</option>
+                </select>
+            </div>
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Em que ano civil concluiu esse nível de escolaridade?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Qual o tipo de estabelecimento (público ou privado) frequentado no secundário?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="Público">Público</option>
+                    <option value="Privado">Privado</option>
+                    <option value="Público e Privado">Privado</option>
+                </select>
+            </div>
+            
+            <hr class="hr_raides-inque-raid">
+            
+            <div class="seccao-titulo-inque-raid">
+                <div class="circulo-azul-inque-raid">3</div> Informações relativas aos pais do aluno
+            </div>
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Qual a habilitação académica do seu pai?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="">Selecione uma opção</option>
+                    <option value="nao_sabe">Não sabe Ler nem Escrever</option>
+                    <option value="alfabetizado">Sabe Ler e Escrever (sem ter o 4º Ano)</option>
+                    <option value="eb1">1 Ciclo do ensino básico ou equivalente (4º Ano Escolaridade)</option>
+                    <option value="eb2">2 Ciclo do ensino básico ou equivalente (6º Ano Escolaridade)</option>
+                    <option value="eb3">3 Ciclo do ensino básico ou equivalente (9º Ano Escolaridade)</option>
+                    <option value="ensino_secundario">Ensino Secundário ou Equivalente (12º Ano Escolaridade)</option>
+                    <option value="ensino_medio">Ensino Médio (Antigo Magistério)</option>
+                    <option value="cet">Curso de Especialização Tecnológica</option>
+                    <option value="bacharelato">Bacharelato</option>
+                    <option value="licenciatura">Licenciatura</option>
+                    <option value="mestrado">Mestrado</option>
+                    <option value="doutoramento">Doutoramento</option>
+                    <option value="outro">Outro</option>
+                    <option value="curso_sem_grau">Curso Sem Grau</option>
+                    <option value="desconhecido">Desconhecido</option>
+                    <option value="tesp">Diploma de Técnico Superior Profissional</option>
+                </select>
+            </div>
+            <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Qual a habilitação académica da sua mãe?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="">Selecione uma opção</option>
+                    <option value="nao_sabe">Não sabe Ler nem Escrever</option>
+                    <option value="alfabetizado">Sabe Ler e Escrever (sem ter o 4º Ano)</option>
+                    <option value="eb1">1 Ciclo do ensino básico ou equivalente (4º Ano Escolaridade)</option>
+                    <option value="eb2">2 Ciclo do ensino básico ou equivalente (6º Ano Escolaridade)</option>
+                    <option value="eb3">3 Ciclo do ensino básico ou equivalente (9º Ano Escolaridade)</option>
+                    <option value="ensino_secundario">Ensino Secundário ou Equivalente (12º Ano Escolaridade)</option>
+                    <option value="ensino_medio">Ensino Médio (Antigo Magistério)</option>
+                    <option value="cet">Curso de Especialização Tecnológica</option>
+                    <option value="bacharelato">Bacharelato</option>
+                    <option value="licenciatura">Licenciatura</option>
+                    <option value="mestrado">Mestrado</option>
+                    <option value="doutoramento">Doutoramento</option>
+                    <option value="outro">Outro</option>
+                    <option value="curso_sem_grau">Curso Sem Grau</option>
+                    <option value="desconhecido">Desconhecido</option>
+                    <option value="tesp">Diploma de Técnico Superior Profissional</option>
+                </select>
+            </div>
+            <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Qual a sua situação profissional do seu pai?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="">Selecione uma opção</option>
+                    <option value="eb1">Ensino básico - 1.º ciclo (4.º ou 5.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="eb2">Ensino básico - 2.º ciclo (6.º, 7.º ou 8.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="eb3">Ensino básico - 3.º ciclo (9.º, 10.º ou 11.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="cet">Ensino pós-secundário não superior - curso de especialização tecnológica ou equivalente</option>
+                    <option value="es" selected>Ensino secundário (12.º ano de escolaridade completo) ou equivalente</option>
+                    <option value="bacharelato">Ensino superior - bacharelato ou equivalente</option>
+                    <option value="tesp">Ensino superior - curso técnico superior profissional ou equivalente</option>
+                    <option value="doutoramento">Ensino superior - doutoramento ou equivalente</option>
+                    <option value="licenciatura">Ensino superior - licenciatura ou equivalente</option>
+                    <option value="mestrado">Ensino superior - mestrado ou equivalente</option>
+                    <option value="outro">Outro</option>              
+            </select>
+        </div>
+        <div class="pergunta-row-inque-raid">
+                <span class="pergunta-label-inque-raid">Qual a sua situação profissional da sua mãe?</span>
+                <select class="select-raides-inque-raid">
+                    <option value="">Selecione uma opção</option>
+                    <option value="eb1">Ensino básico - 1.º ciclo (4.º ou 5.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="eb2">Ensino básico - 2.º ciclo (6.º, 7.º ou 8.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="eb3">Ensino básico - 3.º ciclo (9.º, 10.º ou 11.º ano de escolaridade completos) ou equivalente</option>
+                    <option value="cet">Ensino pós-secundário não superior - curso de especialização tecnológica ou equivalente</option>
+                    <option value="es" selected>Ensino secundário (12.º ano de escolaridade completo) ou equivalente</option>
+                    <option value="bacharelato">Ensino superior - bacharelato ou equivalente</option>
+                    <option value="tesp">Ensino superior - curso técnico superior profissional ou equivalente</option>
+                    <option value="doutoramento">Ensino superior - doutoramento ou equivalente</option>
+                    <option value="licenciatura">Ensino superior - licenciatura ou equivalente</option>
+                    <option value="mestrado">Ensino superior - mestrado ou equivalente</option>
+                    <option value="outro">Outro</option>
+                    <option>Trabalhador por Conta de Outrem</option>
+            </select>
+        </div>
+        <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Qual a profissão do seu pai?</span>
+            <select class="select-raides-inque-raid">
+                <option value="">Selecione uma opção</option>
+                <option value="agricultores">Agricultores e trabalhadores qualificados da agricultura e produção animal</option>
+                <option value="criadores_animais">Agricultores, criadores de animais, pescadores, caçadores e coletores</option>
+                <option value="assistentes_refeicoes">Assistentes na preparação de refeições</option>
+                <option value="condutores_veiculos">Condutores de veículos e operadores de equipamentos móveis</option>
+                <option value="diretores_hotelaria">Diretores de hotelaria, restauração, comércio e de outros serviços</option>
+                <option value="diretores_producao">Diretores de produção e de serviços especializados</option>
+                <option value="diretores_administrativos">Diretores de serviços administrativos e comerciais</option>
+                <option value="empregados_escritorio">Empregados de escritório, secretários em geral e operadores de dados</option>
+                <option value="especialistas_ciencias">Especialistas das ciências físicas, matemáticas, engenharias e técnicas</option>
+                <option value="especialistas_juridicos">Especialistas em assuntos jurídicos, sociais, artísticos e culturais</option>
+                <option value="especialistas_financas">Especialistas em finanças, contabilidade, organização administrativa</option>
+                <option value="especialistas_tic">Especialistas em tecnologias de informação e comunicação (TIC)</option>
+                <option value="nao_sabe" selected>Não Sabe / Não se Aplica</option>
+                <option value="oficiais_forcas_armadas">Oficiais das Forças Armadas</option>
+                <option value="operadores_dados">Operadores de dados, de contabilidade, estatística, de serviços financeiros</option>
+                <option value="operadores_instalacoes">Operadores de instalações fixas e máquinas</option>
+                <option value="outro_pessoal_forcas_armadas">Outro pessoal das Forças Armadas</option>
+                <option value="apoio_administrativo">Outro pessoal de apoio de tipo administrativo</option>
+                <option value="apoio_direto_clientes">Pessoal de apoio direto a clientes</option>
+
+            </select>
+        </div>
+            <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Qual a profissão do sua mãe?</span>
+            <select class="select-raides-inque-raid">
+                <option value="">Selecione uma opção</option>
+                <option value="agricultores">Agricultores e trabalhadores qualificados da agricultura e produção animal</option>
+                <option value="criadores_animais">Agricultores, criadores de animais, pescadores, caçadores e coletores</option>
+                <option value="assistentes_refeicoes">Assistentes na preparação de refeições</option>
+                <option value="condutores_veiculos">Condutores de veículos e operadores de equipamentos móveis</option>
+                <option value="diretores_hotelaria">Diretores de hotelaria, restauração, comércio e de outros serviços</option>
+                <option value="diretores_producao">Diretores de produção e de serviços especializados</option>
+                <option value="diretores_administrativos">Diretores de serviços administrativos e comerciais</option>
+                <option value="empregados_escritorio">Empregados de escritório, secretários em geral e operadores de dados</option>
+                <option value="especialistas_ciencias">Especialistas das ciências físicas, matemáticas, engenharias e técnicas</option>
+                <option value="especialistas_juridicos">Especialistas em assuntos jurídicos, sociais, artísticos e culturais</option>
+                <option value="especialistas_financas">Especialistas em finanças, contabilidade, organização administrativa</option>
+                <option value="especialistas_tic">Especialistas em tecnologias de informação e comunicação (TIC)</option>
+                <option value="nao_sabe" selected>Não Sabe / Não se Aplica</option>
+                <option value="oficiais_forcas_armadas">Oficiais das Forças Armadas</option>
+                <option value="operadores_dados">Operadores de dados, de contabilidade, estatística, de serviços financeiros</option>
+                <option value="operadores_instalacoes">Operadores de instalações fixas e máquinas</option>
+                <option value="outro_pessoal_forcas_armadas">Outro pessoal das Forças Armadas</option>
+                <option value="apoio_administrativo">Outro pessoal de apoio de tipo administrativo</option>
+                <option value="apoio_direto_clientes">Pessoal de apoio direto a clientes</option>
+
+            </select>
+        </div>
+
+        <hr class="hr_raides-inque-raid">
+
+        <div class="seccao-titulo-inque-raid">
+            <div class="circulo-azul-inque-raid">3</div> Informações relativas aos pais do aluno
+        </div>
+        <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Qual a sua situação profissional?</span>
+            <select class="select-raides-inque-raid">
+                <option>Selecione uma Opção</option>
+                <option value="conta_propria_empregador">Trabalhador por Conta Própria como Empregador</option>
+                <option value="conta_outrem" selected>Trabalhador por Conta de Outrem</option>
+                <option value="outra_situacao">Outra Situação</option>
+                <option value="trabalhador_isolado">Trabalhador por conta Própia Isolado</option>
+                <option value="trabalhador_familiar">Trabalhador Familiar não renumerado</option>
+                <option value="reformado">Reformado</option>
+                <option value="desempregado">Desempregado</option>
+                <option value="Doméstico">Doméstico</option>
+                <option value="Estudante">Estudante</option>
+                <option value="Militar">Serviço Militar</option>
+            </select>
+        </div>
+        <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Qual a sua profissão atual (ou anterior, em caso de reforma ou desemprego)</span>
+            <select class="select-raides-inque-raid">
+                <option value="">Selecione uma opção</option>
+                <option value="agri_qual">Agricultores e trabalhadores qualificados da agricultura e produção animal</option>
+                <option value="agri_pesc">Agricultores, criadores de animais, pescadores, caçadores e coletores</option>
+                <option value="assist_ref">Assistentes na preparação de refeições</option>
+                <option value="condutores">Condutores de veículos e operadores de equipamentos móveis</option>
+                <option value="dir_hotel">Diretores de hotelaria, restauração, comércio e de outros serviços</option>
+                <option value="dir_prod">Diretores de produção e de serviços especializados</option>
+                <option value="dir_adm">Diretores de serviços administrativos e comerciais</option>
+                <option value="escritorio">Empregados de escritório, secretários em geral e operadores de dados</option>
+                <option value="esp_ciencias">Especialistas das ciências físicas, matemáticas, engenharias e técnicas</option>
+                <option value="esp_jurid">Especialistas em assuntos jurídicos, sociais, artísticos e culturais</option>
+                <option value="esp_financas">Especialistas em finanças, contabilidade, organização administrativa</option>
+                <option value="esp_tic">Especialistas em tecnologias de informação e comunicação (TIC)</option>
+                <option value="nao_aplica">Não Sabe / Não se Aplica</option>
+                <option value="oficiais_fa">Oficiais das Forças Armadas</option>
+                <option value="op_dados">Operadores de dados, de contabilidade, estatística, de serviços financeiros</option>
+                <option value="op_inst">Operadores de instalações fixas e máquinas</option>
+                <option value="pessoal_fa">Outro pessoal das Forças Armadas</option>
+                <option value="apoio_adm">Outro pessoal de apoio de tipo administrativo</option>
+                <option value="apoio_clientes">Pessoal de apoio direto a clientes</option>
+            </select>
+        </div>
+        <div class="pergunta-row-inque-raid">
+        <span class="pergunta-label-inque-raid">Em que país concluiu o ensino secundário?</span>
+        <select class="select-raides-inque-raid">
+            <option>Portugal</option>
+            <option value="afeganistao">Afeganistão</option>
+            <option value="alemanha">Alemanha</option>
+            <option value="angola">Angola</option>
+            <option value="argentina">Argentina</option>
+            <option value="australia">Austrália</option>
+            <option value="belgica">Bélgica</option>
+            <option value="brasil">Brasil</option>
+            <option value="cabo_verde">Cabo Verde</option>
+            <option value="canada">Canadá</option>
+            <option value="china">China</option>
+            <option value="espanha">Espanha</option>
+            <option value="estados_unidos">Estados Unidos</option>
+            <option value="franca">França</option>
+            <option value="guine_bissau">Guiné-Bissau</option>
+            <option value="guine_equatorial">Guiné Equatorial</option>
+            <option value="india">Índia</option>
+            <option value="inglaterra">Inglaterra (Reino Unido)</option>
+            <option value="italia">Itália</option>
+            <option value="luxemburgo">Luxemburgo</option>
+            <option value="macau">Macau</option>
+            <option value="mocambique">Moçambique</option>
+            <option value="portugal" selected>Portugal</option>
+            <option value="sao_tome_principe">São Tomé e Príncipe</option>
+            <option value="suica">Suíça</option>
+            <option value="timor_leste">Timor-Leste</option>
+            <option value="outro">Outro País</option>
+            </select>
+        </div>
+        <div class="pergunta-row-inque-raid">
+            <span class="pergunta-label-inque-raid">Está deslocado da sua residência familiar?</span>
+            <select class="select-raides-inque-raid">
+                <option>Não</option>
+                <option>Sim</option>
+            </select>
+        </div>
+
+        <div class="bloco-acoes-final-inque-raid">
+            <button class="btn-submeter-verde-inque-raid">Submeter inquérito</button>
+        </div>
+    </div>
     
+    </form>
+
+</div>
+
 </body>
 </html>

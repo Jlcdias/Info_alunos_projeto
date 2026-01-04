@@ -5,7 +5,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transcrição Bolonha</title>
 </head>
+<style>
+    /* Container e Reset */
+.curso-bolonha-container {
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.curso-bolonha-radio {
+    display: none;
+}
+
+/* Design das Abas */
+.curso-bolonha-tabs {
+    display: flex;
+    background-color: #efefef;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    width: fit-content;
+    border-radius: 4px 4px 0 0;
+}
+
+.curso-bolonha-label {
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+    color: #444;
+}
+
+/* Efeito de Aba Ativa */
+#bolonha-tab-listagem:checked ~ .curso-bolonha-tabs .label-list {
+    background-color: #fff;
+    color: #ff6600; /* Cor laranja institucional */
+    border-bottom: 2px solid #fff;
+    margin-bottom: -1px;
+}
+
+#bolonha-tab-relatorios:checked ~ .curso-bolonha-tabs .label-rel {
+    background-color: #fff;
+    color: #000;
+    text-decoration: underline;
+    border-bottom: 2px solid #fff;
+    margin-bottom: -1px;
+}
+
+/* Painel de Conteúdo */
+.curso-bolonha-painel {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    min-height: 200px;
+}
+
+.curso-bolonha-view {
+    display: none;
+}
+
+/* Exibição condicional */
+#bolonha-tab-listagem:checked ~ .curso-bolonha-painel .view-listagem,
+#bolonha-tab-relatorios:checked ~ .curso-bolonha-painel .view-relatorios {
+    display: block;
+}
+
+.curso-bolonha-titulo {
+    margin-top: 0;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilo do Aviso de Erro (Aba Relatórios) */
+.curso-bolonha-aviso {
+    color: #000;
+    font-size: 13px;
+}
+
+.curso-bolonha-erro-icon {
+    color: #d32f2f;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 16px;
+}
+.curso-tabela-base {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    border: 1px solid #ccc;
+}
+
+/* Cabeçalho Bege/Pêssego conforme a imagem */
+.curso-tabela-base thead th {
+    background-color: #fdebd0; /* Cor bege institucional */
+    color: #333;
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Células e Linhas */
+.curso-tabela-base tbody td {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    color: #555;
+}
+
+/* Linhas Alternadas para facilitar a leitura */
+.curso-tabela-base tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover para destacar a linha onde está o rato */
+.curso-tabela-base tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Classe utilitária para centralizar colunas como A, S e U.C. */
+.text-center {
+    text-align: center !important;
+}
+
+/* Scroll para tabelas grandes em mobile */
+.curso-bolonha-scroll {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+.curso-subtitulo {
+    font-family: Arial, sans-serif; /* Mesma fonte do resto do site */
+    font-size: 16px;              /* Tamanho padrão dos teus subtítulos */
+    font-weight: bold;            /* Negrito conforme a imagem */
+    color: #000;                  /* Cor preta pura */
+    margin-top: 0;                /* Remove espaços extras no topo */
+    margin-bottom: 15px;          /* Espaçamento até aos botões/abas */
+    text-align: left;             /* Alinhamento à esquerda */
+}
+/* Layout em duas colunas */
+.curso-bolonha-relatorios-grid {
+    display: flex;
+    gap: 20px;
+    padding-top: 10px;
+}
+
+.curso-bolonha-col {
+    flex: 1;
+}
+
+.curso-bolonha-border-left {
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+}
+
+/* Títulos internos */
+.curso-subtitulo-relatorio {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+/* Alinhamento dos Selects em linha */
+.curso-bolonha-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.curso-bolonha-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.curso-bolonha-field label {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+/* Estilo cinzento dos campos conforme imagem */
+.curso-bolonha-select-grey {
+    background-color: #999; /* Cinza escuro da imagem */
+    color: #000;
+    border: 1px solid #666;
+    padding: 2px;
+    font-size: 12px;
+    height: 24px;
+}
+
+/* Botão Gerar Relatório */
+.curso-bolonha-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.curso-bolonha-btn-gerar {
+    padding: 3px 15px;
+    border: 1px solid #999;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 3px;
+}
+</style>
 <body>
-    
+    <div class="curso-bolonha-container">
+    <input type="radio" name="bolonha-tab" id="bolonha-tab-listagem" class="curso-bolonha-radio" checked>
+    <input type="radio" name="bolonha-tab" id="bolonha-tab-relatorios" class="curso-bolonha-radio">
+
+    <div class="curso-bolonha-tabs">
+        <label for="bolonha-tab-listagem" class="curso-bolonha-label label-list">Listagem da Transição</label>
+        <label for="bolonha-tab-relatorios" class="curso-bolonha-label label-rel">Relatórios de Transição</label>
+    </div>
+
+    <div class="curso-bolonha-painel">
+        
+        <div class="curso-bolonha-view view-listagem">
+            <h5 class="curso-bolonha-titulo">Lista de Transições para Bolonha do Aluno 2032624</h5>
+            
+                <span class="curso-bolonha-erro-icon">✖</span>
+                <strong>Não existem registos de Transição para Bolonha para este aluno.</strong>
+                <p>Para qualquer dúvida contacte o Sector Académico.</p>
+        </div>
+
+        <div class="curso-bolonha-view view-relatorios">
+            <div class="curso-bolonha-relatorios-grid">
+        
+        <div class="curso-bolonha-col">
+            <h4 class="curso-subtitulo-relatorio">Relatórios por Ano Lectivo</h4>
+            <div class="curso-bolonha-form-rel">
+                <div class="curso-bolonha-row">
+                    <div class="curso-bolonha-field">
+                        <label>Ano Lectivo</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>2025/26</option>
+                        </select>
+                    </div>
+                    <div class="curso-bolonha-field">
+                        <label>Relatório(s):</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>Transição para Bolonha</option>
+                        </select>
+                    </div>
+                    <div class="curso-bolonha-field">
+                        <label>Formato(s):</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>PDF</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="curso-bolonha-actions">
+                    <button type="button" class="curso-bolonha-btn-gerar">Gerar Relatório >></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="curso-bolonha-col curso-bolonha-border-left">
+            <h4 class="curso-subtitulo-relatorio">Relatórios por Curso</h4>
+            <div class="curso-bolonha-form-rel">
+                <div class="curso-bolonha-row">
+                    <div class="curso-bolonha-field">
+                        <label>Ano Lectivo</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>2025/26</option>
+                        </select>
+                    </div>
+                    <div class="curso-bolonha-field">
+                        <label>Curso:</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="curso-bolonha-field">
+                        <label>Relatório(s):</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>Regras de Transição</option>
+                        </select>
+                    </div>
+                    <div class="curso-bolonha-field">
+                        <label>Formato(s):</label>
+                        <select class="curso-bolonha-select-grey">
+                            <option>PDF</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="curso-bolonha-actions">
+                    <button type="button" class="curso-bolonha-btn-gerar">Gerar Relatório >></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+            <h4 class="curso-subtitulo"> Exemplo de Transcrição para Bolonha</h4>
+            <p>Se fosse Possivel</p>
+            <div class="curso-bolonha-aviso">
+                 <div class="curso-bolonha-scroll">
+                <table class="curso-tabela-base">
+                    <thead>
+                        <tr>
+                            <th>ALAp</th>
+                            <th>Disciplina</th>
+                            <th class="text-center">A</th>
+                            <th class="text-center">S</th>
+                            <th class="text-center">U.C.</th>
+                            <th>C</th>
+                            <th>Tipo Apr.</th>
+                            <th>Data Apr.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td></td><td>Técnicas de Expressão do Português</td><td class="text-center">1</td><td class="text-center">S1</td><td class="text-center">5.00</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Matemática</td><td class="text-center">1</td><td class="text-center">S1</td><td class="text-center">5.50</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Introdução à Programação</td><td class="text-center">1</td><td class="text-center">S1</td><td class="text-center">6.50</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Sistemas Operativos e Redes</td><td class="text-center">1</td><td class="text-center">S1</td><td class="text-center">6.50</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Design Hipermédia</td><td class="text-center">1</td><td class="text-center">S1</td><td class="text-center">6.50</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Inglês Técnico</td><td class="text-center">1</td><td class="text-center">S2</td><td class="text-center">5.00</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Programação Orientada por Objetos</td><td class="text-center">1</td><td class="text-center">S2</td><td class="text-center">6.00</td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td>Desenvolvimento Web - Back-End</td><td class="text-center">1</td><td class="text-center">S2</td><td class="text-center">6.50</td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

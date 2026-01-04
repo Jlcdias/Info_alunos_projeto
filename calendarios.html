@@ -5,7 +5,237 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendários</title>
 </head>
+<style>
+    /* Contentor Principal e Fontes */
+    .uma-scheduler-wrapper {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #333;
+        background-color: #f4f4f4;
+        padding: 15px;
+    }
+
+    /* Secção de Filtros (Pesquisa) */
+    .uma-scheduler-search-box {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .uma-scheduler-header-text {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .uma-scheduler-filter-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 5px;
+    }
+
+    .uma-scheduler-label {
+        width: 80px;
+        flex-shrink: 0;
+    }
+
+    .uma-scheduler-select {
+        flex-grow: 1;
+        background-color: #e2efff;
+        border: 1px solid #999;
+        padding: 2px;
+        font-size: 11px;
+    }
+
+    .uma-scheduler-btn {
+        background: linear-gradient(#ffffff, #e0e0e0);
+        border: 1px solid #999;
+        border-radius: 4px;
+        padding: 2px 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* Contentor do Calendário */
+    .uma-scheduler-calendar-container {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .uma-scheduler-calendar-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .uma-scheduler-calendar-table th {
+        background-color: #ffebd7;
+        border: 1px solid #ccc;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .uma-scheduler-calendar-table td {
+        border: 1px solid #ccc;
+        height: 100px;
+        vertical-align: top;
+        padding: 5px;
+        background-color: #eee; /* Cor de fundo dos dias fora do mês ou padrão */
+    }
+
+    .uma-scheduler-day-active {
+        background-color: #fff !important;
+    }
+
+    .uma-scheduler-day-number {
+        font-size: 18px;
+        color: #999;
+        float: right;
+    }
+
+    /* Eventos e Aulas */
+    .uma-scheduler-class-block {
+        background-color: #a0e0f0; /* Azul das aulas */
+        border: 0.5px solid #0056b3;
+        font-size: 9px;
+        padding: 2px;
+        margin-bottom: 2px;
+        color: #000;
+        line-height: 1.1;
+    }
+
+    .uma-scheduler-eval-block {
+        background-color: #a0f0a0; /* Verde das frequências/recursos */
+        border: 0.5px solid #157347;
+        font-size: 9px;
+        padding: 2px;
+    }
+
+    .uma-scheduler-time {
+        font-weight: bold;
+        color: #0056b3;
+    }
+</style>
 <body>
-    
+    <div class="uma-scheduler-wrapper">
+
+    <div class="uma-scheduler-search-box">
+        <span class="uma-scheduler-header-text">Pesquisa de Disciplinas</span>
+        <div class="uma-scheduler-filter-row">
+            <span class="uma-scheduler-label">Ano Lectivo</span>
+            <select class="uma-scheduler-select">
+                <option>2025/26</option>
+            </select>
+            <button class="uma-scheduler-btn">Pesquisar...</button>
+        </div>
+        <div class="uma-scheduler-filter-row">
+            <span class="uma-scheduler-label">Disciplina</span>
+            <select class="uma-scheduler-select">
+                <option>Design Hipermédia_CTeSP_TPSI [ S1 ]</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="uma-scheduler-calendar-container">
+        <span class="uma-scheduler-header-text">Calendário</span>
+        
+        <div class="uma-scheduler-filter-row" style="margin-bottom: 10px;">
+            <select class="uma-scheduler-select" style="max-width: 400px;">
+                <option>Janeiro 2026</option>
+                <option>Novembro 2025</option>
+                <option>Outubro 2025</option>
+                <option>Setembro 2025</option>
+            </select>
+            <button class="uma-scheduler-btn">Calendário</button>
+        </div>
+
+        <table class="uma-scheduler-calendar-table">
+            <thead>
+                <tr>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                    <th>Sábado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <tr>
+                    <td></td><td></td><td></td><td></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">1</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">2</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">3</span></td>
+                </tr>
+                <tr>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">4</span></td>
+                    <td class="uma-scheduler-day-active">
+                        <span class="uma-scheduler-day-number">5</span>
+                        <div class="uma-scheduler-class-block">
+                            <span class="uma-scheduler-time">17:30</span> HAp_A_Nº12<br>(E.) 2.24
+                        </div>
+                    </td>
+                    <td class="uma-scheduler-day-active">
+                        <span class="uma-scheduler-day-number">6</span>
+                        <div class="uma-scheduler-class-block">
+                            <span class="uma-scheduler-time">09:00</span> HAp_B_Nº16<br>(E.) 2.29
+                        </div>
+                    </td>
+                    <td class="uma-scheduler-day-active">
+                        <span class="uma-scheduler-day-number">7</span>
+                        <div class="uma-scheduler-class-block">
+                            <span class="uma-scheduler-time">14:00</span> HAp_B_Nº18<br>(E.) 0.21
+                        </div>
+                        <div class="uma-scheduler-class-block">
+                            <span class="uma-scheduler-time">16:00</span> TP_A_Nº14<br>(E.) 2.24
+                        </div>
+                    </td>
+                    <td class="uma-scheduler-day-active">
+                        <span class="uma-scheduler-day-number">8</span>
+                        <div class="uma-scheduler-day-number" style="float:left; font-size: 14px; color: #ccc;">1</div>
+                    </td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">9</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">10</span></td>
+                </tr>
+                <tr>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">11</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">12</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">13</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">14</span></td>
+                    <td class="uma-scheduler-day-active">
+                        <span class="uma-scheduler-day-number">15</span>
+                        <div class="uma-scheduler-eval-block">
+                            <span class="uma-scheduler-time">14:00</span> Frequência 0.-
+                        </div>
+                    </td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">16</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">17</span></td>
+                </tr>
+                <tr>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">18</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">19</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">20</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">21</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">22</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">23</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">24</span></td>
+                </tr>
+                <tr>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">25</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">26</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">27</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">28</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">29</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">30</span></td>
+                    <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">31</span></td>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

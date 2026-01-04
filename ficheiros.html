@@ -5,7 +5,332 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficheiros</title>
 </head>
+<style>
+ /* 1. Definições de Layout e Base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.disciplina-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.disciplina-bloco-pesquisa, .disciplina-container-tabs {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.disciplina-titulo, .disciplina-subtitulo-ficheiro {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.disciplina-titulo { font-size: 14px; }
+.disciplina-subtitulo-ficheiro { font-size: 13px; }
+
+.disciplina-linha {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* 2. Sistema de Tabs (Sem JavaScript) */
+.tab-control, .disciplina-pane, .disciplina-hidden-input {
+    display: none;
+}
+
+.disciplina-tab-menu {
+    display: flex;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 5px 0;
+    margin: -15px -15px 0; /* Ajuste para encostar nas bordas do container */
+}
+
+.disciplina-tab-item {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background: #e1e1e1;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+    color: #555;
+    transition: background 0.2s;
+}
+
+/* Lógica de Ativação (Tab Selecionada) */
+#tab1:checked ~ .disciplina-tab-menu label[for="tab1"],
+#tab2:checked ~ .disciplina-tab-menu label[for="tab2"] {
+    background: #fff;
+    color: #000;
+    position: relative;
+    top: 1px;
+}
+
+#tab1:checked ~ .disciplina-tab-content .pane-1,
+#tab2:checked ~ .disciplina-tab-content .pane-2 {
+    display: block;
+}
+
+.disciplina-tab-content {
+    padding: 20px 0;
+    min-height: 300px;
+}
+
+/* 3. Inputs, Botões e Elementos UI */
+.disciplina-select, .disciplina-input-select, .disciplina-select-footer, .disciplina-input-text, .disciplina-textarea {
+    border: 1px solid #7a9db9;
+    background-color: #dbeaff; /* Azul claro */
+    font-size: 12px;
+    padding: 4px;
+}
+
+.disciplina-select, .disciplina-select-footer { height: 28px; }
+.full-width { width: 100%; box-sizing: border-box; }
+
+.disciplina-btn-pesquisar, .disciplina-button-ui, .disciplina-btn-footer {
+    background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    border: 1px solid #999;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 15px;
+}
+
+.btn-danger {
+    color: red !important;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 4. Tabelas e Listagens */
+.disciplina-tabela-documentos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.disciplina-tabela-documentos th {
+    background-color: #ffebcc; /* Bege do cabeçalho */
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.disciplina-tabela-documentos td {
+    border: 1px solid #eee;
+    padding: 6px 8px;
+}
+
+.disciplina-tabela-documentos tbody tr:nth-child(even) { background-color: #f9f9f9; }
+
+/* 5. Painel de Ficheiros (Grelha e Formulário) */
+.disciplina-grid-ficheiros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.disciplina-form-group { margin-bottom: 12px; }
+.disciplina-form-group label { display: block; font-size: 11px; font-weight: bold; margin-bottom: 3px; }
+
+.disciplina-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #dbeaff;
+    border: 1px solid #7a9db9;
+    padding: 2px;
+}
+
+.disciplina-aviso {
+    font-size: 11px;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    line-height: 1.4;
+}
+
+.disciplina-row-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.required { color: red; }
+.required-bold { color: red; font-weight: bold; }
+
+/* 6. Utilitários e Rodapé */
+.disciplina-tab-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+}
+
+.disciplina-file-icon, .disciplina-info-icon { width: 16px; height: 16px; vertical-align: middle; }
+.disciplina-icon-inline { width: 18px; height: 18px; margin-left: 5px; cursor: pointer; vertical-align: middle; }
+</style>
 <body>
-    
+<div class="disciplina-wrapper">
+    <div class="disciplina-bloco-pesquisa">
+        <h3 class="disciplina-titulo">Pesquisa de Disciplinas</h3>
+        <div class="disciplina-linha">
+            <div class="disciplina-campo field-ano">
+                <label>Ano Lectivo</label>
+                <select class="disciplina-select">
+                    <option>Selecione uma opção</option>
+                    <option>2025/26</option>
+                </select>
+            </div>
+            <button class="disciplina-btn-pesquisar">Pesquisar...</button>
+        </div>
+
+        <div class="disciplina-linha">
+            <div class="disciplina-campo field-full">
+                <label>Disciplina</label>
+                <select class="disciplina-select">
+                    <option>Introdução à Programação_CTeSP_TPSI [ S1 ]</option>
+                    <option>Design Hipérmidia</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="disciplina-container-tabs">
+        <input type="radio" name="tabs" id="tab1" class="tab-control" checked>
+        <input type="radio" name="tabs" id="tab2" class="tab-control">
+
+        <div class="disciplina-tab-menu">
+            <label for="tab1" class="disciplina-tab-item">Ficheiros Docente Disciplina</label>
+            <label for="tab2" class="disciplina-tab-item">Ficheiros do Aluno na Disciplina</label>
+        </div>
+
+        <div class="disciplina-tab-content">
+            
+            <div class="disciplina-pane pane-1">
+                <div class="disciplina-filtro-container">
+                    <div class="disciplina-filtro-campo">
+                        <label class="disciplina-label-bold">Filtrar por Categoria</label>
+                        <select class="disciplina-input-select disciplina-bg-blue">
+                            <option></option>
+                            <option>Apontamentos</option>
+                            <option>Artigos</option>
+                            <option>Exames Tipo</option>
+                        </select>
+                        <button class="disciplina-button-ui">Filtrar Lista</button>
+                    </div>
+                </div>
+
+                <table class="disciplina-tabela-documentos">
+                    <thead>
+                        <tr>
+                            <th class="disciplina-col-ficheiro">Ficheiro</th>
+                            <th class="disciplina-col-categoria">Categoria</th>
+                            <th class="disciplina-col-data">Data</th>
+                            <th class="disciplina-col-autor">Nome</th>
+                            <th class="disciplina_col_obs">Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="img/pdf.png" class="disciplina-file-icon" alt="PDF"> <a href="#" class="disciplina-link-doc">Capa Powerpoint (426.5 KB)</a></td>
+                            <td>Apontamentos</td>
+                            <td>2025-09-25 18:50</td>
+                            <td>Pedro Proença</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/pdf.png" class="disciplina-file-icon" alt="PDF"> <a href="#" class="disciplina-link-doc">Capa trabalho (16.7 MB)</a></td>
+                            <td>Apontamentos</td>
+                            <td>2025-09-25 18:50</td>
+                            <td>Pedro Proença</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/pdf.png" class="disciplina-file-icon" alt="PDF"> <a href="#" class="disciplina-link-doc">Ficha de trabalho (23.16 KB)</a></td>
+                            <td>Apontamentos</td>
+                            <td>2025-09-25 18:50</td>
+                            <td>David Jardim</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/pdf.png" class="disciplina-file-icon" alt="PDF"> <a href="#" class="disciplina-link-doc">Ficha html (127.83 KB)</a></td>
+                            <td>Apontamentos</td>
+                            <td>2025-09-25 18:51</td>
+                            <td>Tiago Bettencourt</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="disciplina-pane pane-2">
+                <div class="disciplina-grid-ficheiros">
+                    <div class="disciplina-form-upload">
+                        <h4 class="disciplina-subtitulo-ficheiro">Criar/Actualizar Ficheiro</h4>
+                        
+                        <div class="disciplina-form-group">
+                            <label>Escolher ficheiro:</label>
+                            <div class="disciplina-file-input-wrapper">
+                                <input type="file" id="file-upload" class="disciplina-hidden-input">
+                                <label for="file-upload" class="disciplina-button-ui">Escolher ficheiro</label>
+                                <span class="disciplina-file-status">Nenhum ficheiro selecionado</span>
+                            </div>
+                        </div>
+
+                        <div class="disciplina-form-group">
+                            <label><span class="required">*</span>Categoria</label>
+                            <select class="disciplina-input-select disciplina-bg-blue full-width">
+                                <option></option>
+                                <option>Documentos na disciplina</option>
+                            </select>
+                        </div>
+
+                        <div class="disciplina-form-group">
+                            <label><span class="required">*</span>Descrição</label>
+                            <input type="text" class="disciplina-input-text disciplina-bg-blue full-width">
+                        </div>
+
+                        <div class="disciplina-form-group">
+                            <label>Observações</label>
+                            <textarea class="disciplina-textarea disciplina-bg-blue full-width"></textarea>
+                        </div>
+
+                        <p class="disciplina-aviso">
+                            <span class="required">*</span> Os campos assinalados são de preenchimento obrigatório;<br>
+                            O ficheiro a enviar está limitado a <span class="required-bold">10 Mb</span>.
+                        </p>
+
+                        <div class="disciplina-actions-container">
+                            <p class="disciplina-label-info">Informações Gerais do Ficheiro</p>
+                            <button class="disciplina-button-ui btn-danger">Eliminar</button>
+                            <div class="disciplina-row-buttons">
+                                <button class="disciplina-button-ui">Novo Ficheiro</button>
+                                <button class="disciplina-button-ui">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="disciplina-lista-ficheiros">
+                        <h4 class="disciplina-subtitulo-ficheiro">Lista de ficheiros associados</h4>
+                        <div class="disciplina-alert-info">
+                            <img src="img/info.png" class="disciplina-info-icon" alt="Info">
+                            <p>Não foram encontrados ficheiros para a selecção efectuada, escolha a disciplina!</p> 
+                        </div>
+                    </div>
+                </div>
+            </div> </div> </div> </div> 
+
+
 </body>
 </html>

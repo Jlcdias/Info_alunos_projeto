@@ -1,11 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pautas</title>
+<html lang="pt" class="pauta">
+<head class="pauta">
+    <meta charset="UTF-8" class="pauta">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" class="pauta">
+    <title class="pauta">Pautas</title>
+    <style class="pauta">
+        /* Variáveis aplicadas apenas ao contexto .pauta */
+        .pauta:root, .pauta {
+            --cor-borda: #b5b5b5;
+            --cor-cabecalho: #ffe5d0;
+            --cor-input-bg: linear-gradient(to bottom, #e2efff 0%, #ffffff 100%);
+            --cor-botao-bg: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+            --azul-info: #0055ff;
+        }
+
+        body.pauta { 
+            font-family: Arial, sans-serif; 
+            font-size: 11px; 
+            background-color: #f0f0f0; 
+            padding: 15px; 
+        }
+
+        .container-principal.pauta { 
+            background: white; 
+            border: 1px solid #ccc; 
+            padding: 10px;
+            max-width: 1000px; 
+            margin: auto; 
+        }
+
+        .bloco-seccao.pauta { 
+            border: 1px solid var(--cor-borda); 
+            padding: 10px; 
+            margin-bottom: 15px; 
+        }
+        
+        .linha-campo.pauta { 
+            display: flex; 
+            align-items: center;
+            margin-bottom: 5px;
+            gap: 10px; 
+        }
+
+        .label-fixa.pauta { width: 100px; }
+
+        .select-custom.pauta { 
+            flex-grow: 1; 
+            padding: 2px; 
+            border: 1px solid #a5c7ff; 
+            background: var(--cor-input-bg); 
+            border-radius: 2px; 
+        }
+
+        .btn-pesquisa-simulado.pauta { 
+            display: inline-block;
+            background: var(--cor-botao-bg); 
+            border: 1px solid #999; 
+            border-radius: 15px; 
+            padding: 2px 20px; 
+            font-weight: bold; 
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tabela-resultados.pauta { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+            border: 1px solid #ddd; 
+        }
+
+        .tabela-resultados.pauta th.pauta { 
+            background: var(--cor-cabecalho); 
+            border: 1px solid #ccc; 
+            padding: 5px; 
+        }
+
+        .tabela-resultados.pauta td.pauta { 
+            border: 1px solid #eee; 
+            padding: 4px; 
+            text-align: center; 
+        }
+
+        .zebra.pauta tr.pauta:nth-child(even) { background: #f9f9f9; }
+
+        .alinhar-esq.pauta { text-align: left !important; padding-left: 10px !important; }
+
+        .msg-info.pauta { 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            margin: 10px 0; 
+        }
+
+        .circulo-i.pauta { 
+            background: var(--azul-info); 
+            color: white; 
+            border-radius: 50%; 
+            width: 14px; 
+            height: 14px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 9px; 
+            font-weight: bold; 
+        }
+
+        /* LÓGICA DE EXIBIÇÃO APENAS COM CLASSE PAUTA */
+        input.pauta#trigger-pesquisa, 
+        input.pauta#trigger-reset { 
+            display: none; 
+        }
+
+        .area-resultados.pauta { display: none; }
+        .area-aviso.pauta { display: flex; }
+
+        input.pauta#trigger-pesquisa:checked ~ .container-principal.pauta .area-resultados.pauta { 
+            display: block; 
+        }
+        input.pauta#trigger-pesquisa:checked ~ .container-principal.pauta .area-aviso.pauta { 
+            display: none; 
+        }
+
+        input.pauta#trigger-reset:checked ~ .container-principal.pauta .area-resultados.pauta { 
+            display: none; 
+        }
+        input.pauta#trigger-reset:checked ~ .container-principal.pauta .area-aviso.pauta { 
+            display: flex; 
+        }
+    </style>
 </head>
-<body>
-    
+<body class="pauta">
+
+    <input type="radio" name="portal-estado" id="trigger-pesquisa" class="pauta">
+    <input type="radio" name="portal-estado" id="trigger-reset" checked class="pauta">
+
+    <div class="container-principal pauta">
+        
+        <div class="bloco-seccao pauta">
+            <span style="font-weight: bold;" class="pauta">Pesquisa de Disciplinas</span>
+            <div class="linha-campo pauta">
+                <div class="label-fixa pauta">Ano Lectivo</div>
+                <label for="trigger-reset" style="flex-grow: 1;" class="pauta">
+                    <select class="select-custom pauta">
+                        <option class="pauta">2024/25</option>
+                        <option class="pauta">2025/26</option>
+                    </select>
+                </label>
+                <label for="trigger-pesquisa" class="btn-pesquisa-simulado pauta">Pesquisar...</label>
+            </div>
+            
+            <div class="linha-campo pauta">
+                <div class="label-fixa pauta">Disciplina</div>
+                <label for="trigger-reset" style="flex-grow: 1;" class="pauta">
+                    <select class="select-custom pauta">
+                        <option class="pauta">Matemática Básica [ S2 ]</option>
+                        <option class="pauta">Desenvolvimento Web - Back-End [ S2 ]</option>
+                    </select>
+                </label>
+            </div>
+            <div class="linha-campo pauta">
+                <div class="label-fixa pauta">Tipo de Avaliação</div>
+                <label for="trigger-reset" style="flex-grow: 1;" class="pauta">
+                    <select class="select-custom pauta">
+                        <option class="pauta">Epóca Normal</option>
+                        <option class="pauta">Epoca de Recurso</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="bloco-seccao pauta">
+            <span style="font-weight: bold;" class="pauta">Lista de Pautas</span>
+            
+            <div class="area-aviso msg-info pauta">
+                <span class="circulo-i pauta">i</span> 
+                <span class="pauta">Seleccione uma disciplina e/ou tipo de avaliação!</span>
+            </div>
+
+            <div class="area-resultados pauta">
+                <table class="tabela-resultados pauta">
+                    <thead class="pauta">
+                        <tr class="pauta">
+                            <th class="pauta">Pauta</th>
+                            <th class="pauta">Estado</th>
+                            <th class="pauta">Avaliação</th>
+                            <th class="pauta">Curso</th>
+                            <th class="pauta">Cadeira</th>
+                            <th class="pauta">Sem</th>
+                        </tr>
+                    </thead>
+                    <tbody class="pauta">
+                        <tr class="pauta">
+                            <td class="pauta">60455</td>
+                            <td class="pauta"><strong class="pauta">D</strong></td>
+                            <td class="pauta">Época Normal</td>
+                            <td class="pauta">Matemática Básica</td>
+                            <td class="pauta">Matemática Básica</td>
+                            <td class="pauta">S1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="border: 1px solid #ccc; padding: 10px; margin-top: 15px;" class="pauta">
+                    <span style="font-weight: bold; display: block; margin-bottom: 5px;" class="pauta">Alunos associados às pautas</span>
+                    <table class="tabela-resultados zebra pauta">
+                        <thead class="pauta">
+                            <tr class="pauta">
+                                <th class="pauta">Pauta</th>
+                                <th class="pauta">Nr. Aluno</th>
+                                <th class="alinhar-esq pauta">Nome</th>
+                                <th class="pauta">Nota</th>
+                                <th class="pauta">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody class="pauta">
+                            <tr class="pauta">
+                                <td class="pauta">60455D</td>
+                                <td class="pauta">2239924</td>
+                                <td class="alinhar-esq pauta">Alexandrina da Conceição Pita Assunção da Mata</td>
+                                <td class="pauta"><strong class="pauta">NAv</strong></td>
+                                <td class="pauta">2025-05-24</td>
+                            </tr>
+                            <tr class="pauta">
+                                <td class="pauta">60455D</td>
+                                <td class="pauta">2093318</td>
+                                <td class="alinhar-esq pauta">Ana Verónica Menezes Mc Bride</td>
+                                <td class="pauta"><strong class="pauta">9</strong></td>
+                                <td class="pauta">2025-05-24</td>
+                            </tr>
+                            <tr class="pauta">
+                                <td class="pauta">60455D</td>
+                                <td class="pauta">2059119</td>
+                                <td class="alinhar-esq pauta">Pedro Emanuel Gonçalves Passalacqua</td>
+                                <td class="pauta"><strong class="pauta">16</strong></td>
+                                <td class="pauta">2025-05-24</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,11 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacidade</title>
+    <title>Privacidade e Consentimentos</title>
+    <style>
+        /* --- Base e Tipografia --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .privac-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- Cabeçalho --- */
+        .privac-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .privac-header h1 {
+            font-size: 32px;
+            font-weight: normal;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .privac-header p {
+            font-size: 15px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Estrutura dos Itens Expansíveis --- */
+        .privac-item-wrapper {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden; /* Garante que o conteúdo não vaze antes de expandir */
+        }
+
+        /* Esconder Checkbox Funcional */
+        .privac-toggle {
+            display: none;
+        }
+
+        /* --- Cabeçalho do Item (Clicável) --- */
+        .privac-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            user-select: none;
+        }
+
+        .privac-item-header:hover {
+            background-color: #fcfcfc;
+        }
+
+        .privac-title-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .privac-icon {
+            font-size: 26px;
+            color: #1a4f8a; /* Azul institucional */
+        }
+
+        .privac-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a4f8a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Selos de Status (Verde) */
+        .privac-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #28a745;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .privac-status-icon {
+            border: 2px solid #28a745;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* --- Conteúdo Colapsável (Lógica sem JS) --- */
+        .privac-collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background-color: #fff;
+        }
+
+        /* Quando clicado, expande o conteúdo */
+        .privac-toggle:checked ~ .privac-collapsible-content {
+            max-height: 2000px; /* Suficiente para textos longos */
+            transition: max-height 0.6s ease-in-out;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .privac-inner-body {
+            padding: 30px;
+        }
+
+        /* --- Estilo do Texto --- */
+        .privac-text {
+            font-size: 14px;
+            color: #555;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .privac-list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .privac-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .privac-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #1a4f8a;
+            font-weight: bold;
+        }
+
+        /* --- Rodapé e Botões --- */
+        .privac-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .privac-btn {
+            background-color: #5a88c5; /* Azul dos botões */
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .privac-btn:hover {
+            background-color: #4671a8;
+        }
+
+        /* Estilo responsivo */
+        @media (max-width: 600px) {
+            .privac-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .privac-status {
+                align-self: flex-end;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="privac-container">
+    <header class="privac-header">
+        <h1>Privacidade e Consentimentos</h1>
+        <p>Deverá clicar sobre cada um dos diferentes itens abaixo de modo a permitir ou recusar a utilização dos seus dados pessoais.</p>
+    </header>
+
+    <div class="privac-item-wrapper">
+        <input type="checkbox" id="privac-1" class="privac-toggle">
+        <label for="privac-1" class="privac-item-header">
+            <div class="privac-title-group">
+                <span class="privac-icon">👤</span>
+                <span class="privac-title">Autorização de Dados Pessoais</span>
+            </div>
+            <div class="privac-status">
+                <div class="privac-status-icon">✓</div> TOMEI CONHECIMENTO
+            </div>
+        </label>
+        
+        <div class="privac-collapsible-content">
+            <div class="privac-inner-body">
+                <div class="privac-text">
+                    Os dados pessoais aqui submetidos são para uso exclusivo da Universidade da Madeira e, nos cursos em parceria, das correspondentes entidades, e não serão nunca divulgados a terceiros nem utilizados para outros fins sem o seu consentimento...
+                    <ul class="privac-list">
+                        <li>Pólo de emprego para divulgação das ofertas de emprego</li>
+                        <li>Entidades cooperantes diversas, para realização de trabalhos académicos/estágios</li>
+                        <li>Gabinete de Comunicação e Marketing (GCM) da UMa</li>
+                    </ul>
+                </div>
+                <div class="privac-footer">
+                    <span><strong>Tomei Conhecimento</strong> em 2025-09-30 13:19</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="privac-item-wrapper">
+        <input type="checkbox" id="privac-2" class="privac-toggle">
+        <label for="privac-2" class="privac-item-header">
+            <div class="privac-title-group">
+                <span class="privac-icon">✉</span>
+                <span class="privac-title">Correio Eletrónico Institucional - Informação não Académica</span>
+            </div>
+            <div class="privac-status">
+                <div class="privac-status-icon">✓</div> AUTORIZADO
+            </div>
+        </label>
+        
+        <div class="privac-collapsible-content">
+            <div class="privac-inner-body">
+                <div class="privac-text">
+                    Autorizo que a Universidade da Madeira utilize o endereço do meu email institucional (<strong>2032624@student.uma.pt</strong>), para envio de informações não académicas e/ou não relacionadas com o/s curso/s em que me encontro inscrito.
+                </div>
+                <div class="privac-footer">
+                    <span><strong>Autorizado</strong> em 2025-09-30 13:19</span>
+                    <button class="privac-btn">Retirar Autorização</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="privac-item-wrapper">
+        <input type="checkbox" id="privac-3" class="privac-toggle">
+        <label for="privac-3" class="privac-item-header">
+            <div class="privac-title-group">
+                <span class="privac-icon">✉</span>
+                <span class="privac-title">Inclusão na Lista Alumni</span>
+            </div>
+            <div class="privac-status">
+                <div class="privac-status-icon">✓</div> AUTORIZADO
+            </div>
+        </label>
+        
+        <div class="privac-collapsible-content">
+            <div class="privac-inner-body">
+                <div class="privac-text">
+                    Autorizo que a Universidade da Madeira utilize o endereço do meu email pessoal (<strong>joaocairesdias@gmail.com</strong>), na lista Alumni, para divulgação de eventos ou outras informações de interesse para alunos diplomados pela Universidade da Madeira.
+                </div>
+                <div class="privac-footer">
+                    <span><strong>Autorizado</strong> em 2025-10-02 00:00</span>
+                    <button class="privac-btn">Retirar Autorização</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>

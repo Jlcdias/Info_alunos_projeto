@@ -1,11 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamentos</title>
+    <style>
+        /* --- Configurações de Base --- */
+        body { 
+            font-family: Arial, sans-serif; 
+            font-size: 12px; 
+            color: #333; 
+            background-color: #f4f4f4; 
+            padding: 20px; 
+        }
+
+        .pagam-main-container { 
+            max-width: 1100px; 
+            margin: auto; 
+            background: white; 
+            padding: 15px; 
+            border: 1px solid #ccc; 
+        }
+
+        /* --- Secção de Topo (Filtros e Dívida) --- */
+        .pagam-top-row { 
+            display: flex; 
+            gap: 20px; 
+            margin-bottom: 20px; 
+        }
+
+        .pagam-filter-box, 
+        .pagam-debt-box { 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            border-radius: 3px; 
+            position: relative; 
+        }
+
+        .pagam-filter-box { flex: 2; }
+        .pagam-debt-box { flex: 1; text-align: right; }
+
+        .pagam-box-title { 
+            position: absolute; 
+            top: -10px; 
+            left: 10px; 
+            background: white; 
+            padding: 0 5px; 
+            font-weight: bold; 
+        }
+
+        .pagam-total-value { 
+            font-size: 24px; 
+            font-weight: bold; 
+            margin-top: 15px; 
+        }
+
+        /* --- Tabela de Pagamentos --- */
+        .pagam-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 20px; 
+            font-size: 11px; 
+        }
+
+        .pagam-table th { 
+            background-color: #ffe6cc; 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+
+        .pagam-table td { 
+            border: 1px solid #ddd; 
+            padding: 6px; 
+        }
+
+        .pagam-table tr:nth-child(even) { 
+            background-color: #f9f9f9; 
+        }
+
+        .pagam-late-payment { 
+            color: red; 
+            font-weight: bold; 
+            text-decoration: underline; 
+        }
+
+        /* --- Secção de Opções de Pagamento --- */
+        .pagam-payment-options { 
+            display: flex; 
+            gap: 20px; 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+        }
+
+        .pagam-option-col { 
+            flex: 1; 
+            padding: 10px; 
+        }
+
+        .pagam-option-col:first-child { 
+            border-right: 1px solid #eee; 
+        }
+
+        .pagam-mb-logo { 
+            width: 60px; 
+            float: left; 
+            margin-right: 15px; 
+        }
+
+        .pagam-option-col h4 { 
+            color: #000; 
+            margin-top: 0; 
+        }
+
+        .pagam-warning-text { 
+            font-weight: bold; 
+            color: #000; 
+            margin-top: 10px; 
+            display: block; 
+        }
+
+        /* --- Inputs e Botões --- */
+        .pagam-main-container select, 
+        .pagam-main-container input { 
+            border: 1px solid #99b3ff; 
+            background-color: #e6f0ff; 
+            padding: 3px; 
+        }
+
+        .pagam-btn-search { 
+            margin-top: 10px; 
+            padding: 3px 20px; 
+            background: linear-gradient(to bottom, #fff, #e0e0e0); 
+            border: 1px solid #adadad; 
+            cursor: pointer; 
+            float: right; 
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="pagam-main-container">
+    <div class="pagam-top-row">
+        <div class="pagam-filter-box">
+            <span class="pagam-box-title">Filtrar Pagamentos</span>
+            <label>Ano Lectivo</label>
+            <select>
+                <option>2024/25</option>
+                <option>2025/26</option>
+                <option>2026/27</option>
+            </select>
+            <label>Situação do Pagamento</label>
+            <select>
+                <option>Por Pagar</option>
+                <option>Pagos</option>
+                <option>Reembolsos</option>
+                <option>Cancelado</option>
+                <option>Substitiuidos por Prestações</option>
+            </select>
+            <button class="pagam-btn-search">Pesquisar...</button>
+        </div>
+        <div class="pagam-debt-box">
+            <span class="pagam-box-title">Total em Dívida</span>
+            <div class="pagam-total-value">479.68 EUR</div>
+        </div>
+    </div>
+
+    <table class="pagam-table">
+        <thead>
+            <tr>
+                <th>AL</th><th>B</th><th>Refª MB</th><th>Serviço</th><th>Obs</th><th>Data Emissão</th><th>Data Lim.</th><th>Data Pag.</th><th>Valor</th><th>Pagar c/ Cartão</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>5ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>6ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>7ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>8ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>9ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>10ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td class="pagam-late-payment">2025/26</td><td class="pagam-late-payment">N</td><td class="pagam-late-payment">203262413</td><td class="pagam-late-payment">Coima - Até 15 dias seguidos após o termo do prazo</td><td></td><td class="pagam-late-payment">2025-09-30</td><td class="pagam-late-payment">2025-10-15</td><td>-</td><td class="pagam-late-payment">15.00 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pagam-payment-options">
+        <div class="pagam-option-col">
+            <img src="svg/Multibanco.svg.png" class="pagam-mb-logo" alt="MB">
+            <h4>Opção 1 - Pagamento via Multibanco</h4>
+            <p>Através da SIBS, pode proceder aos pagamentos utilizando as referências listadas.</p>
+            <h4>Processamento de Transações <span>Não IMEDIATO</span></h4>
+            <ul>
+                <li>Tem de efectuar um pagamento de cada vez.</li>
+                <li>O processamento é efectuado pelo sistema todos os dias pelas 22h00...</li>
+            </ul>
+            <h4>Processo de Pagamento</h4>
+            <ul>
+                <li>No Multibanco ou homebanking, seleccione "Pagamento de Serviços".</li>
+                <li>Como Entidade introduza 20697, como referência, utilize a Refª MB acima listada.</li>
+            </ul>
+            <p>Se for ultrapassada a data limite de pagamento serão aplicados juros de mora à taxa legal em vigor.</p> 
+            <span class="pagam-warning-text">Atenção - Data Limite de Pagamento Ultrapassada</span>
+        </div>
+
+        <div class="pagam-option-col">
+            <img src="img/Logo_Redunicre_2012.jpg" class="pagam-mb-logo" alt="MB">
+            <h4>Opção 2 - Pagamento via Cartão de Crédito</h4>
+            <p>Através da REDUNICRE, pode proceder aos pagamentos via Cartão de Crédito.</p>
+            <h4>Processamento de Transações</h4>
+            <ul>
+                <li>Processamento de Transações - <b>IMEDIATO</b></li>
+                <li>Pode pagar vários produtos de uma vez só.</li>
+            </ul>
+            <h4>Processo de Pagamento</h4>
+            <ul>
+                <li>Na tabela desta página, clique nas linhas correspondentes...</li>
+                <li>Clique no botão "Iniciar Pagamento".</li>
+            </ul>
+            <p>Depois do pagamento, e de forma automática, é criado um novo registo para pagamento...</p> 
+            <span class="pagam-warning-text">Atenção - Data Limite de Pagamento Ultrapassada</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>

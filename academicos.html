@@ -6,6 +6,186 @@
     <title>Académicos</title>
 </head>
 <body>
-    
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            font-size: 11px; 
+            background-color: #f4f4f4; 
+            padding: 20px; 
+            color: #333;
+        }
+
+        /* --- FILTRO DE TOPO (Seletor de Curso) --- */
+        .seletor-topo {
+            max-width: 1000px;
+            margin: 0 auto 20px auto;
+            background: #fff;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .input-filtro-topo {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* --- CONTENTOR DA TABELA --- */
+        .container-tabela {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .titulo-lista {
+            font-weight: bold;
+            padding: 10px;
+            background: #f8f8f8;
+            border-bottom: 1px solid #ccc;
+            display: block;
+        }
+
+        .barra-categoria {
+            padding: 10px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .btn-filtrar {
+            padding: 4px 25px;
+            background: linear-gradient(#ffffff, #e0e0e0);
+            border: 1px solid #999;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- ESTILO DA TABELA (image_eb9570) --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #ffebd7; /* Cor bege do cabeçalho */
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            vertical-align: middle;
+            background-color: #fff;
+        }
+
+        .link-pdf {
+            color: #0056b3;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .link-pdf:hover {
+            text-decoration: underline;
+        }
+
+        .icone-pdf {
+            width: 16px;
+            height: 16px;
+        }
+
+        .visto-ok {
+            color: #198754;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="seletor-topo">
+        <select class="input-filtro-topo">
+            <option>2025/26 - CTeSP - Tecnologias e Programação de Sistemas de Informação</option>
+        </select>
+    </div>
+
+    <div class="container-tabela">
+        <span class="titulo-lista">Lista de Documentos Académicos</span>
+        
+        <div class="barra-categoria">
+            <span>Filtrar por Categoria</span>
+            <select style="width: 400px; background: #e2efff;">
+                <option></option>
+                <option>Suplemento Diploma</option>
+                <option>Certificado de Conclusão</option>
+                <option>Certificado de Matricula</option>
+                <option>Certificado de Inscrição</option>
+                <option>Certeficado de Aproveitamento</option>
+                <option>Inscrições</option>
+                <option>Diploma/carta de Recomendação</option>
+                <option>Certidão de Registo</option>
+                <option>Declaração de Passe</option>
+                <option>Certidão de Registo de Outros Graus</option>
+                <option>Declaração de matriculas , para fins sociais</option>
+                <option>Declaração de Aproveitamento</option>
+            </select>
+            <button class="btn-filtrar">Filtrar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 60px;">Ano L.</th>
+                    <th>Ficheiro</th>
+                    <th style="width: 100px;">Categoria</th>
+                    <th style="width: 250px;">Curso</th>
+                    <th style="width: 150px;">V.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025/26</td>
+                    <td>
+                        <a href="atlas/pdfs/inscricao_2032624_1739291024_257.pdf" class="link-pdf">
+                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf" alt="pdf">
+                            Matrícula Cursos Técnicos Superiores Profissionais CTeSP - P697 - Fase Julho (2025/26) (11.21 KB)
+                        </a>
+                    </td>
+                    <td>Inscrições</td>
+                    <td>Tecnologias e Programação de Sistemas de Informação</td>
+                    <td>
+                        <span class="visto-ok">✔</span> 2025-09-30 13:49
+                    </td>
+                </tr>
+                <tr>
+                    <td>2024/25</td>
+                    <td>
+                        <a href="atlas/pdfs/inscricao_2032624_1759236567_943 (2).pdf" class="link-pdf">
+                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf" alt="pdf">
+                            Matrícula no Curso Livre de Matemática Básica (preparação para as provas de maiores de 23 anos) (2024/25) (10.75 KB)
+                        </a>
+                    </td>
+                    <td>Inscrições</td>
+                    <td>Matemática Básica</td>
+                    <td>
+                        <span class="visto-ok">✔</span> 2025-02-11 16:24
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
 </body>
 </html>

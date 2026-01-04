@@ -6,6 +6,258 @@
     <title>Resultados Inquéritos</title>
 </head>
 <body>
-    
+
+    <style>
+        /* Variáveis de Estilo - Mantidas globais, mas aplicadas nas classes novas */
+        :root {
+            --cor-borda: #ccc;
+            --cor-azul-bg: #e2efff;
+            --cor-azul-borda: #a5c7ff;
+            --cor-cabecalho: #ffe5d0;
+            --cor-texto: #333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: var(--cor-texto);
+        }
+
+        .container-resul-inque {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 15px;
+            border: 1px solid var(--cor-borda);
+        }
+
+        /* Bloco de Pesquisa */
+        .bloco-pesquisa-resul-inque {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-seccao-resul-inque {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .linha-form-resul-inque {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .label-campo-resul-inque {
+            width: 80px;
+        }
+
+        .select-estilizado-resul-inque {
+            flex-grow: 1;
+            background-color: var(--cor-azul-bg);
+            border: 1px solid var(--cor-azul-borda);
+            padding: 2px;
+            height: 22px;
+            border-radius: 2px;
+        }
+
+        /* Botão Carregar */
+        .btn-carregar-resul-inque {
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 3px 40px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Lógica de Exibição (Sem JS) */
+        #trigger-resultado-resul-inque { display: none; }
+        .area-resultado-resul-inque { display: none; }
+        .area-aviso-resul-inque { display: flex; align-items: center; gap: 8px; color: #333; margin-top: 10px; }
+
+        /* Seletores atualizados com o novo ID e novas classes */
+        #trigger-resultado-resul-inque:checked ~ .area-resultado-resul-inque { display: block; }
+        #trigger-resultado-resul-inque:checked ~ .area-aviso-resul-inque { display: none; }
+
+        /* Estilo da Tabela de Resultados */
+        .tabela-dados-resul-inque {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .tabela-dados-resul-inque th {
+            background-color: var(--cor-cabecalho);
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .tabela-dados-resul-inque td {
+            border: 1px solid #eee;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .tabela-dados-resul-inque tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .alinhar-esq-resul-inque { text-align: left !important; padding-left: 10px !important; }
+
+        .icone-info-resul-inque {
+            background: #0055ff;
+            color: white;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .rodape-texto-resul-inque {
+            margin-top: 15px;
+            line-height: 1.4;
+            color: #444;
+        }
+
+        /* Responsividade */
+        * { box-sizing: border-box; }
+        .container-resul-inque { width: 100%; max-width: 1000px; box-sizing: border-box; }
+        .select-estilizado-resul-inque { min-width: 0; }
+
+        .tabela-wrapper-resul-inque { overflow-x: auto; width: 100%; }
+        .tabela-wrapper-resul-inque .tabela-dados-resul-inque { min-width: 700px; }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .container-resul-inque { padding: 10px; }
+            .linha-form-resul-inque {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .label-campo-resul-inque { width: auto; display: block; }
+            .select-estilizado-resul-inque { width: 100%; height: auto; }
+            .btn-carregar-resul-inque { width: 100%; padding: 8px; border-radius: 6px; }
+            .titulo-seccao-resul-inque { font-size: 14px; }
+            .rodape-texto-resul-inque { font-size: 13px; }
+            .icone-info-resul-inque { width: 18px; height: 18px; font-size: 12px; }
+
+            /* Make table scrollable instead of shrinking columns too far */
+            .tabela-wrapper { -webkit-overflow-scrolling: touch; }
+            .tabela-wrapper .tabela-dados-resul-inque th,
+            .tabela-wrapper .tabela-dados-resul-inque td { padding: 8px; font-size: 12px; }
+        }
+    </style>
+
+    <div class="container-resul-inque">
+        <input type="checkbox" id="trigger-resultado-resul-inque">
+
+        <div class="bloco-pesquisa-resul-inque">
+            <span class="titulo-seccao-resul-inque">Pesquisa de Inquéritos</span>
+            
+            <div class="linha-form-resul-inque">
+                <span class="label-campo-resul-inque">Ano Lectivo</span>
+                <select class="select-estilizado-resul-inque">
+                    <option>2025/26</option>
+                </select>
+                <label for="trigger-resultado-resul-inque" class="btn-carregar-resul-inque">Carregar</label>
+            </div>
+
+            <div class="linha-form-resul-inque">
+                <span class="label-campo-resul-inque">Inquérito</span>
+                <select class="select-estilizado-resul-inque">
+                    <option value="">Inquérito Pedagógico aos Alunos</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="area-aviso-resul-inque">
+            <span class="icone-info-resul-inque">i</span> Sem resultados
+        </div>
+
+        <div class="area-resultado-resul-inque">
+            <div class="tabela-wrapper-resul-inque">
+                <table class="tabela-dados-resul-inque">
+                <thead>
+                    <tr>
+                        <th class="alinhar-esq-resul-inque">Disciplina</th>
+                        <th>Entregues</th>
+                        <th>Inquéritos Significativos</th>
+                        <th>Por entregar</th>
+                        <th>Total</th>
+                        <th>Data Entrega</th>
+                        <th>Data Act. Estatística</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="alinhar-esq-resul-inque">Design Hipermédia</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>42</td>
+                        <td>42</td>
+                        <td>2025-12-10 21:35:00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="alinhar-esq-resul-inque">Introdução à Programação</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>50</td>
+                        <td>50</td>
+                        <td>2025-12-10 21:39:00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="alinhar-esq-resul-inque">Matemática</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>45</td>
+                        <td>45</td>
+                        <td>2025-12-10 21:40:00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="alinhar-esq-resul-inque">Sistemas Operativos e Redes</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>41</td>
+                        <td>41</td>
+                        <td>2025-12-10 21:41:00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="alinhar-esq-resul-inque">Técnicas de Expressão do Português</td>
+                        <td>0</td>
+                        <td></td>
+                        <td>42</td>
+                        <td>42</td>
+                        <td>2025-12-10 21:43:00</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="rodape-texto-resul-inque">
+                <p>Numero de inquéritos significativos (alunos assistiram a 50% ou mais das aulas) preenchidos para que os resultados estejam acessíveis à consulta, desde que o aluno tenha entregue o inquérito: 10</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

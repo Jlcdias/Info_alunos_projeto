@@ -5,7 +5,257 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quadro Prescrição</title>
 </head>
-<body>
+<style>
+    .curso-prescricao-container {
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    background-color: #fff;
+    line-height: 1.5;
+}
+
+.curso-prescricao-titulo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.curso-prescricao-info-box {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.curso-prescricao-info-box p {
+    margin-bottom: 12px;
+}
+
+.curso-prescricao-link {
+    color: #0000ff;
+    text-decoration: underline;
+}
+
+/* Alerta Azul de Informação */
+.curso-prescricao-alerta-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #000;
+    padding: 5px 0;
+}
+
+.curso-prescricao-icon-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0055ff; /* Azul da imagem */
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: serif; /* Para o 'i' ficar mais clássico */
+    flex-shrink: 0;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .curso-prescricao-container {
+        padding: 10px;
+    }
     
+    .curso-prescricao-alerta-info {
+        align-items: flex-start;
+    }
+}
+.curso-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Tabelas e Blocos */
+.curso-bloco-tabela, .curso-container-interno {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.curso-subtitulo {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.curso-tabela-base {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+.curso-tabela-base th {
+    background-color: #ffebcc; /* Bege */
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.curso-tabela-base td {
+    border: 1px solid #eee;
+    padding: 6px;
+}
+.curso-pesquisa-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.curso-pesquisa-bloco {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fdfdfd;
+    max-width: 1000px;
+}
+
+.curso-pesquisa-titulo {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Organização das Linhas */
+.curso-pesquisa-linha {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.curso-pesquisa-label {
+    width: 120px;
+    font-size: 13px;
+    color: #333;
+}
+
+.curso-pesquisa-input-group {
+    display: flex;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+/* Estilo dos Campos de Entrada */
+.curso-pesquisa-select, 
+.curso-pesquisa-input-text {
+    flex-grow: 1;
+    padding: 3px;
+    border: 1px solid #999;
+    font-size: 13px;
+}
+
+.curso-pesquisa-select {
+    background-color: #e8f0fe; /* Tom azulado da imagem */
+}
+
+.curso-pesquisa-input-text {
+    background-color: #f0f0f0; /* Época Normalza para campos desativados/readonly */
+}
+
+/* Botão Pesquisar */
+.curso-pesquisa-btn {
+    padding: 2px 20px;
+    border: 1px solid #999;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+.curso-pesquisa-btn:hover {
+    background: #eee;
+}
+</style>
+<body>
+    <div class="curso-prescricao-container">
+    <h3 class="curso-prescricao-titulo">Quadro de Verificação de Prescrição do Aluno</h3>
+    
+    <div class="curso-prescricao-info-box">
+        <p>
+            A <strong>prescrição do direito à inscrição</strong>, dos estudantes da Universidade da Madeira (UMa) em cursos de licenciatura, 
+            <strong>impede o aluno de continuar a frequentar o curso</strong> em que realizou a sua última inscrição ou outro curso na UMa, 
+            pelo período de <strong>dois semestres consecutivos</strong>.
+        </p>
+        
+        <p>
+            O regulamento de prescrições pode ser consultado no site da Unidade de Assuntos Académicos 
+            <a href="http://uaa.uma.pt" class="curso-prescricao-link">http://uaa.uma.pt</a> ou no site da UMa 
+            <a href="http://www.uma.pt" class="curso-prescricao-link">http://www.uma.pt</a> pesquisando por 'Prescrições'.
+        </p>
+    </div>
+
+    <div class="curso-prescricao-alerta-info">
+        <span class="curso-prescricao-icon-info">ℹ</span>
+        Não foram encontradas inscrições, em cursos de licenciatura, para verificar a situação de prescrição para o aluno.
+    </div>
+</div>
+
+<div class="curso-pesquisa-container">
+        <div class="curso-pesquisa-bloco">
+            <h4 class="curso-pesquisa-titulo">Pesquisa de Cursos</h4>
+
+            <form class="curso-pesquisa-form">
+                <div class="curso-pesquisa-linha">
+                    <label for="selecao-curso" class="curso-pesquisa-label">Curso</label>
+                    <div class="curso-pesquisa-input-group">
+                        <select id="selecao-curso" class="curso-pesquisa-select">
+                            <option value="" selected disabled hidden></option>
+                            <option value="tpsi">Tecnologias e Programação de Sistemas de Informação</option>
+                            <option value="design">Matématica Básica</option>
+                        </select>
+                        <button type="submit" class="curso-pesquisa-btn">Pesquisar...</button>
+                    </div>
+                </div>
+
+                <div class="curso-pesquisa-linha">
+                    <label for="ano-lectivo" class="curso-pesquisa-label">Ano Lectivo</label>
+                    <input type="text" id="ano-lectivo" class="curso-pesquisa-input-text" readonly value="2025/2026">
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div class="curso-wrapper">
+    <div class="curso-bloco-tabela">
+        <h4 class="curso-subtitulo">Matrículas / Inscrições em Cursos <br>Lista</h4>
+        <table class="curso-tabela-base">
+            <thead>
+                <tr>
+                    <th>LY</th>
+                    <th>Curso</th>
+                    <th>Ramo</th>
+                    <th>Ano Letivo Plano</th>
+                    <th>Ingresso</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024/25</td>
+                    <td>CTESP- Tecnologias e Programação de Sistemas de Informação</td>
+                    <td>Sem Ramos- Especialidades</td>
+                    <td>2024-09-10</td>
+                    <td>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional)</td>
+
+                </tr>
+                <tr>
+                    <td>2023/24</td>
+                    <td>Matématica Básica Nivel B</td>
+                    <td>Sem Ramos- Especialidades</td>
+                    <td>2024-09-10</td>
+                    <td>Prova de Acesso</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

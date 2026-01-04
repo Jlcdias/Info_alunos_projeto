@@ -5,7 +5,766 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estrutura</title>
 </head>
-<body>
+<style>
+/* --- Contentor Principal --- */
+.inst-estrutura-pesquisa {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 950px;
+    margin: 10px auto;
+}
+
+/* --- Filtros Superiores --- */
+.inst-estrutura-topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.inst-estrutura-checkbox {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.inst-estrutura-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 4px;
+    border: 1px solid #999;
+    height: 30px;
+}
+
+/* --- Instituições Externas (Bloco Fixo) --- */
+.inst-estrutura-externa-wrapper {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.inst-estrutura-titulo-section {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    color: #000;
+}
+
+.inst-estrutura-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.inst-estrutura-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.inst-estrutura-full-width {
+    flex: 1 1 100%;
+}
+
+.inst-estrutura-label {
+    font-size: 12px;
+    white-space: nowrap;
+    color: #333;
+}
+
+/* Campos Azulados */
+.inst-estrutura-select-blue,
+.inst-estrutura-input-blue {
+    background-color: #e8f0fe;
+    border: 1px solid #ababab;
+    padding: 4px 6px;
+    font-size: 12px;
+    height: 28px;
+    flex: 1;
+}
+
+/* --- Botão --- */
+.inst-estrutura-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.inst-estrutura-btn {
+    padding: 8px 25px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    border: 1px solid #ababab;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+    .inst-estrutura-field {
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 100%;
+    }
     
+    .inst-estrutura-select-blue,
+    .inst-estrutura-input-blue {
+        width: 100%;
+    }
+}
+.inst-estrutura-lista-container {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #fff;
+    max-width: 450px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.inst-estrutura-lista-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.inst-estrutura-lista-titulo {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.inst-estrutura-lista-controles {
+    font-size: 11px;
+    color: #333;
+}
+
+.inst-estrutura-lista-link {
+    cursor: pointer;
+}
+
+.inst-estrutura-lista-link:hover {
+    text-decoration: underline;
+}
+
+/* Estrutura da Árvore */
+.inst-estrutura-tree {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.inst-estrutura-tree-icon {
+    font-family: monospace;
+    font-size: 14px;
+    margin-right: 5px;
+    color: #666;
+}
+
+.inst-estrutura-tree-subgroup {
+    margin-left: 20px;
+    border-left: 1px dotted #999; /* Linha vertical pontilhada */
+}
+
+.inst-estrutura-tree-subitem {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 5px;
+}
+
+/* Linha horizontal pontilhada conectora */
+.inst-estrutura-tree-subitem::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 20px;
+    border-top: 1px dotted #999;
+}
+
+.inst-estrutura-detalhe-link {
+    color: #0000ff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.inst-estrutura-detalhe-link:hover {
+    text-decoration: underline;
+}
+
+/* Ajuste mobile */
+@media (max-width: 400px) {
+    .inst-estrutura-lista-header {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+.inst-estrutura-tabs-pure-css {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    width: 100%; /* Garante que ocupa a largura disponível */
+}
+
+/* Barra de Navegação com Scroll Horizontal */
+.inst-estrutura-tabs-nav {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    overflow-x: auto; /* Ativa o scroll horizontal se necessário */
+    overflow-y: hidden;
+    white-space: nowrap; /* Impede que as tabs quebrem para a linha de baixo */
+    scrollbar-width: none; /* Esconde a scrollbar no Firefox */
+    -ms-overflow-style: none; /* Esconde a scrollbar no IE/Edge */
+    border-bottom: 1px solid #ccc; /* Linha de base para as tabs */
+}
+
+/* Esconder a scrollbar no Chrome/Safari para um aspeto mais limpo */
+.inst-estrutura-tabs-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.inst-estrutura-tabs-nav label {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.2;
+    min-width: 90px; /* Largura mínima para serem clicáveis no toque */
+    flex-shrink: 0; /* Impede que as tabs encolham para caber */
+    display: inline-block;
+}
+
+/* Estilo da Tab Ativa */
+#tab-dados:checked ~ .inst-estrutura-tabs-nav .tab-label-dados,
+#tab-cargos:checked ~ .inst-estrutura-tabs-nav label[for="tab-cargos"],
+#tab-ficheiros:checked ~ .inst-estrutura-tabs-nav label[for="tab-ficheiros"],
+#tab-areas:checked ~ .inst-estrutura-tabs-nav label[for="tab-areas"] {
+    background-color: #fff;
+    font-weight: bold;
+    border-top: 2px solid #ccc;
+    margin-bottom: -1px; /* Sobrepõe a borda do painel */
+    z-index: 2;
+}
+
+/* Painéis de Conteúdo */
+.inst-estrutura-panel {
+    display: none;
+    border: 1px solid #ccc;
+    border-top: none; /* Evita borda dupla com a barra de navegação */
+    padding: 15px;
+    background: #fff;
+}
+
+/* Mostrar painel ativo */
+#tab-dados:checked ~ .inst-estrutura-panels #content-dados,
+#tab-cargos:checked ~ .inst-estrutura-panels #content-cargos,
+#tab-ficheiros:checked ~ .inst-estrutura-panels #content-ficheiros,
+#tab-areas:checked ~ .inst-estrutura-panels #content-areas {
+    display: block;
+}
+/* Garante que o painel principal não deixe nada sair */
+.inst-estrutura-panel {
+    display: none;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 15px;
+    background: #fff;
+    width: 100%; /* Ocupa a largura do pai */
+    box-sizing: border-box; /* Crucial: padding não aumenta a largura total */
+    overflow-x: hidden; /* Impede scroll horizontal dentro do painel */
+}
+
+/* Grelha de formulário ajustada para ser flexível */
+.inst-estrutura-form-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr; /* Reduzi a largura da label para dar mais espaço ao input */
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Inputs cinzentos com largura controlada */
+.inst-estrutura-input-gray {
+    background-color: #d3d3d3;
+    border: 1px solid #aaa;
+    padding: 3px 5px;
+    font-size: 13px;
+    height: 22px;
+    width: 100%; /* Garante que o input nunca seja maior que a sua célula na grelha */
+    box-sizing: border-box; /* Garante que a borda fique dentro dos 100% */
+}
+
+/* Grupo inline (ex: Sigla + Abrv) reestruturado */
+.inst-estrutura-inline-group {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar em ecrãs muito pequenos em vez de sair fora */
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+/* Campos secundários (Abrv, Data Fim, etc) */
+.inst-estrutura-inline-group .short {
+    flex: 1; /* Em vez de largura fixa, cresce conforme o espaço disponível */
+    min-width: 60px;
+    max-width: 120px;
+}
+
+/* Labels das secções em Inglês */
+.inst-estrutura-header-en {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Media Query para ecrãs pequenos (Mobile) */
+@media (max-width: 500px) {
+    .inst-estrutura-form-grid {
+        grid-template-columns: 1fr; /* No mobile, label fica por cima do input */
+        gap: 5px;
+    }
+    
+    .inst-estrutura-form-grid label {
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    .inst-estrutura-inline-group {
+        gap: 5px;
+    }
+}
+/* Barra de Filtros */
+.inst-estrutura-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.inst-estrutura-filter-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-icon {
+    font-size: 12px;
+    color: #666;
+}
+
+.inst-estrutura-filter-item label {
+    font-size: 13px;
+    color: #000;
+}
+
+/* Inputs da barra de filtros */
+.inst-estrutura-input-small {
+    width: 40px;
+    height: 22px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.inst-estrutura-input-large {
+    width: 200px;
+    height: 22px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+/* Botão Filtrar com Gradiente */
+.inst-estrutura-btn-filter {
+    padding: 4px 30px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    border: 1px solid #ababab;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Mensagem de Info com ícone azul */
+.inst-estrutura-info-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.info-icon {
+    background-color: #0055ff; /* Azul da imagem */
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.inst-estrutura-info-message p {
+    font-size: 13px;
+    color: #333;
+    margin: 0;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 600px) {
+    .inst-estrutura-filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .inst-estrutura-btn-filter {
+        width: 100%;
+    }
+}/* Container da Mensagem */
+.inst-estrutura-info-box {
+    display: flex;
+    align-items: flex-start; /* Alinha ao topo para textos longos */
+    gap: 12px;
+    padding: 10px 0;
+    margin-top: 5px;
+}
+
+/* Ícone Circular Azul Informativo */
+.info-icon-blue {
+    background-color: #0066ff;
+    color: #ffffff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: serif; /* Para o "i" parecer mais oficial */
+    font-size: 13px;
+    font-weight: bold;
+    flex-shrink: 0; /* Impede o ícone de achatar em mobile */
+}
+
+/* Texto da Mensagem */
+.info-text {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Ajuste de Margens para o Painel */
+#content-ficheiros {
+    min-height: 150px;
+}
+</style>
+<body>
+
+<div class="inst-estrutura-pesquisa">
+    <div class="inst-estrutura-topo">
+        <label class="inst-estrutura-checkbox">
+            <input type="checkbox" checked> Activos
+        </label>
+        <label class="inst-estrutura-checkbox">
+            <input type="checkbox"> Inactivos
+        </label>
+        
+        <select class="inst-estrutura-select">
+            <option>Seleccione a estrutura...</option>
+            <option value="">Seleccione a estrutura...</option>
+            <option value="1">Reitoria</option>
+            <option value="2">&nbsp;&nbsp;&nbsp;Conselho Geral</option>
+            <option value="3">&nbsp;&nbsp;&nbsp;Conselho de Gestão</option>
+            <option value="4">&nbsp;&nbsp;&nbsp;Conselho Académico</option>
+            <option value="5">&nbsp;&nbsp;&nbsp;Provedor do Estudante</option>
+            <option value="6">Faculdade de Artes e Humanidades</option>
+            <option value="7">&nbsp;&nbsp;&nbsp;Departamento de Arte e Design</option>
+            <option value="8">&nbsp;&nbsp;&nbsp;Departamento de Línguas, Literaturas e Culturas</option>
+            <option value="9">&nbsp;&nbsp;&nbsp;Departamento de Ciências Humanas e Sociais</option>
+            <option value="10">Faculdade de Ciências Exactas e da Engenharia</option>
+            <option value="11">&nbsp;&nbsp;&nbsp;Departamento de Engenharia Informática e Design Interactivo</option>
+            <option value="12">&nbsp;&nbsp;&nbsp;Departamento de Matemática</option>
+            <option value="13">&nbsp;&nbsp;&nbsp;Departamento de Física</option>
+            <option value="14">Faculdade de Ciências Sociais</option>
+            <option value="15">&nbsp;&nbsp;&nbsp;Departamento de Gestão e Economia</option>
+            <option value="16">Faculdade de Ciências da Vida</option>
+            <option value="17">Escola Superior de Tecnologias e Gestão</option>
+            <option value="18">Escola Superior de Saúde</option>
+        </select>
+    </div>
+
+    <div class="inst-estrutura-externa-wrapper">
+        <h3 class="inst-estrutura-titulo-section">Pesquisa Instituições Externas ou Outras</h3>
+
+        <div class="inst-estrutura-content-sempre-visivel">
+            <div class="inst-estrutura-row">
+                <div class="inst-estrutura-field">
+                    <label class="inst-estrutura-label">Tipo de Instituição:</label>
+                    <select class="inst-estrutura-select-blue">
+                        <option disabled>Ensino</option>
+                        <option>&nbsp;&nbsp;&nbsp;Centro de Competência</option>
+                        <option>&nbsp;&nbsp;&nbsp;Colégio</option>
+                        <option>&nbsp;&nbsp;&nbsp;Escolas Básicas</option>
+                        <option>&nbsp;&nbsp;&nbsp;Escolas Profissionais</option>
+                        <option>&nbsp;&nbsp;&nbsp;Escolas Secundárias</option>
+                        <option>&nbsp;&nbsp;&nbsp;Escolas Superiores</option>
+                        <option>&nbsp;&nbsp;&nbsp;Faculdade</option>
+                        <option>&nbsp;&nbsp;&nbsp;Instituto</option>
+                        <option>&nbsp;&nbsp;&nbsp;Outra Instituição</option>
+                        <option>&nbsp;&nbsp;&nbsp;Projecto</option>
+                        <option>&nbsp;&nbsp;&nbsp;Universidade</option>
+
+                        <option disabled>Outros Tipos</option>
+                        <option>&nbsp;&nbsp;&nbsp;Acção Social</option>
+                        <option>&nbsp;&nbsp;&nbsp;Administrador</option>
+                        <option>&nbsp;&nbsp;&nbsp;Assembleia</option>
+                        <option>&nbsp;&nbsp;&nbsp;Assembleia (Faculdade)</option>
+                        <option>&nbsp;&nbsp;&nbsp;Associação Académica</option>
+                        <option>&nbsp;&nbsp;&nbsp;Bairro Fiscal</option>
+                        <option>&nbsp;&nbsp;&nbsp;Banco</option>
+                        <option>&nbsp;&nbsp;&nbsp;Centro de Investigação</option>
+                        <option>&nbsp;&nbsp;&nbsp;Centro de Investigação (não FCT)</option>
+                        <option>&nbsp;&nbsp;&nbsp;Comissão</option>
+                        <option>&nbsp;&nbsp;&nbsp;Comissão Liberdades</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Científico</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho de Gestão</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Geral</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Pedagógico</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Pedagógico (Centro Comp.)</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Pedagógico (Colégio)</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Pedagógico (Faculdade)</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conselho Técnico-Científico</option>
+                        <option>&nbsp;&nbsp;&nbsp;Conservatória Registo Civil</option>
+                        <option>&nbsp;&nbsp;&nbsp;Departamento</option>
+                        <option>&nbsp;&nbsp;&nbsp;Direção Geral</option>
+                        <option>&nbsp;&nbsp;&nbsp;Embaixada</option>
+                    </select>
+                </div>
+                <div class="inst-estrutura-field">
+                    <label class="inst-estrutura-label">Filtra por Nome o campo "Instituição Externa" (Opcional):</label>
+                    <input type="text" class="inst-estrutura-input-blue">
+                </div>
+            </div>
+
+            <div class="inst-estrutura-row">
+                <div class="inst-estrutura-field inst-estrutura-full-width">
+                    <label class="inst-estrutura-label">Instituição Externa:</label>
+                    <select class="inst-estrutura-select-blue">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="inst-estrutura-btn-container">
+        <button class="inst-estrutura-btn">Carregar Dados</button>
+    </div>
+</div>
+<div class="inst-estrutura-lista-container">
+    <div class="inst-estrutura-lista-header">
+        <h3 class="inst-estrutura-lista-titulo">Lista de Instituições/Unidades</h3>
+        <div class="inst-estrutura-lista-controles">
+            <span class="inst-estrutura-lista-link">expandir lista</span> | 
+            <span class="inst-estrutura-lista-link">fechar lista</span>
+        </div>
+    </div>
+
+    <div class="inst-estrutura-tree">
+        <div class="inst-estrutura-tree-root">
+            <span class="inst-estrutura-tree-icon">⊟</span>
+        </div>
+
+        <div class="inst-estrutura-tree-item">
+            <div class="inst-estrutura-tree-content">
+                Faculdade de Artes e Humanidades 
+                <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+            </div>
+
+            <div class="inst-estrutura-tree-subgroup">
+                <div class="inst-estrutura-tree-subitem">
+                    Assembleia da FAH <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+                
+                <div class="inst-estrutura-tree-subitem">
+                    Centro de Investigação em Estudos Regionais e Locais <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Conselho Científico da FAH <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Conselho Pedagógico da FAH <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Departamento de Arte e Design <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Departamento de Línguas, Literaturas e Culturas <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Departamento de Psicologia <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+
+                <div class="inst-estrutura-tree-subitem">
+                    Núcleo de Estudantes de Psicologia da UMa <a href="#" class="inst-estrutura-detalhe-link">[Detalhe]</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="inst-estrutura-tabs-pure-css">
+    <input type="radio" name="tabs" id="tab-dados" checked>
+    <input type="radio" name="tabs" id="tab-cargos">
+    <input type="radio" name="tabs" id="tab-ficheiros">
+    <input type="radio" name="tabs" id="tab-areas">
+
+    <div class="inst-estrutura-tabs-nav">
+        <label for="tab-dados" class="tab-label-dados">Dados<br>Gerais</label>
+        <label for="tab-cargos" class="tab-label-outras"><u>Cargos</u></label>
+        <label for="tab-ficheiros" class="tab-label-outras"><u>Ficheiros</u></label>
+        <label for="tab-areas" class="tab-label-outras"><u>Áreas</u></label>
+    </div>
+
+    <div class="inst-estrutura-panels">
+        <div class="inst-estrutura-panel" id="content-dados">
+            <h4 class="inst-estrutura-subtitulo">Dados da Instituição/Unidade</h4>
+            <div class="inst-estrutura-form-grid">
+                <label>Designação:</label>
+                <input type="text" class="inst-estrutura-input-gray full-width">
+            
+                <label>Sigla:</label>
+                <div class="inst-estrutura-inline-group">
+                    <input type="text" class="inst-estrutura-input-gray">
+                    <label class="inline-label">Abrv:</label>
+                    <input type="text" class="inst-estrutura-input-gray short">
+                </div>
+            
+                <label>Cód. MCTES:</label>
+                <input type="text" class="inst-estrutura-input-gray">
+            
+                <label>Data Início (AAAA-MM-DD):</label>
+                <div class="inst-estrutura-inline-group">
+                    <input type="text" class="inst-estrutura-input-gray">
+                    <label class="inline-label">Data Fim (AAAA-MM-DD):</label>
+                    <input type="text" class="inst-estrutura-input-gray short">
+                </div>
+            
+                <label>Missão:</label>
+                <textarea class="inst-estrutura-input-gray full-width"></textarea>
+            </div>
+        
+            <h4 class="inst-estrutura-subtitulo">Contactos da Instituição/Unidade</h4>
+            <div class="inst-estrutura-form-grid">
+                <label>Tel:</label>
+                <div class="inst-estrutura-inline-group">
+                    <input type="text" class="inst-estrutura-input-gray">
+                    <label class="inline-label">eMail:</label>
+                    <input type="text" class="inst-estrutura-input-gray short">
+                </div>
+            
+                <label>Página Web:</label>
+                <div class="inst-estrutura-inline-group">
+                    <input type="text" class="inst-estrutura-input-gray">
+                    <label class="inline-label">Fax:</label>
+                    <input type="text" class="inst-estrutura-input-gray short">
+                </div>
+            
+                <label>Cod. Postal:</label>
+                <div class="inst-estrutura-inline-group">
+                    <input type="text" class="inst-estrutura-input-gray">
+                    <label class="inline-label">Localidade:</label>
+                    <input type="text" class="inst-estrutura-input-gray short">
+                </div>
+            
+                <label>Morada:</label>
+                <input type="text" class="inst-estrutura-input-gray full-width">
+            </div>
+        
+            <div class="inst-estrutura-header-en">
+                <h4 class="inst-estrutura-subtitulo">Dados da Instituição/Unidade em Inglês</h4>
+                <span class="flag-en">🇬🇧</span>
+            </div>
+            <div class="inst-estrutura-form-grid">
+                <label>Designação (EN):</label>
+                <input type="text" class="inst-estrutura-input-gray full-width">
+                <label>Abrv (EN):</label>
+                <input type="text" class="inst-estrutura-input-gray full-width">
+                <label>Missão (EN):</label>
+                <textarea class="inst-estrutura-input-gray full-width"></textarea>
+            </div>
+        </div>
+
+        <div class="inst-estrutura-panel" id="content-cargos">
+                    <h4 class="inst-estrutura-subtitulo">Cargos</h4>
+                    <h4 class="inst-estrutura-subtitulo">Lista de Pessoas com Cargos na Instituição/Unidade</h4>
+                
+            <div class="inst-estrutura-filter-bar">
+                <div class="inst-estrutura-filter-item">
+                    <span class="filter-icon">⏳</span> <label>Cargo</label>
+                    <input type="text" class="inst-estrutura-input-small">
+                </div>
+            
+                <div class="inst-estrutura-filter-item">
+                    <span class="filter-icon">⏳</span> <label>Nome</label>
+                    <input type="text" class="inst-estrutura-input-large">
+                </div>
+            
+                <button class="inst-estrutura-btn-filter">Filtrar...</button>
+            </div>
+        
+            <h4 class="inst-estrutura-subtitulo">Lista de Pessoas com Cargos na Instituição/Unidade</h4>
+
+            <div class="inst-estrutura-info-message">
+                <div class="info-icon-blue">i</div><p>Sem resultados. Seleccione a instituição/unidade a editar.</p>
+            </div>
+        </div>
+
+        <div class="inst-estrutura-panel" id="content-ficheiros">
+            <h4 class="inst-estrutura-subtitulo">Lista de Ficheiros Associados à Instituição/Unidade</h4>
+
+            <div class="inst-estrutura-info-box">
+                <div class="info-icon-blue">i</div>
+                <p class="info-text">
+                    Não foram encontrados ficheiros para a selecção efectuada, escolha ediatr uma instituição.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="inst-estrutura-panel" id="content-areas">
+            <h4 class="inst-estrutura-subtitulo">Lista de Áreas Científicas da Instituição/Unidade</h4>
+    
+            <div class="inst-estrutura-info-box">
+                <div class="info-icon-blue">i</div>
+                <p class="info-text">Sem resultados.</p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

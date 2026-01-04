@@ -6,6 +6,192 @@
     <title>Lista Processos</title>
 </head>
 <body>
-    
+<style>
+        body { font-family: Arial, sans-serif; font-size: 12px; background-color: #f4f4f4; padding: 20px; }
+
+        /* Contentor Principal */
+        .tabs-container { max-width: 1000px; margin: auto; background: #fff; border: 1px solid #ccc; }
+
+        /* Esconder os inputs radio */
+        .tab-input { display: none; }
+
+        /* Estilização dos Separadores (Labels) */
+        .tabs-header { display: flex; background: #eee; border-bottom: 1px solid #ccc; }
+        
+        .tab-label { 
+            flex: 1; 
+            padding: 10px; 
+            text-align: center; 
+            cursor: pointer; 
+            font-weight: bold; 
+            border-right: 1px solid #ccc;
+            transition: background 0.2s;
+        }
+
+        .tab-label:hover { background: #e0e0e0; }
+
+        /* Conteúdo das Abas - Escondido por padrão */
+        .tab-content { display: none; padding: 20px; border-top: none; }
+
+        /* Lógica de Ativação (CSS Magic) */
+        #tab1:checked ~ .tabs-header label[for="tab1"],
+        #tab2:checked ~ .tabs-header label[for="tab2"],
+        #tab3:checked ~ .tabs-header label[for="tab3"] {
+            background: #fff;
+            border-bottom: 2px solid #fff;
+            margin-bottom: -1px;
+            color: #000;
+        }
+
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3 { display: block; }
+
+        /* Estilos específicos das imagens fornecidas */
+        .info-bar { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .info-bar a { color: blue; text-decoration: none; margin: 0 5px; }
+        .msg-erro { color: #0056b3; display: flex; align-items: center; gap: 5px; margin-top: 10px; }
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f9f9f9; padding: 15px; border: 1px solid #ddd; }
+        input, select, textarea { width: 100%; border: 1px solid #ccc; padding: 4px; background: #e2efff; }
+        .btn-guardar { float: right; padding: 5px 20px; background: linear-gradient(#fff, #ddd); border: 1px solid #999; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="tabs-container">
+    <input type="radio" name="tabs" id="tab1" class="tab-input" checked>
+    <input type="radio" name="tabs" id="tab2" class="tab-input">
+    <input type="radio" name="tabs" id="tab3" class="tab-input">
+
+    <div class="tabs-header">
+        <label for="tab1" class="tab-label">Novo/Alterar</label>
+        <label for="tab2" class="tab-label">Plano de Formação</label>
+        <label for="tab3" class="tab-label">Documentos e Histórico</label>
+    </div>
+
+<div id="content1" class="tab-content">
+    <div class="info-bar">
+        <span><span class="icone-i">i</span> <a href="https://infoalunos.uma.pt/modulos/creditacoes/html/creditacoes_precario.html?T=1767376008&TPESQ=PESQ_CREDITACOES_INFOEDICAO_NOVO&TPESQANT=PESQ_CREDITACOES_INFOEDICAO_NOVO&IDM=PT&IdCreditacaoProcesso=-1&NPAG=&NumAluno=2032624&ProcessoEstadoPesq=&ProcessoNumAlunoPesq=&ProcessoNomeAlunoPesq=&IdIdioma=1&SubmetidoNovoProcesso=&SubmetidoNovoProcessoComErro=&TORDANT=&CORDANT=&SCRANT=/modulos/creditacoes/index.php&NV_MOD=MOD_CREDITACOES&NV_EAGR=EAGR_CRDEDIT&NV_MOD_ANT=MOD_CREDITACOES&NV_EAGR_ANT=EAGR_CRDEDIT&NV_TAB=&NV_TAB_ANT=">[ Preçário ]</a></span>
+        <span>?<a href="https://infoalunos.uma.pt/modulos/creditacoes/html/creditacoes.html?T=1767376008&TPESQ=PESQ_CREDITACOES_INFOEDICAO_NOVO&TPESQANT=PESQ_CREDITACOES_INFOEDICAO_NOVO&IDM=PT&IdCreditacaoProcesso=-1&NPAG=&NumAluno=2032624&ProcessoEstadoPesq=&ProcessoNumAlunoPesq=&ProcessoNomeAlunoPesq=&IdIdioma=1&SubmetidoNovoProcesso=&SubmetidoNovoProcessoComErro=&TORDANT=&CORDANT=&SCRANT=/modulos/creditacoes/index.php&NV_MOD=MOD_CREDITACOES&NV_EAGR=EAGR_CRDEDIT&NV_MOD_ANT=MOD_CREDITACOES&NV_EAGR_ANT=EAGR_CRDEDIT&NV_TAB=&NV_TAB_ANT=">[ Ajuda e Descrição do Processo ]</a> <a href="lista_processos.html">[ Voltar à Lista ]</a> </span>
+    </div>
+
+    <div style="text-align: right; margin-bottom: 15px;">
+        <button class="btn-pesquisar">Guardar Processo</button>
+    </div>
+
+    <div class="bloco-seccao">
+        <div class="grid-form">
+            <div class="coluna-campos">
+                <div class="linha-form">
+                    <span class="label-fixa">Ano Letivo:*</span>
+                    <select class="input-estilizado">
+                        <option value="">2024/25</option>
+                        <option value="">2025/26</option>
+                        <option value="">2026/27</option>
+                    </select>
+                </div>
+                <div class="linha-form">
+                    <span class="label-fixa">Curso:*</span>
+                    <select class="input-estilizado">
+                        <option value="">Selecione o curso a acreditar...</option>
+                        <option value="">CTESP</option>
+                        <option value="">Egenharia Informatica</option>
+                    </select>
+                </div>
+                <div class="linha-form">
+                    <span class="label-fixa">Alterar Estado:</span>
+                    <select class="input-estilizado">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="coluna-justificacao">
+                <div class="linha-form" style="align-items: flex-start;">
+                    <span class="label-fixa">Justificação Actual:</span>
+                    <textarea class="input-estilizado" style="height: 60px;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloco-seccao">
+        <span class="titulo-negrito">1. Formação Académica Original</span>
+        <div class="grid-form" style="background-color: #fcfcfc;">
+            <div class="linha-form">
+                <span style="width: 40px;">Inst:</span>
+                <input type="text" class="input-estilizado">
+                <span style="margin-left: 10px;">Curso:</span>
+                <input type="text" class="input-estilizado">
+            </div>
+            <div class="linha-form">
+                <span>UCurr:</span>
+                <input type="text" class="input-estilizado">
+                <span style="margin-left: 10px;">Prog:</span>
+                <select class="input-estilizado"><option></option></select>
+            </div>
+            <div class="linha-form">
+                <span>Unid:</span>
+                <input type="text" class="input-estilizado">
+                <span style="margin-left: 10px;">class:</span>
+                <select class="input-estilizado"><option></option></select>
+            </div>
+                <div class="linha-form">
+                <span>Nivel:</span>
+                <input type="text" class="input-estilizado">
+                <span style="margin-left: 10px;">Prog:</span>
+                <select class="input-estilizado"><option></option></select>
+            </div>
+        </div>
+        <p style="color: red; font-size: 10px; margin-top: 5px;">
+            "E": Formação Externa. Quando tem esta indicação a formação não é da Universidade da Madeira e deve ser verificada.
+        </p>
+    </div>
+
+    <div class="bloco-seccao">
+        <div class="linha-form">
+            <span class="label-fixa">Anexar Documento 1:</span>
+            <input type="file" style="font-size: 11px;">
+        </div>
+        <div class="linha-form">
+            <span class="label-fixa">Anexar Documento 2:</span>
+            <input type="file" style="font-size: 11px;">
+        </div>
+        
+        <div style="text-align: right; margin-top: 20px;">
+            <span style="font-size: 10px; margin-right: 20px;">Os campos assinalados com * são de preenchimento obrigatório.</span>
+            <button class="btn-pesquisar">Guardar Processo</button>
+        </div>
+    </div>
+</div>
+
+    <div id="content2" class="tab-content">
+        <div class="info-bar">
+            <span>ℹ️ [ Preçário ]</span>
+            <span>? [ Ajuda e Descrição do Processo ] [ Voltar à Lista ]</span>
+        </div>
+        <div class="msg-erro">
+            <span>ℹ️</span> Sem resultados. Seleccione um processo de creditação.
+        </div>
+    </div>
+
+    <div id="content3" class="tab-content">
+        <div class="info-bar">
+            <span>ℹ️ [ Preçário ]</span>
+            <span>? [ Ajuda e Descrição do Processo ] [ Voltar à Lista ]</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <strong>Histórico dos Estados do Processo</strong>
+                <p class="msg-erro">⚠️</p>
+            </div>
+            <div>
+                <strong>Documentos Associados ao Processo</strong>
+                <p class="msg-erro">ℹ️ Não foram encontrados ficheiros ou não seleccionou um processo.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

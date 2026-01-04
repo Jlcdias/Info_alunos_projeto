@@ -6,6 +6,393 @@
     <title>Histórico Matrículas</title>
 </head>
 <body>
-    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Curricular</title>
+</head>
+<style>
+    /* Definições de Base */
+.curso-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Tabelas e Blocos */
+.curso-bloco-tabela, .curso-container-interno {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.curso-subtitulo {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.curso-tabela-base {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.curso-tabela-base th {
+    background-color: #ffebcc; /* Bege */
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.curso-tabela-base td {
+    border: 1px solid #eee;
+    padding: 6px;
+}
+
+/* Lógica de Tabs Sem JavaScript */
+.curso-radio-control, .curso-pane {
+    display: none;
+}
+
+#tab1:checked ~ .curso-tab-content .pane-1,
+#tab2:checked ~ .curso-tab-content .pane-2 {
+    display: block;
+}
+
+.curso-tab-menu {
+    display: flex;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.curso-tab-label {
+    padding: 10px 20px;
+    background: #e1e1e1; /* Época Normalza inativo */
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#tab1:checked ~ .curso-tab-menu label[for="tab1"],
+#tab2:checked ~ .curso-tab-menu label[for="tab2"] {
+    background: #fff;
+    position: relative;
+    top: 1px;
+}
+
+/* Inputs e UI */
+.curso-input-select, .curso-bg-blue {
+    background-color: #dbeaff; /* Azul claro */
+    border: 1px solid #7a9db9;
+}
+
+.curso-button-ui {
+    background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    border: 1px solid #999;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 11px;
+}
+.curso-info-detalhe {
+    background-color: #f9f9f9;
+    border-left: 3px solid #7a9db9; /* Destaque lateral azul */
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.curso-info-detalhe p {
+    margin: 2px 0;
+}
+
+.curso-info-detalhe strong {
+    color: #000;
+}
+/* Container de Pesquisa */
+.curso-pesquisa-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.curso-pesquisa-bloco {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fdfdfd;
+    max-width: 1000px;
+}
+
+.curso-pesquisa-titulo {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Organização das Linhas */
+.curso-pesquisa-linha {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.curso-pesquisa-label {
+    width: 120px;
+    font-size: 13px;
+    color: #333;
+}
+
+.curso-pesquisa-input-group {
+    display: flex;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+/* Estilo dos Campos de Entrada */
+.curso-pesquisa-select, 
+.curso-pesquisa-input-text {
+    flex-grow: 1;
+    padding: 3px;
+    border: 1px solid #999;
+    font-size: 13px;
+}
+
+.curso-pesquisa-select {
+    background-color: #e8f0fe; /* Tom azulado da imagem */
+}
+
+.curso-pesquisa-input-text {
+    background-color: #f0f0f0; /* Época Normalza para campos desativados/readonly */
+}
+
+/* Botão Pesquisar */
+.curso-pesquisa-btn {
+    padding: 2px 20px;
+    border: 1px solid #999;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+}
+
+.curso-pesquisa-btn:hover {
+    background: #eee;
+}
+</style>
+<body>
+    <div class="curso-pesquisa-container">
+        <div class="curso-pesquisa-bloco">
+            <h4 class="curso-pesquisa-titulo">Pesquisa de Cursos</h4>
+
+            <form class="curso-pesquisa-form">
+                <div class="curso-pesquisa-linha">
+                    <label for="selecao-curso" class="curso-pesquisa-label">Curso</label>
+                    <div class="curso-pesquisa-input-group">
+                        <select id="selecao-curso" class="curso-pesquisa-select">
+                            <option value="" selected disabled hidden></option>
+                            <option value="tpsi">Tecnologias e Programação de Sistemas de Informação</option>
+                            <option value="design">Matématica Básica</option>
+                        </select>
+                        <button type="submit" class="curso-pesquisa-btn">Pesquisar...</button>
+                    </div>
+                </div>
+
+                <div class="curso-pesquisa-linha">
+                    <label for="ano-lectivo" class="curso-pesquisa-label">Ano Lectivo</label>
+                    <input type="text" id="ano-lectivo" class="curso-pesquisa-input-text" readonly value="2025/2026">
+                </div>
+            </form>
+        </div>
+    </div>
+<div class="curso-wrapper">
+    <div class="curso-bloco-tabela">
+        <h4 class="curso-subtitulo">Matrículas / Inscrições em Cursos</h4>
+        <table class="curso-tabela-base">
+            <thead>
+                <tr>
+                    <th>LY</th>
+                    <th>Curso</th>
+                    <th>Ramo</th>
+                    <th>Ano Letivo Plano</th>
+                    <th>Ingresso</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024/25</td>
+                    <td>CTESP- Tecnologias e Programação de Sistemas de Informação</td>
+                    <td>Sem Ramos- Especialidades</td>
+                    <td>2024-09-10</td>
+                    <td>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional)</td>
+
+                </tr>
+                <tr>
+                    <td>2023/24</td>
+                    <td>Matématica Básica Nivel B</td>
+                    <td>Sem Ramos- Especialidades</td>
+                    <td>2024-09-10</td>
+                    <td>Prova de Acesso</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="curso-bloco-inscricoes">
+        <div class="curso-container-interno">
+            <h4 class="curso-subtitulo">Unidades Curriculares Inscrito/aprovadas</h4>
+            <div class="curso-info-detalhe">
+            <p><strong>Ano Lectivo:</strong> 2025/26 - <strong>Curso:</strong> Tecnologias e Programação de Sistemas de Informação</p>
+            <p>Diploma de Técnico Superior Profissional (Curso Técnico Superior Profissional) - 11024.10.0</p>
+            <p><strong>Plano:</strong> 2020/21 - <strong>Ramo:</strong> Sem Ramos - Especialidades</p>
+        </div>
+            <table class="curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>AL</th>
+                        <th>Curso</th>
+                        <th>Disciplina</th>
+                        <th>A</th>
+                        <th>S</th>
+                        <th>Época</th>
+                        <th>Data-Insc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Matemática</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Design Hipermédia</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Sistemas Operativos e Redes</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Introdução a Programação</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Técnicas de Expressão do Português</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Desenvolvimento Web - Back-End</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Desenvolvimento Web - Front-End</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Inglês Técnico</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Programação Orientada por Objetos</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                    <tr>
+                        <td>2025/2026</td>
+                        <td>Tec Pro Sis Inf</td>
+                        <td>Sistemas Gestores de Bases de Dados I</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>Época Normal</td>
+                        <td>2025-09-30</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>AL</th>
+                        <th>Curso</th>
+                        <th>Disciplina</th>
+                        <th>A</th>
+                        <th>S</th>
+                        <th>Época</th>
+                        <th>Data-Insc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td>2025/2026</td>
+                        <td>Matemática Básica</td>
+                        <td>Matemática Básica</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>MAT</td>
+                        <td>30-03-2025</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
 </body>
 </html>

@@ -1,11 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirementos</title>
+    <title>Requerimentos</title>
+    <style>
+        /* --- Configurações de Base --- */
+        body { 
+            font-family: Arial, sans-serif; 
+            font-size: 11px; 
+            background-color: #f4f4f4; 
+            margin: 20px; 
+            color: #333; 
+        }
+
+        .requerim-main-container { 
+            max-width: 1200px; 
+            margin: auto; 
+            background: white; 
+            border: 1px solid #ccc; 
+        }
+
+        /* --- Lógica de Separadores sem JS --- */
+        input[type="radio"] { display: none; }
+        
+        .requerim-tabs-header { 
+            display: flex; 
+            background: #e0e0e0; 
+            border-bottom: 1px solid #ccc; 
+        }
+
+        .requerim-tab-label { 
+            padding: 10px 40px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            border-right: 1px solid #ccc; 
+            background: #dcdcdc;
+            text-decoration: underline;
+        }
+
+        .requerim-tab-content { 
+            display: none; 
+            padding: 15px; 
+        }
+
+        /* Ativação das Abas */
+        #tab-lista:checked ~ .requerim-tabs-header label[for="tab-lista"],
+        #tab-novo:checked ~ .requerim-tabs-header label[for="tab-novo"] { 
+            background: white; 
+            border-bottom: 2px solid white; 
+            margin-bottom: -1px; 
+            text-decoration: none;
+        }
+
+        #tab-lista:checked ~ #content-lista,
+        #tab-novo:checked ~ #content-novo { 
+            display: block; 
+        }
+
+        /* --- Componentes da Lista --- */
+        .requerim-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px; 
+        }
+
+        .requerim-table th { 
+            background: #ffe6cc; 
+            border: 1px solid #bbb; 
+            padding: 6px; 
+            text-align: left; 
+        }
+
+        .requerim-table td { 
+            border: 1px solid #ddd; 
+            padding: 6px; 
+            background: #fff; 
+        }
+        
+        .requerim-alert-warning { 
+            border: 1px solid #ffcc00; 
+            background: #fffdf0; 
+            padding: 8px; 
+            margin: 10px 0; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        /* --- Grelha do Formulário --- */
+        .requerim-form-grid { 
+            display: grid; 
+            grid-template-columns: 120px 1fr 120px 1fr; 
+            gap: 8px; 
+            align-items: center; 
+            background: #eee; 
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        
+        .requerim-section-title { 
+            grid-column: span 4; 
+            font-weight: bold; 
+            border-bottom: 1px solid #999; 
+            margin-top: 15px; 
+            padding-bottom: 3px; 
+        }
+
+        /* --- Elementos de Input --- */
+        .requerim-main-container input, 
+        .requerim-main-container select, 
+        .requerim-main-container textarea { 
+            width: 100%; 
+            padding: 4px; 
+            border: 1px solid #99b3ff; 
+            background: #e6f0ff; 
+            box-sizing: border-box;
+        }
+
+        .requerim-button-bar { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-top: 20px; 
+            padding: 10px;
+        }
+
+        .requerim-btn { 
+            padding: 5px 20px; 
+            border: 1px solid #adadad; 
+            background: linear-gradient(to bottom, #fff, #e0e0e0); 
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="requerim-main-container">
+    <input type="radio" name="main-tabs" id="tab-lista" checked>
+    <input type="radio" name="main-tabs" id="tab-novo">
+
+    <div class="requerim-tabs-header">
+        <label for="tab-lista" class="requerim-tab-label">Lista de Requerimentos</label>
+        <label for="tab-novo" class="requerim-tab-label">Submeter Novo/Detalhe</label>
+    </div>
+
+    <div class="requerim-tab-content" id="content-lista">
+        <p><strong>Para inserir um novo requerimento clique no tabulador 'Submeter Novo/Detalhe'.</strong></p>
+        
+        <div style="margin: 10px 0;">
+            Filtrar por Tipo de Pedido: <select style="width: 200px;"><option></option></select>
+            Filtrar por Despacho: <select style="width: 150px;"><option></option></select>
+            <button class="requerim-btn">Filtrar Lista</button>
+        </div>
+
+        <div class="requerim-alert-warning">
+            <span style="color: orange; font-weight: bold;">⚠️</span>
+            <span>Os pedidos com emolumentos só serão processados após boa cobrança. Consulte no menu Serviços > Pagamentos.</span>
+        </div>
+
+        <table class="requerim-table">
+            <thead>
+                <tr>
+                    <th>Cod. Entrada</th>
+                    <th>Tipo</th>
+                    <th>Ano Lectivo Assunto</th>
+                    <th>Data Pedido</th>
+                    <th>Despacho Obs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">5759/25</a></td>
+                    <td>Reclamação</td>
+                    <td>2025/26 - Boa noite, venho por este meio solicitar a anulação...</td>
+                    <td>2025-10-02</td>
+                    <td>Em Análise</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="requerim-tab-content" id="content-novo">
+        <div class="requerim-form-grid">
+            <div class="requerim-section-title">Despacho</div>
+            <label>Data do Despacho:</label><input type="text" disabled>
+            <label>Cod. Entrada:</label><input type="text" disabled>
+            <label>Despacho:</label><input type="text" disabled>
+            <label>Data Entrada:</label><input type="text" disabled>
+            
+            <div class="requerim-section-title">Pedido</div>
+            <label>Curso:</label>
+            <select>
+                <option>(11024) Tecnologias e Programação de Sistemas de Informação</option>
+            </select>
+            <label>Nº Aluno:</label><input type="text" value="2032624">
+            
+            <label>Ano Lectivo:</label><input type="text" value="2025/26">
+            <label>Entidade:</label><input type="text" value="João Leonardo Caires Dias">
+            
+            <label>Pedido:</label>
+            <select>
+                <option value="reclame">Reclamação</option>
+                <option value="anul_mat">Anulação de Matrícula/Inscrição</option>
+                <option value="cert_mat">Certificado de Matrícula (10 Eur)</option>
+                </select>
+            <label>Data do Pedido:</label><input type="text" value="2026-01-02">
+            
+            <label>Assunto:</label>
+            <textarea style="grid-column: span 3; height: 80px;"></textarea>
+            
+            <label>Taxa Urgência:</label>
+            <div style="grid-column: span 3;"><input type="checkbox" style="width: auto;"></div>
+
+            <label>Anexar Documento:</label>
+            <input type="file" style="grid-column: span 3; background: transparent; border: none;">
+
+            <div class="requerim-section-title">Expedição por Correio</div>
+            <label>País:</label>
+            <select>
+                <option value="PT" selected>Portugal</option>
+                <option value="BR">Brasil</option>
+                <option value="AO">Angola</option>
+            </select>
+            <div style="grid-column: span 2;"></div>
+            
+            <label>Morada:</label>
+            <input type="text" style="grid-column: span 3;">
+            
+            <label>Código Postal:</label>
+            <div style="display: flex; gap: 5px; grid-column: span 3;">
+                <input type="text" style="width: 60px;"> - <input type="text" style="width: 40px;">
+                <input type="text" placeholder="Localidade">
+            </div>
+        </div>
+
+        <div class="requerim-button-bar">
+            <button class="requerim-btn">Limpar Campos (Novo Pedido)</button>
+            <button class="requerim-btn" disabled>Cancelar Processo</button>
+            <button class="requerim-btn" style="font-weight: bold;">Guardar Processo</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

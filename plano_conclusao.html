@@ -5,7 +5,292 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano de Conclusão</title>
 </head>
+<style>/* Reutilizando estilos anteriores */
+.curso-conclusao-container {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    background-color: #fff;
+}
+
+.curso-conclusao-titulo {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.curso-conclusao-label {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.curso-conclusao-select {
+    width: 100%; /* Ocupa a largura da coluna */
+    padding: 3px;
+    border: 1px solid #999;
+    background-color: #e8f0fe;
+    font-size: 13px;
+    height: 26px;
+}
+
+/* Nova estrutura de Grid para os 3 selects */
+.curso-conclusao-relatorios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.curso-conclusao-field {
+    flex: 1 1 200px; /* Distribui as colunas igualmente, quebrando se necessário */
+}
+
+/* Alinhamento do botão à direita */
+.curso-conclusao-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.curso-conclusao-button {
+    padding: 4px 20px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+    border: 1px solid #ababab;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Ajuste opcional para telemóveis muito pequenos */
+@media (max-width: 480px) {
+    .curso-conclusao-select, 
+    .curso-conclusao-button {
+        flex: 1 1 100%; /* Força ocupar a largura toda em ecrãs minúsculos */
+    }
+}
+/* --- Novos Estilos para a Tabela de Resumo e Alerta --- */
+
+/* Bloco de Mensagem de Erro no Topo */
+.curso-conclusao-alerta {
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.curso-conclusao-icon-erro {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Título em Laranja */
+.curso-conclusao-titulo-laranja {
+    color: #ff6600;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 15px 0 10px 0;
+}
+
+/* Contentor da Tabela para permitir scroll em ecrãs pequenos */
+.curso-conclusao-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #d3d3d3;
+}
+
+.curso-conclusao-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    background-color: #fff;
+}
+
+/* Cabeçalho com a cor pêssego da imagem */
+.curso-conclusao-tabela thead th {
+    background-color: #fce5d6;
+    color: #000;
+    font-weight: bold;
+    padding: 8px 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Células da Tabela */
+.curso-conclusao-tabela td {
+    padding: 3px 8px;
+    border: 1px solid #e0e0e0;
+    vertical-align: middle;
+    color: #333;
+}
+
+/* Alinhamento específico para colunas de dados */
+.curso-conclusao-text-center {
+    text-align: center;
+}
+
+/* Estilo para a linha de média no fundo */
+.curso-conclusao-footer {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Zebra striping opcional para facilitar a leitura de grupos */
+.curso-conclusao-tabela tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+</style>
 <body>
+    <div class="curso-conclusao-container">
+        <h3 class="curso-conclusao-titulo">Pesquisar <br> - Planos de Conclusão</h3>
+        
+        <div class="curso-conclusao-form-group">
+            <label for="curso-select" class="curso-conclusao-label">Curso</label>
+
+            <select id="curso-select" class="curso-conclusao-select">
+                <option value="tpsi">Tecnologias e Programação de Sistemas de Informação ( Curso Técnico Superior Profissional, 2025/26 )</option>
+                <option></option>
+            </select>
+
+            <button type="button" class="curso-conclusao-button">
+                Listar Plano Conclusão...
+            </button>
+        </div>
     
+    </div>
+    <div class="curso-conclusao-container">
+    <h3 class="curso-conclusao-titulo">Relatórios</h3>
+    
+    <div class="curso-conclusao-relatorios-grid">
+        <div class="curso-conclusao-field">
+            <label class="curso-conclusao-label">Ano Lectivo</label>
+            <select class="curso-conclusao-select">
+                <option>2025/26</option>
+            </select>
+        </div>
+
+        <div class="curso-conclusao-field">
+            <label class="curso-conclusao-label">Relatório(s):</label>
+            <select class="curso-conclusao-select">
+                <option>Ficha de Aprovação para Bolonha</option>
+            </select>
+        </div>
+
+        <div class="curso-conclusao-field">
+            <label class="curso-conclusao-label">Formato(s):</label>
+            <select class="curso-conclusao-select">
+                <option>PDF</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="curso-conclusao-actions">
+        <button type="button" class="curso-conclusao-button">
+            Gerar Relatório >>
+        </button>
+    </div>
+    <div class="curso-conclusao-container">
+    <div class="curso-conclusao-alerta">
+        <p><span class="curso-conclusao-icon-erro">✖</span>
+        O aluno <strong>NÃO</strong> está em condições de <strong>CONCLUIR</strong> o curso seleccionado. 
+        [ <strong>Sujeito A CONFIRMAÇÃO pela Unidade de Assuntos Académicos!</strong> ].</p>
+    </div>
+
+    <h3 class="curso-conclusao-titulo-laranja">
+        Quadro de RESUMO Verificação das Regras de Conclusão de Curso
+    </h3>
+
+    <div class="curso-conclusao-table-wrapper">
+        <table class="curso-conclusao-tabela">
+            <thead>
+                <tr>
+                    <th>Regra</th>
+                    <th>Área Científica</th>
+                    <th>Nível</th>
+                    <th>ECTS Mínimo</th>
+                    <th>ECTS Aplicados</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="curso-conclusao-row-group">
+                    <td rowspan="5">1388</td>
+                    <td rowspan="5">(178) Língua e Literatura Materna</td>
+                    <td>(1) Básico</td>
+                    <td rowspan="5" class="text-center">5</td>
+                    <td rowspan="5" class="text-center">0</td>
+                    <td rowspan="5" class="text-center"><span class="curso-conclusao-icon-erro">✖</span></td>
+                </tr>
+                <tr><td>(2) Intermédio</td></tr>
+                <tr><td>(3) Avançado</td></tr>
+                <tr><td>(5) Especialista</td></tr>
+                <tr><td>(15) TeSP</td></tr>
+
+                <tr class="curso-conclusao-row-group separator">
+                    <td rowspan="5">1390</td>
+                    <td rowspan="5">(10) Matemática</td>
+                    <td>(1) Básico</td>
+                    <td rowspan="5" class="text-center">5.5</td>
+                    <td rowspan="5" class="text-center">0</td>
+                    <td rowspan="5" class="text-center"><span class="curso-conclusao-icon-erro">✖</span></td>
+                </tr>
+                <tr><td>(2) Intermédio</td></tr>
+                <tr><td>(3) Avançado</td></tr>
+                <tr><td>(5) Especialista</td></tr>
+                <tr><td>(15) TeSP</td></tr>
+                
+                <tr class="curso-conclusao-row-group separator">
+                    <td rowspan="5">1391</td>
+                    <td rowspan="5">(10) Línguas e Literaturas Estrangeiras</td>
+                    <td>(1) Básico</td>
+                    <td rowspan="5" class="text-center">5</td>
+                    <td rowspan="5" class="text-center">0</td>
+                    <td rowspan="5" class="text-center"><span class="curso-conclusao-icon-erro">✖</span></td>
+                </tr>
+                <tr><td>(2) Intermédio</td></tr>
+                <tr><td>(3) Avançado</td></tr>
+                <tr><td>(5) Especialista</td></tr>
+                <tr><td>(15) TeSP</td></tr>
+
+                <tr class="curso-conclusao-row-group separator">
+                    <td rowspan="5">1392</td>
+                    <td rowspan="5">(211) Ciências Informáticas</td>
+                    <td>(1) Básico</td>
+                    <td rowspan="5" class="text-center">18</td>
+                    <td rowspan="5" class="text-center">0</td>
+                    <td rowspan="5" class="text-center"><span class="curso-conclusao-icon-erro">✖</span></td>
+                </tr>
+                <tr><td>(2) Intermédio</td></tr>
+                <tr><td>(3) Avançado</td></tr>
+                <tr><td>(5) Especialista</td></tr>
+                <tr><td>(15) TeSP</td></tr>
+
+                <tr class="curso-conclusao-row-group separator">
+                    <td rowspan="5">1393</td>
+                    <td rowspan="5">(211) Ciências Informáticas</td>
+                    <td>(1) Básico</td>
+                    <td rowspan="5" class="text-center">86.5</td>
+                    <td rowspan="5" class="text-center">0</td>
+                    <td rowspan="5" class="text-center"><span class="curso-conclusao-icon-erro">✖</span></td>
+                </tr>
+                <tr><td>(2) Intermédio</td></tr>
+                <tr><td>(3) Avançado</td></tr>
+                <tr><td>(5) Especialista</td></tr>
+                <tr><td>(15) TeSP</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="curso-conclusao-footer">
+        <strong>Média Ponderada = 0</strong>
+    </div>
+</div>
+</div>
 </body>
 </html>

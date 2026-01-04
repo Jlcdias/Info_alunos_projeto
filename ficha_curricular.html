@@ -5,7 +5,357 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha Curricular</title>
 </head>
+<style>
+    /* Definições de Base */
+.curso-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Tabelas e Blocos */
+.curso-bloco-tabela, .curso-container-interno {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.curso-subtitulo {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.curso-tabela-base {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.curso-tabela-base th {
+    background-color: #ffebcc; /* Bege */
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.curso-tabela-base td {
+    border: 1px solid #eee;
+    padding: 6px;
+}
+
+/* Lógica de Tabs Sem JavaScript */
+.curso-radio-control, .curso-pane {
+    display: none;
+}
+
+#tab1:checked ~ .curso-tab-content .pane-1,
+#tab2:checked ~ .curso-tab-content .pane-2 {
+    display: block;
+}
+
+.curso-tab-menu {
+    display: flex;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.curso-tab-label {
+    padding: 10px 20px;
+    background: #e1e1e1; /* Cinza inativo */
+    border: 1px solid #ccc;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#tab1:checked ~ .curso-tab-menu label[for="tab1"],
+#tab2:checked ~ .curso-tab-menu label[for="tab2"] {
+    background: #fff;
+    position: relative;
+    top: 1px;
+}
+
+/* Inputs e UI */
+.curso-input-select, .curso-bg-blue {
+    background-color: #dbeaff; /* Azul claro */
+    border: 1px solid #7a9db9;
+}
+
+.curso-button-ui {
+    background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    border: 1px solid #999;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 11px;
+}
+.curso-info-detalhe {
+    background-color: #f9f9f9;
+    border-left: 3px solid #7a9db9; /* Destaque lateral azul */
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.curso-info-detalhe p {
+    margin: 2px 0;
+}
+
+.curso-info-detalhe strong {
+    color: #000;
+}
+
+</style>
 <body>
-    
+<div class="curso-wrapper">
+    <div class="curso-bloco-tabela">
+        <h4 class="curso-subtitulo">Histórico de Inscrições do Aluno</h4>
+        <table class="curso-tabela-base">
+            <thead>
+                <tr>
+                    <th>Ano Lectivo</th>
+                    <th>Curso</th>
+                    <th>Estado</th>
+                    <th>Data Inscrição</th>
+                    <th>Ingresso</th>
+                    <th>Estatuto</th>
+                    <th>Estado de Inscrição</th>
+                    <th>Desistiu</th>
+                    <th>Diplomou-se</th>
+                    <th>Inscrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024/25</td>
+                    <td>CTESP- Tecnologias e Programação de Sistemas de Informação</td>
+                    <td>Activo</td>
+                    <td>2024-09-10</td>
+                    <td>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional)</td>
+                    <td>N</td>
+                    <td>A</td>
+                    <td>N</td>
+                    <td>N</td>
+                    <td>30-09-2025</td>
+                </tr>
+                <tr>
+                    <td>2023/24</td>
+                    <td>Matématica Básica Nivel B</td>
+                    <td>Activo</td>
+                    <td>2024-09-10</td>
+                    <td>Prova de Acesso</td>
+                    <td>N</td>
+                    <td>A</td>
+                    <td>N</td>
+                    <td>N</td>
+                    <td>11-02-2025</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="curso-bloco-inscricoes">
+        <div class="curso-container-interno">
+            <h4 class="curso-subtitulo">Unidades Curriculares Inscrito/aprovadas</h4>
+            <div class="curso-info-detalhe">
+            <p><strong>Ano Lectivo:</strong> 2025/26 - <strong>Curso:</strong> Tecnologias e Programação de Sistemas de Informação</p>
+            <p>Diploma de Técnico Superior Profissional (Curso Técnico Superior Profissional) - 11024.10.0</p>
+            <p><strong>Plano:</strong> 2020/21 - <strong>Ramo:</strong> Sem Ramos - Especialidades</p>
+        </div>
+            <table class="curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>Cód.</th>
+                        <th>Unidade Curricular</th>
+                        <th>Ano</th>
+                        <th>ECTS</th>
+                        <th>Nota/Estado</th>
+                        <th>AC</th>
+                        <th>Nivel</th>
+                        <th>Op Comp</th>
+                        <th>Melhoria</th>
+                        <th>Dt Melh.</th>
+                        <th>Avaliação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td>206134</td>
+                        <td>Matemática</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>5.50</td>
+                        <td>MAT</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>206142</td>
+                        <td>Design Hipermédia</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>206144</td>
+                        <td>Sistemas Operativos e Redes</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206144</td>
+                        <td>Introdução a Programação</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206144</td>
+                        <td>Técnicas de Expressão do Português</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206137</td>
+                        <td>Desenvolvimento Web - Back-End</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206138</td>
+                        <td>Desenvolvimento Web - Front-End</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206132 </td>
+                        <td>Inglês Técnico</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206144</td>
+                        <td>Programação Orientada por Objetos</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>206144</td>
+                        <td>Sistemas Gestores de Bases de Dados I</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td>CIN</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>Cód.</th>
+                        <th>Unidade Curricular</th>
+                        <th>Ano</th>
+                        <th>ECTS</th>
+                        <th>Nota/Estado</th>
+                        <th>AC</th>
+                        <th>Nivel</th>
+                        <th>Op Comp</th>
+                        <th>Melhoria</th>
+                        <th>Dt Melh.</th>
+                        <th>Avaliação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                        <td>206134</td>
+                        <td>Matemática Básica</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>5.50</td>
+                        <td>MAT</td>
+                        <td>T</td>
+                        <td>N</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </body>
 </html>

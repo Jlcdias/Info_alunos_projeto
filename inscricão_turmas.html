@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscrição em Turmas</title>
+    <style>
+        /* --- Configurações de Base --- */
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: #f0f2f5; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px; 
+            margin: 0;
+        }
+
+        .inscric-turm-wizard { 
+            background: white; 
+            width: 100%;
+            max-width: 800px; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            position: relative; 
+            box-sizing: border-box;
+        }
+
+        /* Esconder os Radios Funcionais */
+        input[type="radio"] { display: none; }
+
+        /* Indicador de Progressão */
+        .inscric-turm-header { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 30px; 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 10px;
+            overflow-x: auto; /* Evita quebra em mobile */
+        }
+
+        .inscric-turm-step { 
+            color: #ccc; 
+            font-weight: bold; 
+            cursor: pointer; 
+            padding: 0 10px 10px 10px; 
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        /* Conteúdo dos Passos */
+        .inscric-turm-content { display: none; min-height: 250px; }
+
+        /* Lógica de Exibição via CSS Puro */
+        #s1:checked ~ .inscric-turm-header label[for="s1"],
+        #s2:checked ~ .inscric-turm-header label[for="s2"],
+        #s3:checked ~ .inscric-turm-header label[for="s3"] { 
+            color: #1a73e8; 
+            border-bottom: 3px solid #1a73e8; 
+        }
+
+        #s1:checked ~ #content1,
+        #s2:checked ~ #content2,
+        #s3:checked ~ #content3 { display: block; }
+
+        /* Alertas e Elementos Visuais */
+        .inscric-turm-alert { 
+            background: #d1e3ff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            color: #2c5282; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin: 20px 0; 
+            text-align: left;
+        }
+
+        .inscric-turm-select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            margin-top: 10px; 
+            background: white; 
+            box-sizing: border-box;
+        }
+        
+        /* Botões de Navegação */
+        .inscric-turm-nav { 
+            margin-top: 30px; 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 10px;
+        }
+
+        .inscric-turm-btn { 
+            background: #5da0c1; 
+            color: white; 
+            padding: 12px 25px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold;
+            display: inline-block;
+            user-select: none;
+        }
+
+        .inscric-turm-btn-back { background: #eee; color: #333; }
+
+        .inscric-turm-empty { text-align: center; padding: 40px 20px; }
+        .inscric-turm-empty h1 { color: #1a73e8; font-size: 22px; margin-bottom: 10px; }
+
+        /* Responsividade para ecrãs pequenos */
+        @media (max-width: 600px) {
+            .inscric-turm-wizard { padding: 20px; }
+            .inscric-turm-alert { flex-direction: column; text-align: center; }
+            .inscric-turm-nav { flex-direction: column; }
+            .inscric-turm-btn { text-align: center; width: 100%; box-sizing: border-box; }
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="inscric-turm-wizard">
+    <input type="radio" name="wizard" id="s1" checked>
+    <input type="radio" name="wizard" id="s2">
+    <input type="radio" name="wizard" id="s3">
+
+    <div class="inscric-turm-header">
+        <label for="s1" class="inscric-turm-step">1. Seleção</label>
+        <label for="s2" class="inscric-turm-step">2. Validação</label>
+        <label for="s3" class="inscric-turm-step">3. Finalização</label>
+    </div>
+
+    <div class="inscric-turm-content" id="content1">
+        <h2>Selecione uma Inscrição</h2>
+        <label><i>Curso</i></label>
+        <select class="inscric-turm-select">
+            <option>(11024) Tecnologias e Programação de Sistemas de Informação - Sem Ramos</option>
+            <option>Matématica Básica</option>
+        </select>
+        <div class="inscric-turm-nav">
+            <label for="s2" class="inscric-turm-btn">Próximo ></label>
+        </div>
+    </div>
+
+    <div class="inscric-turm-content" id="content2">
+        <div class="inscric-turm-alert">
+            <div style="font-size: 30px; font-weight: bold; opacity: 0.5;">?</div>
+            <div>Não existem inscrições disponíveis para o aluno no curso selecionado (2020/21).</div>
+        </div>
+        <div class="inscric-turm-nav" style="justify-content: space-between;">
+            <label for="s1" class="inscric-turm-btn inscric-turm-btn-back">Anterior</label>
+            <label for="s3" class="inscric-turm-btn">Ver Detalhes ></label>
+        </div>
+    </div>
+
+    <div class="inscric-turm-content" id="content3">
+        <div class="inscric-turm-empty">
+            <h1>Não foram encontradas inscrições em UC's</h1>
+            <p style="color: #666;">Não existe nenhum período de inscrição disponível para o seu perfil no momento.</p>
+        </div>
+        <div class="inscric-turm-nav">
+            <label for="s2" class="inscric-turm-btn inscric-turm-btn-back">Voltar</label>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

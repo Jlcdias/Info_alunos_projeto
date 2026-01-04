@@ -1,11 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartão Úniversitário</title>
+    <title>Cartão Universitário</title>
+    <style>
+        /* --- Configurações de Base --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* --- Contentor Principal --- */
+        .cartao-uni-container {
+            background-color: white;
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .cartao-uni-titulo {
+            color: #444;
+            font-weight: 400;
+            font-size: 26px;
+            margin-bottom: 40px;
+        }
+
+        /* --- Layout de Duas Colunas --- */
+        .cartao-uni-content-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: left;
+            gap: 40px;
+        }
+
+        /* --- Coluna de Dados (Esquerda) --- */
+        .cartao-uni-data-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cartao-uni-data-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .cartao-uni-label {
+            display: block;
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .cartao-uni-value {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* --- Coluna Visual (Direita) --- */
+        .cartao-uni-visual-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 320px;
+        }
+
+        /* --- Estilo do Cartão Físico --- */
+        .cartao-uni-student-card {
+            width: 380px;
+            height: 230px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+
+        .cartao-uni-card-header {
+            color: #003366;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1.1;
+        }
+
+        .cartao-uni-nfc-icon {
+            font-size: 24px;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .cartao-uni-card-number {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 25px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .cartao-uni-card-name {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 5px;
+            color: #1a4f8a;
+        }
+
+        .cartao-uni-card-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .cartao-uni-photo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 75px;
+            height: 95px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Estado da Produção --- */
+        .cartao-uni-status-box {
+            margin-top: 30px;
+            width: 100%;
+            border-top: 2px solid #e8f0fe;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .cartao-uni-status-label {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        .cartao-uni-status-value {
+            font-size: 14px;
+            color: #1a4f8a;
+            font-weight: bold;
+        }
+
+        /* --- Ajustes Mobile --- */
+        @media (max-width: 800px) {
+            .cartao-uni-student-card {
+                width: 100%;
+                max-width: 340px;
+                height: auto;
+                aspect-ratio: 1.6 / 1;
+            }
+            .cartao-uni-content-flex {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cartao-uni-titulo {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+
+    <div class="cartao-uni-container">
+        <h2 class="cartao-uni-titulo">Dados para emissão do Cartão</h2>
+
+        <div class="cartao-uni-content-flex">
+            <div class="cartao-uni-data-column">
+                <div class="cartao-uni-data-item">
+                    <span class="cartao-uni-label">Nome Completo</span>
+                    <span class="cartao-uni-value">João Leonardo Caires Dias</span>
+                </div>
+                <div class="cartao-uni-data-item">
+                    <span class="cartao-uni-label">NIF / Identificação</span>
+                    <span class="cartao-uni-value">14473026</span>
+                </div>
+                <div class="cartao-uni-data-item">
+                    <span class="cartao-uni-label">Unidade Orgânica</span>
+                    <span class="cartao-uni-value">Faculdade de Ciências Exatas e da Engenharia (ESTG)</span>
+                </div>
+                <div class="cartao-uni-data-item">
+                    <span class="cartao-uni-label">Curso</span>
+                    <span class="cartao-uni-value">Tecnologias e Programação de Sistemas de Informação</span>
+                </div>
+                <div class="cartao-uni-data-item">
+                    <span class="cartao-uni-label">Morada de Envio</span>
+                    <span class="cartao-uni-value">Rua do Cabouco nº 18<br>9125-174 Caniço<br>Portugal</span>
+                </div>
+            </div>
+
+            <div class="cartao-uni-visual-column">
+                <div class="cartao-uni-student-card">
+                    <div class="cartao-uni-card-header">UNIVERSIDADE<br>DA MADEIRA</div>
+                    <div class="cartao-uni-nfc-icon">📡</div>
+                    <div class="cartao-uni-card-number">6034 2032 6241 0058</div>
+                    <div class="cartao-uni-card-name">JOÃO LEONARDO CAIRES DIAS</div>
+                    
+                    <div class="cartao-uni-card-details">
+                        <div><strong>Aluno</strong><br>TPSI</div>
+                        <div style="text-align: right;"><strong>Nº 2032624</strong><br>Val: 12/2026</div>
+                    </div>
+
+                    <div class="cartao-uni-photo">
+                        <img src="svg/person-border-svgrepo-com.svg" alt="Foto Aluno" width="65">
+                    </div>
+                </div>
+
+                <div class="cartao-uni-status-box">
+                    <span class="cartao-uni-status-label">Estado Atual do Pedido</span><br>
+                    <span class="cartao-uni-status-value">Cartão Solicitado. Aguarda envio para produção externa.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

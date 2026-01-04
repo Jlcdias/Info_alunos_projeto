@@ -5,7 +5,850 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso</title>
 </head>
+<style>
+    .disciplina-wrapper {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  padding: 10px;
+}
+
+.disciplina-bloco-pesquisa, 
+.disciplina-bloco-lista {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.disciplina-titulo {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #000;
+}
+
+.disciplina-linha {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.disciplina-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-ano { width: 60%; }
+.field-full { width: 100%; }
+
+.disciplina-campo label {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.disciplina-select {
+  height: 26px;
+  background-color: #dbeaff; /* Azul claro da imagem */
+  border: 1px solid #7a9db9;
+  font-size: 12px;
+  padding-left: 5px;
+}
+
+.disciplina-btn-pesquisar {
+  height: 28px;
+  min-width: 180px;
+  background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  border: 1px solid #999;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Estilos da Tabela */
+.disciplina-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+}
+
+.disciplina-tabela th {
+  background-color: #ffebcc; /* Bege/Laranja claro */
+  border: 1px solid #ccc;
+  font-size: 11px;
+  padding: 6px;
+  text-align: center;
+}
+
+.disciplina-tabela td {
+  border: 1px solid #eee;
+  font-size: 12px;
+  padding: 6px;
+  text-align: center;
+}
+
+.disciplina-legenda {
+  font-size: 11px;
+  color: #333;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+/* Esconder os inputs de rádio */
+.tab-control {
+  display: none;
+}
+
+/* Lógica de exibição das abas */
+.disciplina-pane {
+  display: none; /* Escondido por padrão */
+}
+
+#tab1:checked ~ .disciplina-tab-content .pane-1,
+#tab2:checked ~ .disciplina-tab-content .pane-2,
+#tab3:checked ~ .disciplina-tab-content .pane-3,
+#tab4:checked ~ .disciplina-tab-content .pane-4,
+#tab5:checked ~ .disciplina-tab-content .pane-5,
+#tab6:checked ~ .disciplina-tab-content .pane-6{
+  display: block;
+}
+
+/* Estilo do botão selecionado */
+#tab1:checked ~ .disciplina-tab-menu label[for="tab1"],
+#tab2:checked ~ .disciplina-tab-menu label[for="tab2"],
+#tab3:checked ~ .disciplina-tab-menu label[for="tab3"],
+#tab4:checked ~ .disciplina-tab-menu label[for="tab4"],
+#tab5:checked ~ .disciplina-tab-menu label[for="tab5"],
+#tab6:checked ~ .disciplina-tab-menu label[for="tab6"] {
+  background: #fff;
+  border-bottom: 2px solid #fff;
+  position: relative;
+  top: 1px;
+}
+
+/* Estilos Visuais Replicados das Imagens */
+.disciplina-tab-menu {
+  display: flex;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 5px 5px 0 5px;
+}
+
+.disciplina-tab-item {
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background: #e1e1e1;
+  margin-right: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 4px 4px 0 0;
+}
+
+.gray-bg, .gray-box {
+  background-color: #e1e1e1; /* Cinza da imagem */
+  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 11px;
+}
+
+.disciplina-grid-objetivos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.disabled {
+  color: #888;
+  cursor: not-allowed;
+}
+/* Layout em Grelha para as 4 Divs */
+.disciplina-grid-objetivos {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+  gap: 20px;
+  padding: 10px 0;
+}
+
+/* Estilo dos Títulos */
+.disciplina-card-info h4 {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+/* Blocos Cinzentos conforme a imagem */
+.gray-box {
+  background-color: #d9d9d9; /* Tom de cinza exato da imagem */
+  border: none;
+  padding: 15px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #000;
+  min-height: 220px; /* Altura para os objetivos */
+}
+
+/* Ajuste de altura para os critérios (que são mais pequenos) */
+.small-box {
+  min-height: 120px;
+}
+
+/* Reset de listas se preferires usar <ol> em vez de texto corrido */
+.gray-box ol {
+  margin: 0;
+  padding-left: 15px;
+}
+/* Espaçamento e Alinhamento de Formulário */
+.disciplina-form-group {
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.disciplina-label-bold {
+  font-weight: bold;
+}
+
+.disciplina-min-width-200 {
+  width: auto;
+  min-width: 200px;
+}
+
+/* Tabela de Programa */
+.disciplina-tabela-programa {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  background-color: #dbeaff; /* Cor azulada das linhas */
+}
+
+.disciplina-tabela-programa th {
+  background-color: #ffebcc; /* Bege do cabeçalho */
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: left;
+}
+
+.disciplina-tabela-programa td {
+  border: 1px solid #999;
+  padding: 4px 8px;
+}
+
+/* Classes de Colunas e Destaque */
+.disciplina-col-item { width: 50px; }
+.disciplina-col-horas { width: 80px; }
+
+.disciplina-item-num {
+  text-align: center;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.disciplina-topico-principal {
+  color: #cc0000; /* Destaque vermelho para o primeiro item */
+  font-weight: bold;
+}
+
+.disciplina-topico-bold {
+  font-weight: bold;
+}
+
+/* Utilitários de Layout */
+.disciplina-margin-top-20 {
+  margin-top: 20px;
+}
+
+.disciplina-gray-bg {
+  background-color: #e1e1e1; /* Cinza de fundo */
+  padding: 15px;
+  border: 1px solid #ccc;
+  font-size: 11px;
+}
+/* Garante que a pane-4 se comporta como as outras abas na lógica de rádio */
+#disciplina-tab4:checked ~ .disciplina-content-wrapper .disciplina-pane-4 {
+  display: block;
+}
+
+/* Reutiliza a grelha de 2 colunas para os 4 blocos */
+.disciplina-pane-4 .disciplina-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* Define o fundo cinzento específico para estas caixas */
+.disciplina-pane-4 .disciplina-text-container {
+  background-color: #d9d9d9;
+  border: 1px solid #ccc;
+  min-height: 250px; /* Altura aproximada da imagem */
+  padding: 10px;
+}
+/* Título da Tabela */
+.disciplina-titulo-tabela {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 15px 0 10px 0;
+  color: #000;
+}
+
+/* Estrutura da Tabela de Docentes */
+.disciplina-tabela-docentes {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.disciplina-tabela-docentes th {
+  background-color: #ffebcc; /* Cor bege/laranja claro do cabeçalho */
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.disciplina-tabela-docentes td {
+  border: 1px solid #eee;
+  padding: 5px 10px;
+  color: #333;
+  background-color: #f9f9f9; /* Fundo alternado suave */
+}
+
+/* Estilo das Linhas Alternadas (Zebra) */
+.disciplina-tabela-docentes tbody tr:nth-child(even) td {
+  background-color: #f0f0f0;
+}
+
+/* Coluna de Extensão */
+.disciplina-col-extensao {
+  width: 80px;
+}
+
+/* Estilo de Links de Email */
+.disciplina-link {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+.disciplina-link:hover {
+  color: #cc0000;
+}
+
+/* Lógica de Visibilidade para a Aba 5 (CSS Only) */
+#disciplina-tab5:checked ~ .disciplina-content-wrapper .disciplina-pane-5 {
+  display: block;
+}
+/* Lógica de Visibilidade para a Aba 6 (CSS Only) */
+#disciplina-tab6:checked ~ .disciplina-content-wrapper .disciplina-pane-6 {
+  display: block;
+}
+
+/* Contentor de Filtros */
+.disciplina-filtro-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+
+.disciplina-filtro-campo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disciplina-link-gestao {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.disciplina-link-gestao a {
+  color: blue;
+  text-decoration: none;
+}
+
+/* Estilo da Tabela de Documentos */
+.disciplina-tabela-documentos {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.disciplina-tabela-documentos th {
+  background-color: #ffebcc; /* Bege do cabeçalho */
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+}
+
+.disciplina-tabela-documentos td {
+  border: 1px solid #eee;
+  padding: 4px 8px;
+  color: #333;
+}
+
+.disciplina-tabela-documentos tbody tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+/* Colunas Específicas */
+.disciplina-col-ficheiro { width: 50%; }
+.disciplina-col-categoria { width: 20%; }
+.disciplina-col-data { width: 15%; }
+.disciplina-col-autor { width: 15%; }
+
+/* Links e Ícones */
+.disciplina-link-doc {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+.disciplina-file-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.disciplina-icon-inline {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.disciplina-select-footer{
+    background-color: #dbeaff;
+}
+
+.disciplina-btn-footer{
+    border-radius: 10%;
+}
+</style>
 <body>
+    <div class="disciplina-wrapper">
+  
+  <div class="disciplina-bloco-pesquisa">
+    <h3 class="disciplina-titulo">Pesquisa de Disciplinas</h3>
     
+    <div class="disciplina-linha">
+      <div class="disciplina-campo field-ano">
+        <label>Ano Lectivo</label>
+        <select class="disciplina-select">
+        <option>Selecione uma opção</option>
+        <option>2025/26</option>
+        <option>2010/11</option>
+        <option>2011/12</option>
+        <option>2012/13</option>
+        <option>2013/14</option>
+        <option>2014/15</option>
+        <option>2015/16</option>
+        <option>2016/17</option>
+        <option>2017/18</option>
+        <option>2018/19</option>
+        <option>2019/20</option>
+        <option>2020/21</option>
+        <option>2021/22</option>
+        <option>2022/23</option>
+        <option>2023/24</option>
+        <option>2024/25</option>
+        <option>2026/27</option>
+        </select>
+      </div>
+      <button class="disciplina-btn-pesquisar">Pesquisar...</button>
+    </div>
+
+    <div class="disciplina-linha">
+      <div class="disciplina-campo field-full">
+        <label>Disciplina</label>
+        <select class="disciplina-select">
+        <option>Introdução à Programação_CTeSP_TPSI [ S1 ]</option>
+        <option>Design Hipérmidia</option>
+        <option>Técnicas de Expressão do Português</option>
+        <option>Matématica</option>
+        <option>Introdução a Programação</option>
+        <option>Redes e Sistemas Operativos</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="disciplina-bloco-lista">
+    <h3 class="disciplina-titulo">Lista de Disciplinas</h3>
+    <table class="disciplina-tabela">
+      <thead>
+        <tr>
+          <th>AL</th>
+          <th>Course</th>
+          <th>Curso</th>
+          <th>Especialidade</th>
+          <th>ALP</th>
+          <th>S</th>
+          <th>UC</th>
+          <th>CH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025/26</td>
+          <td>Introdução à Programação</td>
+          <td>Tec Pro Sis Inf</td>
+          <td>S/Ramos - Esp.</td>
+          <td>2020/21</td>
+          <td>S1</td>
+          <td>6.50</td>
+          <td>182.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="disciplina-legenda">
+      AL - Ano Lectivo | ALP - Ano Lectivo do Plano | S - Semestre | UC - Unidades de Crédito | CH - Carga Horária
+    </div>
+  </div>
+
+</div>
+<div class="disciplina-container-tabs">
+  <input type="radio" name="tabs" id="tab1" class="tab-control"checked>
+  <input type="radio" name="tabs" id="tab2" class="tab-control">
+  <input type="radio" name="tabs" id="tab3" class="tab-control">
+  <input type="radio" name="tabs" id="tab4" class="tab-control">
+  <input type="radio" name="tabs" id="tab5" class="tab-control">
+  <input type="radio" name="tabs" id="tab6" class="tab-control">
+
+  <div class="disciplina-tab-menu">
+    <label for="tab1" class="disciplina-tab-item">Objectivos / Avaliação</label>
+    <label for="tab2" class="disciplina-tab-item">Bibliografia</label>
+    <label for="tab3" class="disciplina-tab-item">Programa</label>
+    <label for="tab4" class="disciplina-tab-item">Outros Dados</label>
+    <label for="tab5" class="disciplina-tab-item">Corpo Docente</label>
+    <label for="tab6" class="disciplina-tab-item">Documentos</label>
+    </div>
+
+  <div class="disciplina-tab-content">
+    
+<div class="disciplina-pane pane-1">
+  <div class="disciplina-grid-objetivos">
+    
+    <div class="disciplina-card-info">
+      <h4>Objectivos da Disciplina:</h4>
+      <div class="gray-box">
+        1 Identificar os diferentes ambientes de execução e conhecer os principais tipos de ferramentas utilizadas no desenvolvimento de software;<br>
+        2 Identificar as principais características das linguagens de programação;<br>
+        3 Desenvolver programas usando a linguagem de programação Java (ou outra);<br>
+        4 Conhecer e implementar os principais tipos de dados;<br>
+        5 Desenvolver e implementar um algoritmo;<br>
+        6 Analisar a eficiência de algoritmos;<br>
+        7 Conhecer e implementar os principais algoritmos de ordenação;<br>
+        8 Conhecer e implementar os principais algoritmos de pesquisa.
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Tradução em Inglês dos Objectivos :</h4>
+      <div class="gray-box">
+        1 Identify the different execution environments and know the main types of tools used in software development;<br>
+        2 Identify the main characteristics of programming languages;<br>
+        3 Develop programs using the Java programming language (or other);<br>
+        4 Know and implement the main types of data;<br>
+        5 Develop and implement an algorithm;<br>
+        6 Analyse the efficiency of algorithms;<br>
+        7 Know and implement the main ordering algorithms;<br>
+        8 Know and implement the main search algorithms.
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Critérios de avaliação:</h4>
+      <div class="gray-box small-box">
+        <strong>Tipo de Classificacao:</strong> Quantitativa (0-20)<br>
+        <strong>Metodologia de Avaliação:</strong> De acordo com o previsto para os Cursos Técnicos Superiores Profissionais.
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Tradução para Inglês dos Critérios de avaliação:</h4>
+      <div class="gray-box small-box">
+        <strong>Classification Type:</strong> Quantitative (0-20)<br>
+        <strong>Evaluation Methodology:</strong> In accordance with the expected for the Professional Higher Technical Courses.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="disciplina-pane pane-2">
+      <div class="disciplina-card-full">
+        <h4>Bibliografia Principal:</h4>
+        <div class="disciplina-text-box gray-bg">
+          <p>Rocha, A. A. (2011). Estruturas de Dados e Algoritmos em Java. FCA.<br>
+          Sedgewick, R. (1998). Algorithms in C, Parts 1-4... Addison-Wesley.</p>
+        </div>
+        <h4>Outras Fontes Bibliograficas/Documentos de Apoio</h4>
+        <div class="disciplina-text-box gray-bg">
+          <p>Sem Ficheiros a Apresentar</p><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="disciplina-pane pane-3">
+      <h4 class="disciplina-titulo">Programa Resumido:</h4>
+      <div class="gray-bg">
+        <p>Sem informação a apresentar</p>
+      </div>
+      <h4 class="disciplina-titulo">Tradução para Inglês do Programa resumido:</h4>
+      <div class="gray-bg">
+        <p>Without any data to show</p>
+      </div>
+      <div class="disciplina-pane-box disciplina-pane-prog">
+  <div class="disciplina-form-group">
+    <strong class="disciplina-label-bold">Escolha o Tipo de Programa:</strong>
+    <select class="disciplina-input-select disciplina-min-width-200">
+      <option class="programa_backgroundcolor">Programa (15 items)</option>
+    </select>
+  </div>
+
+  <h4 class="disciplina-titulo">Conteúdo Programático:</h4>
+  
+  <table class="disciplina-tabela-programa">
+    <thead>
+      <tr>
+        <th class="disciplina-col-item">Item</th>
+        <th>Tópico</th>
+        <th>Tradução para Inglês do Tópico de Programa</th>
+        <th class="disciplina-col-horas">Horas de Contacto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="disciplina-item-num">1</td>
+        <td class="disciplina-topico-principal">Iniciação à programação.</td>
+        <td>Introduction to programming.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">1.1</td>
+        <td>Ambientes de computação e linguagens de programação.</td>
+        <td>Computing environments and programming languages.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">1.2</td>
+        <td>Ferramentas de desenvolvimento de software.</td>
+        <td>Software development tools.</td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td class="disciplina-item-num">2</td>
+        <td class="disciplina-topico-bold">Introdução à linguagem de programação Python.</td>
+        <td>Introduction to the Python programming language.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">2.1</td>
+        <td>Noções elementares: classe, atributo, método.</td>
+        <td>Elementary notions: class, attribute, method.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">2.2</td>
+        <td>Tipos de dados primitivos.</td>
+        <td>Primitive data types.</td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td class="disciplina-item-num">3</td>
+        <td class="disciplina-topico-bold">Tipos de dados e estruturas de dados.</td>
+        <td>Data types and data structures.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">3.1</td>
+        <td>Tipos primitivos versus Estruturas de Dados.</td>
+        <td>Primitive types versus data structures.</td>
+        <td></td>
+      </tr>
+      
+      <tr>
+        <td class="disciplina-item-num">4</td>
+        <td class="disciplina-topico-bold">Algoritmos.</td>
+        <td>Algorithms.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">4.1</td>
+        <td>Algoritmos e implementação.</td>
+        <td>Algorithms and implementation.</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="disciplina-item-num">4.3</td>
+        <td>Algoritmos de ordenação elementares (inserção direta, seleção direta e bubblesort).</td>
+        <td>Elementary ordering algorithms (direct insertion, direct selection and bubblesort).</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+</div>
+    
+<div class="disciplina-pane pane-4">
+<div class="disciplina-grid-objetivos">
+    
+    <div class="disciplina-card-info">
+      <h4>Atendimento:</h4>
+      <div class="gray-box">
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Tradução do Atendimento :</h4>
+      <div class="gray-box">
+
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Observações:</h4>
+      <div class="gray-box small-box">
+      </div>
+    </div>
+
+    <div class="disciplina-card-info">
+      <h4>Tradução de Observações:</h4>
+      <div class="gray-box small-box">
+      </div>
+    </div>
+
+  </div>
+</div>
+    <div class="disciplina-pane pane-5">
+<h4 class="disciplina-titulo-tabela">Corpo Docente</h4>
+  
+  <table class="disciplina-tabela-docentes">
+    <thead>
+      <tr>
+        <th>Docente</th>
+        <th>Centro</th>
+        <th>Função</th>
+        <th>eMail</th>
+        <th class="disciplina-col-extensao">Extensão</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>David Walter Figueira Jardim</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Ensino teórico-prático</td>
+        <td><a href="mailto:david.jardim@staff.uma.pt" class="disciplina-link">david.jardim@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Pedro Miguel Casinhas Pereira de Mendonça</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Ensino teórico-prático</td>
+        <td><a href="mailto:pedro.mendonca@staff.uma.pt" class="disciplina-link">pedro.mendonca@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>David Walter Figueira Jardim</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Horas de Aplicação</td>
+        <td><a href="mailto:david.jardim@staff.uma.pt" class="disciplina-link">david.jardim@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Pedro Miguel Casinhas Pereira de Mendonça</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Horas de Aplicação</td>
+        <td><a href="mailto:pedro.mendonca@staff.uma.pt" class="disciplina-link">pedro.mendonca@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>David Walter Figueira Jardim</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Regência</td>
+        <td><a href="mailto:david.jardim@staff.uma.pt" class="disciplina-link">david.jardim@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>David Walter Figueira Jardim</td>
+        <td>Escola Superior de Tecnologias e Gestão</td>
+        <td>Responsável pelas Pautas</td>
+        <td><a href="mailto:david.jardim@staff.uma.pt" class="disciplina-link">david.jardim@staff.uma.pt</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="disciplina-pane pane-6">
+            <div class="disciplina-filtro-container">
+    <div class="disciplina-filtro-campo">
+      <label class="disciplina-label-bold">Filtrar por Categoria</label>
+      <select class="disciplina-input-select disciplina-bg-blue">
+        <option></option>
+        <option>Sebentas</option>
+        <option>Artigos</option>
+        <option>Exames Tipo</option>
+        <option>Apontamentos</option>        
+      </select>
+      <button class="disciplina-button-ui">Filtrar Lista</button>
+    </div>
+    <div class="disciplina-link-gestao">
+      <a href="#">[ Gerir Ficheiros da Disciplina ]</a>
+      <img src="img/pdf.png" alt="Guardar" class="disciplina-icon-inline">
+      <img src="img/pdf.png" alt="Download" class="disciplina-icon-inline">
+    </div>
+  </div>
+
+  <table class="disciplina-tabela-documentos">
+    <thead>
+      <tr>
+        <th class="disciplina-col-ficheiro">Ficheiro</th>
+        <th class="disciplina-col-categoria">Categoria</th>
+        <th class="disciplina-col-data">Data</th>
+        <th class="disciplina-col-autor">Inserido por</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="img/pdf.png" class="disciplina-file-icon"> <a href="#" class="disciplina-link-doc">Capa Powerpoint (426.5 KB)</a></td>
+        <td>Apontamentos</td>
+        <td>2025-09-25 18:50</td>
+        <td>Bruna Pereira</td>
+      </tr>
+      <tr>
+        <td><img src="img/pdf.png" class="disciplina-file-icon"> <a href="#" class="disciplina-link-doc">Capa trabalho (16.7 MB)</a></td>
+        <td>Apontamentos</td>
+        <td>2025-09-25 18:50</td>
+        <td>Bruna Pereira</td>
+      </tr>
+      <tr>
+        <td><img src="img/pdf.png" class="disciplina-file-icon"> <a href="#" class="disciplina-link-doc">Ficha gravação (23.16 KB)</a></td>
+        <td>Apontamentos</td>
+        <td>2025-09-25 18:50</td>
+        <td>Bruna Pereira</td>
+      </tr>
+      <tr>
+        <td><img src="img/pdf.png" class="disciplina-file-icon"> <a href="#" class="disciplina-link-doc">Guião da Entrevista (127.83 KB)</a></td>
+        <td>Apontamentos</td>
+        <td>2025-09-25 18:51</td>
+        <td>Bruna Pereira</td>
+      </tr>
+      </tbody>
+  </table>
+        </div>
+    <div class="disciplina-tab-footer">
+      <label>Relatório a imprimir</label>
+      <select class="disciplina-select-footer">
+        <option>Ficha(s) de Disciplina(s)</option>
+        <option></option>
+      </select>
+      <button class="disciplina-btn-footer">Imprimir</button>
+  </div>
+  </div>
+</div>
 </body>
 </html>

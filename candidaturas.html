@@ -1,11 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidaturas</title>
+<html lang="pt" class="candidatura">
+<head class="candidatura">
+    <meta charset="UTF-8" class="candidatura">
+    <title class="candidatura">Portal Académico - Candidatura Completa com Filtro</title>
+    <style class="candidatura">
+        /* Estilos Base e Contentor Principal - Isolados pela classe .candidatura */
+        body.candidatura {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            background-color: #f4f4f4;
+            margin: 20px;
+            color: #333;
+        }
+
+        .main-container.candidatura {
+            max-width: 1250px;
+            margin: auto;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Sistema de Abas (Navegação) */
+        input[type="radio"].candidatura { display: none; }
+
+        .tabs-header.candidatura {
+            display: flex;
+            background: #e0e0e0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tab-label.candidatura {
+            padding: 10px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            border-right: 1px solid #bbb;
+            background: #dcdcdc;
+            color: #003366;
+            text-decoration: underline;
+        }
+
+        /* Lógica de Troca de Abas */
+        .view.candidatura { display: none; padding: 15px; }
+
+        /* Ajustado: os inputs de controlo são irmãos de .main-container, por isso incluímos esse elemento antes do alvo */
+        #t-pesquisa.candidatura:checked ~ .main-container.candidatura .tabs-header.candidatura label[for="t-pesquisa"],
+        #t-candidatura.candidatura:checked ~ .main-container.candidatura .tabs-header.candidatura label[for="t-candidatura"] {
+            background: white;
+            text-decoration: none;
+            border-bottom: 2px solid white;
+            margin-bottom: -1px;
+        }
+
+        #t-pesquisa.candidatura:checked ~ .main-container.candidatura #v-pesquisa.candidatura,
+        #t-candidatura.candidatura:checked ~ .main-container.candidatura #v-candidatura.candidatura {
+            display: block;
+        }
+
+        /* Secção de Pesquisa e Tabela de Cursos */
+        .search-area.candidatura {
+            background: #eee;
+            padding: 15px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-pesquisa.candidatura {
+            padding: 4px 20px;
+            background: linear-gradient(to bottom, #fff, #e0e0e0);
+            border: 1px solid #adadad;
+            cursor: pointer;
+        }
+
+        .data-table.candidatura {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table.candidatura th.candidatura {
+            background: #ffe6cc; /* Cor pêssego das imagens */
+            border: 1px solid #bbb;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .data-table.candidatura td.candidatura {
+            border: 1px solid #ddd;
+            padding: 8px;
+            background: #fff;
+        }
+
+        /* Cabeçalho de Requisitos da Candidatura */
+        .req-header-main.candidatura {
+            display: grid;
+            grid-template-columns: 300px 1fr 100px;
+            background: #ffe6cc;
+            border: 1px solid #bbb;
+            font-weight: bold;
+            padding: 8px;
+        }
+
+        /* Barras de Secção (1 Registo, 2 Acesso, etc) */
+        .section-bar.candidatura {
+            background: #f9f9f9;
+            padding: 10px;
+            font-weight: bold;
+            border-top: 2px solid #ccc;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Linhas de Requisitos e Campos Azulados */
+        .row-container.candidatura {
+            display: grid;
+            grid-template-columns: 300px 40px 1fr 60px;
+            border-bottom: 1px solid #eee;
+            min-height: 60px;
+        }
+
+        .col-info.candidatura {
+            padding: 10px;
+            border-right: 1px solid #eee;
+            background: #fff;
+        }
+
+        .col-check.candidatura {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid #eee;
+            background: #fcfcfc;
+        }
+
+        .col-fields.candidatura {
+            padding: 10px;
+            background: #e6f0ff; /* Fundo azul claro dos inputs das imagens */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-right: 1px solid #eee;
+        }
+
+        .col-edit.candidatura {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Estilo dos Grupos de Campos e Labels */
+        .f-group.candidatura {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .f-label.candidatura {
+            font-size: 10px;
+            font-weight: bold;
+            font-style: italic; /* Labels em itálico conforme as imagens */
+            color: #003366;
+            margin-bottom: 2px;
+        }
+
+        input[type="text"].candidatura, 
+        select.candidatura, 
+        textarea.candidatura {
+            padding: 3px;
+            border: 1px solid #99b3ff;
+            background: #fff;
+            font-size: 11px;
+            box-sizing: border-box;
+        }
+
+        /* Estados de Validação */
+        .status-ok.candidatura { color: #28a745; font-weight: bold; }
+        .status-err.candidatura { color: #dc3545; font-weight: bold; }
+        .req-obrigat.candidatura { color: red; font-size: 9px; font-weight: normal; }
+
+        /* Rodapé de Ações */
+        .footer-actions.candidatura {
+            background: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        button.candidatura:disabled {
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        /* Esconder os inputs que controlam o filtro */
+        .filter-control.candidatura { display: none; }
+
+        /* Esconder todas as linhas da tabela por padrão */
+        .data-table.candidatura tbody.candidatura tr.candidatura { display: none; }
+
+        /* Lógica de Filtragem: Mostrar apenas as linhas correspondentes ao rádio checado */
+        #f-dout.candidatura:checked ~ .main-container.candidatura .data-table.candidatura tr.cat-dout.candidatura { display: table-row; }
+        #f-mest.candidatura:checked ~ .main-container.candidatura .data-table.candidatura tr.cat-mest.candidatura { display: table-row; }
+        #f-ctesp.candidatura:checked ~ .main-container.candidatura .data-table.candidatura tr.cat-ctesp.candidatura { display: table-row; }
+
+        /* Estilo para labels que parecem opções de um menu */
+        .fake-select.candidatura {
+            padding: 5px;
+            border: 1px solid #99b3ff;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Destaque visual na "opção" selecionada */
+        #f-dout.candidatura:checked ~ .main-container.candidatura label[for="f-dout"],
+        #f-mest.candidatura:checked ~ .main-container.candidatura label[for="f-mest"],
+        #f-ctesp.candidatura:checked ~ .main-container.candidatura label[for="f-ctesp"] {
+            background: #e6f0ff;
+            font-weight: bold;
+        }
+        
+        /* Links de ação */
+        .link-action.candidatura {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body>
+<body class="candidatura">
+
+<input type="radio" name="wiz" id="t-pesquisa" class="candidatura" checked>
+<input type="radio" name="wiz" id="t-candidatura" class="candidatura">
+
+<input type="radio" name="filtro-concurso" id="f-dout" class="filter-control candidatura" checked>
+<input type="radio" name="filtro-concurso" id="f-mest" class="filter-control candidatura">
+<input type="radio" name="filtro-concurso" id="f-ctesp" class="filter-control candidatura">
+
+<div class="main-container candidatura">
     
+    <div class="tabs-header candidatura">
+        <label for="t-pesquisa" class="tab-label candidatura">Pesquisa / Lista de Cursos</label>
+        <label for="t-candidatura" class="tab-label candidatura">Preencher Candidatura Completa</label>
+    </div>
+
+    <div id="v-pesquisa" class="view candidatura">
+        <div class="search-area candidatura">
+            <strong class="candidatura">Concurso:</strong>
+            <label for="f-dout" class="fake-select candidatura">Doutoramento 2025/26</label>
+            <label for="f-mest" class="fake-select candidatura">Mestrado 2025/26</label>
+            <label for="f-ctesp" class="fake-select candidatura">CTESP 2025/26</label>
+            <button class="btn-pesquisa candidatura">Filtrar</button>
+        </div>
+
+        <table class="data-table candidatura">
+            <thead class="candidatura">
+                <tr class="candidatura">
+                    <th class="candidatura">Concurso</th><th class="candidatura">Fase</th><th class="candidatura">Curso</th><th class="candidatura">Vagas</th><th class="candidatura">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="candidatura">
+                <tr class="cat-dout candidatura">
+                    <td class="candidatura">Doutoramento</td><td class="candidatura">1ª Fase</td><td class="candidatura"><strong class="candidatura">Ciências Biológicas</strong></td><td class="candidatura">10</td>
+                    <td class="candidatura"><label for="t-candidatura" class="link-action candidatura">Preencher</label></td>
+                </tr>
+                <tr class="cat-dout candidatura">
+                    <td class="candidatura">Doutoramento</td><td class="candidatura">1ª Fase</td><td class="candidatura"><strong class="candidatura">Engenharia Informática</strong></td><td class="candidatura">10</td>
+                    <td class="candidatura"><label for="t-candidatura" class="link-action candidatura">Preencher</label></td>
+                </tr>
+
+                <tr class="cat-mest candidatura">
+                    <td class="candidatura">Mestrado</td><td class="candidatura">1ª Fase</td><td class="candidatura"><strong class="candidatura">Gestão de Empresas</strong></td><td class="candidatura">25</td>
+                    <td class="candidatura"><label for="t-candidatura" class="link-action candidatura">Preencher</label></td>
+                </tr>
+
+                <tr class="cat-ctesp candidatura">
+                    <td class="candidatura">CTESP</td><td class="candidatura">1ª Fase</td><td class="candidatura"><strong class="candidatura">Tec. Programação (TPSI)</strong></td><td class="candidatura">30</td>
+                    <td class="candidatura"><label for="t-candidatura" class="link-action candidatura">Preencher</label></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="v-candidatura" class="view candidatura">
+        <div class="req-header-main candidatura">
+            <span class="candidatura">Requisito</span>
+            <span class="candidatura">Detalhes / Campos</span>
+            <span class="candidatura" style="text-align:center">Verificado</span>
+        </div>
+
+        <div class="section-bar candidatura">
+            <span class="candidatura">1 Registo</span>
+            <span class="status-ok candidatura">✓ Requisitos Preenchidos</span>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">1.1 Dados Pessoais</strong> <span class="req-obrigat candidatura">(Obrigatório)</span></div>
+            <div class="col-check candidatura"><span class="status-ok candidatura">✓</span></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">Nome Completo *</span><input type="text" value="João Leonardo Caires Dias" style="width:200px;" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Sexo *</span><select class="candidatura"><option class="candidatura">Masculino</option></select></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Data Nascimento *</span><input type="text" value="23-06-1998" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">País Naturalidade *</span><select class="candidatura"><option class="candidatura">Portugal</option></select></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">1.2 Identificação</strong> <span class="req-obrigat candidatura">(Obrigatório)</span></div>
+            <div class="col-check candidatura"><span class="status-ok candidatura">✓</span></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">Tipo Identificação *</span><select class="candidatura"><option class="candidatura">Número de Identificação Civil (BI)</option></select></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Identificação *</span><input type="text" value="14473026" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Cod. Validação</span><input type="text" value="0ZW3" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">País Emissor *</span><select class="candidatura"><option class="candidatura">Portugal</option></select></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Documento *</span><span class="candidatura" style="color:blue">BI.pdf</span></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">1.4 Morada</strong> <span class="req-obrigat candidatura">(Obrigatório)</span></div>
+            <div class="col-check candidatura"><span class="status-ok candidatura">✓</span></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">País *</span><select class="candidatura"><option class="candidatura">Portugal</option></select></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Morada *</span><input type="text" value="Rua do Cabouco n 18" style="width:180px;" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Freguesia</span><input type="text" value="Caniço" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Código Postal *</span><input type="text" value="9125-174" style="width:60px;" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Localidade *</span><input type="text" value="Caniço" class="candidatura"></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">1.5 Contactos</strong> <span class="req-obrigat candidatura">(Obrigatório)</span></div>
+            <div class="col-check candidatura"><span class="status-ok candidatura">✓</span></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">eMail *</span><input type="text" value="joaocairesdias@gmail.com" style="width:180px;" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Telemóvel *</span><input type="text" value="96XXXXXXX" class="candidatura"></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="section-bar candidatura">
+            <span class="candidatura">2 Acesso ao Concurso</span>
+            <span class="status-err candidatura">X Requisitos por Preencher</span>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">2.1.1 Curso de Mestrado (ou Superior)</strong></div>
+            <div class="col-check candidatura"><input type="checkbox" class="candidatura"></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">Grau *</span><input type="text" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Curso de Mestrado *</span><input type="text" style="width:150px;" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Instituição *</span><input type="text" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">País *</span><select class="candidatura"><option class="candidatura">Portugal</option></select></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Certificado *</span><input type="file" class="candidatura"></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="section-bar candidatura">
+            <span class="candidatura">3 Acesso ao Curso</span>
+            <span class="status-err candidatura">X Requirements to be Completed</span>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">3.1.1 Plano de Investigação Projetado</strong></div>
+            <div class="col-check candidatura"><input type="checkbox" class="candidatura"></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura" style="flex:1"><span class="f-label candidatura">Título *</span><input type="text" class="candidatura"></div>
+                <div class="f-group candidatura" style="flex:1"><span class="f-label candidatura">Observações</span><textarea rows="1" class="candidatura"></textarea></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Documento *</span><input type="file" class="candidatura"></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="row-container candidatura">
+            <div class="col-info candidatura"><strong class="candidatura">3.1.2 Orientador</strong> <span class="req-obrigat candidatura">(Obrigatório)</span></div>
+            <div class="col-check candidatura"><input type="checkbox" class="candidatura"></div>
+            <div class="col-fields candidatura">
+                <div class="f-group candidatura"><span class="f-label candidatura">Orientador *</span><input type="text" class="candidatura"></div>
+                <div class="f-group candidatura"><span class="f-label candidatura">Parecer Orientador *</span><input type="file" class="candidatura"></div>
+            </div>
+            <div class="col-edit candidatura">Editar</div>
+        </div>
+
+        <div class="candidatura" style="background:#f0f0f0; padding:20px; text-align:center; border-top:1px solid #ccc;">
+            <p class="candidatura"><strong class="candidatura">Pode Submeter Candidatura *</strong> <input type="checkbox" disabled class="candidatura"></p>
+            <button style="padding:10px 40px; background:#e0e0e0; border:1px solid #999; cursor:not-allowed;" class="candidatura">Guardar</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -1,11 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajuda</title>
+    <title>Ajuda - Contactos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contentor Principal Responsivo */
+        .ajud-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que as caixas passem para baixo em ecrãs pequenos */
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Estilo das Caixas com a classe ajud */
+        .ajud-box {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            flex: 1; /* Faz as caixas crescerem igualmente */
+            min-width: 320px; /* Garante que não fiquem demasiado estreitas */
+            box-sizing: border-box;
+        }
+
+        /* Coluna da Esquerda: Contactos */
+        .ajud-info h3 { font-size: 14px; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .ajud-info h2 { color: #003366; font-size: 20px; margin: 20px 0 10px 0; font-weight: bold; }
+        .ajud-info p { font-size: 13px; margin: 5px 0; color: #333; }
+        .ajud-info a { color: #0000FF; text-decoration: underline; }
+
+        /* Coluna da Direita: Formulário */
+        .ajud-form h3 { margin-top: 0; font-size: 16px; font-weight: bold; }
+        .ajud-form p { font-size: 13px; margin-bottom: 15px; color: #444; }
+
+        .ajud-form-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .ajud-form-row label { width: 80px; font-size: 13px; color: #333; }
+        
+        /* Inputs com o tom azul característico */
+        .ajud-input {
+            flex: 1;
+            padding: 4px;
+            border: 1px solid #a5b6d7;
+            background-color: #e8f0ff;
+            font-size: 13px;
+        }
+
+        .ajud-textarea {
+            width: 100%;
+            height: 120px;
+            border: 1px solid #a5b6d7;
+            background-color: #e8f0ff;
+            resize: none;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Botão Enviar com Gradiente */
+        .ajud-btn-enviar {
+            width: 100%;
+            margin-top: 15px;
+            padding: 6px;
+            background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+            border: 1px solid #ababab;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .ajud-btn-enviar:hover {
+            background: linear-gradient(to bottom, #f9f9f9, #d0d0d0);
+        }
+
+        /* Ajuste para Mobile: Empilhamento vertical total */
+        @media (max-width: 768px) {
+            .ajud-box {
+                flex: 1 1 100%; /* Ocupa 100% da largura disponível */
+            }
+            
+            .ajud-container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+
+    <div class="ajud-container">
+        <div class="ajud-box ajud-info">
+            <h3>Contactos</h3>
+            
+            <h2>Reitoria da Universidade da Madeira</h2>
+            <p>Colégio dos Jesuítas - Rua dos Ferreiros</p>
+            <p>9000-082 Funchal - Portugal</p>
+            <p>Tel: (+351) 291209400</p>
+            <p>Email: <a href="mailto:gabinete@reitoria.uma.pt">gabinete@reitoria.uma.pt</a></p>
+
+            <h2>Campus Universitário da Penteada</h2>
+            <p>Caminho da Penteada 9020-105 Funchal</p>
+            <p>Tel: (+351) 291705000</p>
+
+            <h2>Gabinete de Apoio ao Estudante</h2>
+            <p>Campus Universitário da Penteada</p>
+            <p>9020-105 Funchal</p>
+            <p>Tel: (+351) 291705270</p>
+            <p>URL: <a href="https://www.uma.pt/sobre/servico-apoio-estudantes/gabinete-de-apoio-ao-estudante/">Ver Website</a></p>
+            <p>Email: <a href="mailto:apoio.estudante@mail.uma.pt">apoio.estudante@mail.uma.pt</a></p>
+        </div>
+
+        <div class="ajud-box ajud-form">
+            <h3>Contacto Directo</h3>
+            <p>Se preferir, pode contactar-nos directamente a partir deste formulário. Seleccione o destinatário, escreva a mensagem e já está!</p>
+
+            <div class="ajud-form-row">
+                <label>Para:</label>
+                <select class="ajud-input">
+                    <option>Gabinete de Apoio ao Estudante</option>
+                    <option>Reitoria</option>
+                    <option>Serviços Académicos</option>
+                </select>
+            </div>
+            
+            <div class="ajud-form-row">
+                <label>Nome:</label>
+                <input type="text" class="ajud-input" value="João Leonardo Caires Dias">
+            </div>
+
+            <div class="ajud-form-row">
+                <label>E-Mail:</label>
+                <input type="email" class="ajud-input" placeholder="seu@email.com">
+            </div>
+
+            <div class="ajud-form-row">
+                <label>Assunto:</label>
+                <input type="text" class="ajud-input">
+            </div>
+
+            <div style="margin-top: 15px;">
+                <label style="font-size: 13px; color: #333;">Mensagem</label>
+                <textarea class="ajud-textarea"></textarea>
+            </div>
+
+            <button class="ajud-btn-enviar">Enviar</button>
+        </div>
+    </div>
+
 </body>
 </html>

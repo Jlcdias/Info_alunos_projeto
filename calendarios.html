@@ -47,6 +47,8 @@
         border: 1px solid #999;
         padding: 2px;
         font-size: 11px;
+        min-width: 0; /* allow shrinking in flex layouts */
+        max-width: 100%;
     }
 
     .uma-scheduler-btn {
@@ -118,6 +120,22 @@
         font-weight: bold;
         color: #0056b3;
     }
+
+    /* Responsividade */
+    * { box-sizing: border-box; }
+    .uma-scheduler-wrapper { padding: 12px; }
+    .uma-scheduler-filter-row { gap: 12px; }
+
+    @media (max-width: 600px) {
+        .uma-scheduler-filter-row { flex-direction: column; align-items: stretch; }
+        .uma-scheduler-label { width: auto; flex-shrink: 0; }
+        .uma-scheduler-select { width: 100%; max-width: 100%; }
+        .uma-scheduler-btn { width: 100%; padding: 8px; }
+        .uma-scheduler-calendar-container { padding: 8px; }
+        .uma-scheduler-calendar-table td { height: auto; min-height: 60px; padding: 6px; }
+        .uma-scheduler-day-number { font-size: 16px; }
+        .uma-scheduler-class-block, .uma-scheduler-eval-block { font-size: 11px; }
+    }
 </style>
 <body>
     <div class="uma-scheduler-wrapper">
@@ -143,7 +161,7 @@
         <span class="uma-scheduler-header-text">Calendário</span>
         
         <div class="uma-scheduler-filter-row" style="margin-bottom: 10px;">
-            <select class="uma-scheduler-select" style="max-width: 400px;">
+            <select class="uma-scheduler-select">
                 <option>Janeiro 2026</option>
                 <option>Novembro 2025</option>
                 <option>Outubro 2025</option>
@@ -152,18 +170,19 @@
             <button class="uma-scheduler-btn">Calendário</button>
         </div>
 
-        <table class="uma-scheduler-calendar-table">
-            <thead>
-                <tr>
-                    <th>Domingo</th>
-                    <th>Segunda</th>
-                    <th>Terça</th>
-                    <th>Quarta</th>
-                    <th>Quinta</th>
-                    <th>Sexta</th>
-                    <th>Sábado</th>
-                </tr>
-            </thead>
+        <div class="uma-scheduler-table-wrapper" style="overflow-x:auto; -webkit-overflow-scrolling: touch;">
+            <table class="uma-scheduler-calendar-table">
+                <thead>
+                    <tr>
+                        <th>Domingo</th>
+                        <th>Segunda</th>
+                        <th>Terça</th>
+                        <th>Quarta</th>
+                        <th>Quinta</th>
+                        <th>Sexta</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
             <tbody>
                 <tr>
                     <tr>
@@ -234,7 +253,8 @@
                     <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">30</span></td>
                     <td class="uma-scheduler-day-active"><span class="uma-scheduler-day-number">31</span></td>
             </tbody>
-        </table>
+            </table>
+        </div>
     </div>
 </div>
 </body>

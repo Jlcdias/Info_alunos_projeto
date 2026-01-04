@@ -5,154 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eleições</title>
 </head>
-<style>/* Container Principal com fundo levemente creme no topo */
-.inst-eleicao-container {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-
-.inst-eleicao-header {
-    background-color: #fcecd7; /* Tom pêssego/creme do topo */
-    text-align: center;
-    padding: 8px;
-    font-size: 14px;
-    border-bottom: 1px solid #ddd;
-}
-
-.inst-eleicao-content {
-    padding: 30px 40px;
-}
-
-.inst-eleicao-titulo-principal {
-    font-size: 24px;
-    font-weight: normal;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.inst-eleicao-titulo-principal strong {
-    font-weight: bold;
-}
-
-.inst-eleicao-status {
-    font-size: 16px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 25px;
-}
-
-/* Links em azul clássico e sublinhados */
-.inst-eleicao-links-section {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 30px;
-}
-
-.inst-eleicao-links-section a, 
-.inst-eleicao-sub-info a {
-    color: #0000ee;
-    text-decoration: underline;
-    font-size: 13px;
-}
-
-/* Itens de informação com ícone circular */
-.inst-eleicao-info-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.inst-eleicao-info-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.inst-eleicao-icon-blue {
-    border: 1px solid #00aaff;
-    color: #00aaff;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    flex-shrink: 0;
-}
-
-.inst-eleicao-info-item p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-}
-
-.inst-eleicao-sub-info {
-    margin-left: 28px;
-    font-size: 13px;
-    color: #444;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .inst-eleicao-content {
-        padding: 20px;
+<style>
+    /* Reset local e Estilo do Body */
+    .eleicao-body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
-    .inst-eleicao-titulo-principal {
-        font-size: 20px;
+
+    /* Box sizing global para facilitar responsividade */
+    * { box-sizing: border-box; }
+
+    /* Container Principal com fundo levemente creme no topo */
+    .eleicao-container {
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        max-width: 1200px;
+        width: 100%;
+        margin: 20px auto;
+        padding: 0 16px;
     }
-}</style>
-<body>
-    <div class="inst-eleicao-container">
-    <div class="inst-eleicao-header">
-        Eleições
-    </div>
 
-    <div class="inst-eleicao-content">
-        <h1 class="inst-eleicao-titulo-principal">
-            Eleição dos Representantes dos Estudantes no <strong>Conselho Geral</strong> 2025
-        </h1>
+    .eleicao-header {
+        background-color: #fcecd7; /* Tom pêssego/creme do topo */
+        text-align: center;
+        padding: 8px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
 
-        <h2 class="inst-eleicao-status">Concluída</h2>
+    .eleicao-content {
+        padding: 30px 40px;
+    }
 
-        <div class="inst-eleicao-links-section">
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/Eleicoes_Estudantes_CG_2025_Convocatoria.pdf">Convocatória</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/Reg_Estudantes%20CG_2025.pdf">Regulamento Eleitoral</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/comissao_eleitoral_estudantes_cgeral_25.pdf">Comissão Eleitoral</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/comissao_acompanhamento_fiscalizacao_apuramento_resultados_cgeral_25.pdf">Comissão de Acompanhamento, Fiscalização e Apuramento de Resultados</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/mesa_apoio_esclarecimento_CG_2025.pdf">Mesa de Apoio e Esclarecimento</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/ata_eleicao_estudantes_CG_2025_27.pdf">Ata Proclamação de Resultados</a>
-            <a href="https://infoalunos.uma.pt/modulos/votos/html/edital_eleicoes_estudantes_cgeral_2025.pdf">Edital Proclamação de Resultados</a>
+    .eleicao-titulo-principal {
+        font-size: 24px;
+        font-weight: normal;
+        color: #333;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+
+    .eleicao-titulo-principal strong {
+        font-weight: bold;
+    }
+
+    .eleicao-status {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 25px;
+        margin-top: 0;
+    }
+
+    /* Links em azul clássico e sublinhados */
+    .eleicao-links-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 30px;
+    }
+
+    .eleicao-links-section a, 
+    .eleicao-sub-info a {
+        color: #0000ee;
+        text-decoration: underline;
+        font-size: 13px;
+    }
+
+    /* Itens de informação com ícone circular */
+    .eleicao-info-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .eleicao-info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .eleicao-icon-blue {
+        border: 1px solid #00aaff;
+        color: #00aaff;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .eleicao-info-item p {
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .eleicao-sub-info {
+        margin-left: 28px;
+        font-size: 13px;
+        color: #444;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .eleicao-content {
+            padding: 20px;
+        }
+        .eleicao-titulo-principal {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        /* Título e espaçamento mais compactos */
+        .eleicao-content { padding: 12px; }
+        .eleicao-titulo-principal { font-size: 18px; }
+        .eleicao-status { font-size: 14px; }
+
+        /* Transformar a lista de links numa linha scrollable para evitar quebras */
+        .eleicao-links-section { flex-direction: row; overflow-x: auto; gap: 12px; -webkit-overflow-scrolling: touch; }
+        .eleicao-links-section a { white-space: nowrap; font-size: 13px; flex: 0 0 auto; }
+
+        /* Ajustes de textos e subinfo para melhor leitura em ecrãs pequenos */
+        .eleicao-info-item p { font-size: 13px; }
+        .eleicao-sub-info { margin-left: 0; font-size: 12px; }
+    }
+</style>
+<body class="eleicao-body">
+
+    <div class="eleicao-container">
+        <div class="eleicao-header">
+            Eleições
         </div>
 
-        <div class="inst-eleicao-info-group">
-            <div class="inst-eleicao-info-item">
-                <span class="inst-eleicao-icon-blue">i</span>
-                <p>Caderno Eleitoral: <strong>Caderno Eleitoral Definitivo</strong></p>
-            </div>
-            <div class="inst-eleicao-sub-info">
-                João Leonardo Caires Dias - (Não Eleitor) - [ 3658 Eleitores ] <a href="https://infoalunos.uma.pt/modulos/votos/index.php?T=1767489067&TPESQ=EAGR_VOTOS_CADERNO_ELEITORAL&TPESQANT=PESQ_VOTOS_LISTA&IDM=PT&IdVotacaoCadernoEleitoral=209&IdVotacao=256&NPAG=&IdPessoa=52770&IdIdioma=1&UtilizadorR=2032624&IPCliente=81.193.224.54&TORDANT=&CORDANT=&SCRANT=/modulos/votos/index.php&NV_MOD=MOD_VOTOS&NV_EAGR=EAGR_VOTOS_CADERNO_ELEITORAL&NV_MOD_ANT=MOD_VOTOS&NV_EAGR_ANT=EAGR_VOTOS_LISTA&NV_TAB=&NV_TAB_ANT=">Consultar Caderno Eleitoral</a>
+        <div class="eleicao-content">
+            <h1 class="eleicao-titulo-principal">
+                Eleição dos Representantes dos Estudantes no <strong>Conselho Geral</strong> 2025
+            </h1>
+
+            <h2 class="eleicao-status">Concluída</h2>
+
+            <div class="eleicao-links-section">
+                <ul>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/Eleicoes_Estudantes_CG_2025_Convocatoria.pdf">Convocatória</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/Reg_Estudantes%20CG_2025.pdf">Regulamento Eleitoral</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/comissao_eleitoral_estudantes_cgeral_25.pdf">Comissão Eleitoral</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/mesa_apoio_esclarecimento_CG_2025.pdf">Comissão de Acompanhamento, Fiscalização e Apuramento de Resultados</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/mesa_apoio_esclarecimento_CG_2025.pdf">Mesa de Apoio e Esclarecimento</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/ata_eleicao_estudantes_CG_2025_27.pdf">Ata Proclamação de Resultados</a></li>
+                    <li><a href="https://infoalunos.uma.pt/modulos/votos/html/edital_eleicoes_estudantes_cgeral_2025.pdf">Edital Proclamação de Resultados</a></li>
+                </ul> 
             </div>
 
-            <div class="inst-eleicao-info-item">
-                <span class="inst-eleicao-icon-blue">i</span>
-                <p>Candidaturas: <strong>Candidaturas Definitivas</strong></p>
-            </div>
-            <div class="inst-eleicao-sub-info">
-                3 Candidaturas: Lista A, Lista B, Lista C. <a href="https://infoalunos.uma.pt/modulos/votos/index.php?T=1767489067&TPESQ=FRM_VOTOS_LISTA_CANDIDATURAS&TPESQANT=PESQ_VOTOS_LISTA&IDM=PT&IdVotacao=256&IdVotacaoListaCandidaturas=192&NPAG=&IdPessoa=52770&IdIdioma=1&UtilizadorR=2032624&IPCliente=81.193.224.54&TORDANT=&CORDANT=&SCRANT=/modulos/votos/index.php&NV_MOD=MOD_VOTOS&NV_EAGR=EAGR_VOTOS_LISTA_CANDIDATURAS&NV_MOD_ANT=MOD_VOTOS&NV_EAGR_ANT=EAGR_VOTOS_LISTA&NV_TAB=&NV_TAB_ANT=">Consultar Candidaturas</a>
-            </div>
+            <div class="eleicao-info-group">
+                <div class="eleicao-info-item">
+                    <span class="eleicao-icon-blue">i</span>
+                    <p>Caderno Eleitoral: <strong>Caderno Eleitoral Definitivo</strong></p>
+                </div>
+                <div class="eleicao-sub-info">
+                    João Leonardo Caires Dias - (Não Eleitor) - [ 3658 Eleitores ] <a href="#">Consultar Caderno Eleitoral</a>
+                </div>
 
-            <div class="inst-eleicao-info-item">
-                <span class="inst-eleicao-icon-blue">i</span>
-                <p>Resultados Eleitorais:</p>
+                <div class="eleicao-info-item">
+                    <span class="eleicao-icon-blue">i</span>
+                    <p>Candidaturas: <strong>Candidaturas Definitivas</strong></p>
+                </div>
+                <div class="eleicao-sub-info">
+                    3 Candidaturas: Lista A, Lista B, Lista C. <a href="#">Consultar Candidaturas</a>
+                </div>
+
+                <div class="eleicao-info-item">
+                    <span class="eleicao-icon-blue">i</span>
+                    <p>Resultados Eleitorais:</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 </body>
 </html>

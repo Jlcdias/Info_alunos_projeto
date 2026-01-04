@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Académicos</title>
 </head>
-<body>
+<body class="body-academi">
     <style>
-        body { 
+        .body-academi { 
             font-family: Arial, sans-serif; 
             font-size: 11px; 
             background-color: #f4f4f4; 
             padding: 20px; 
             color: #333;
+            margin: 0; /* Boas práticas: reset de margem no body */
         }
 
         /* --- FILTRO DE TOPO (Seletor de Curso) --- */
-        .seletor-topo {
+        .seletor-topo-academi {
             max-width: 1000px;
             margin: 0 auto 20px auto;
             background: #fff;
@@ -26,7 +27,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .input-filtro-topo {
+        .input-filtro-topo-academi {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
@@ -35,14 +36,14 @@
         }
 
         /* --- CONTENTOR DA TABELA --- */
-        .container-tabela {
+        .container-tabela-academi {
             max-width: 1000px;
             margin: 0 auto;
             background: #fff;
             border: 1px solid #ccc;
         }
 
-        .titulo-lista {
+        .titulo-lista-academi {
             font-weight: bold;
             padding: 10px;
             background: #f8f8f8;
@@ -50,7 +51,7 @@
             display: block;
         }
 
-        .barra-categoria {
+        .barra-categoria-academi {
             padding: 10px;
             background: #f0f0f0;
             display: flex;
@@ -59,7 +60,7 @@
             border-bottom: 1px solid #ccc;
         }
 
-        .btn-filtrar {
+        .btn-filtrar-academi {
             padding: 4px 25px;
             background: linear-gradient(#ffffff, #e0e0e0);
             border: 1px solid #999;
@@ -68,13 +69,13 @@
             font-weight: bold;
         }
 
-        /* --- ESTILO DA TABELA (image_eb9570) --- */
-        table {
+        /* --- ESTILO DA TABELA --- */
+        .table-academi {
             width: 100%;
             border-collapse: collapse;
         }
 
-        th {
+        .th-academi {
             background-color: #ffebd7; /* Cor bege do cabeçalho */
             border: 1px solid #ccc;
             padding: 8px;
@@ -82,14 +83,14 @@
             font-weight: bold;
         }
 
-        td {
+        .td-academi {
             border: 1px solid #ccc;
             padding: 8px;
             vertical-align: middle;
             background-color: #fff;
         }
 
-        .link-pdf {
+        .link-pdf-academi {
             color: #0056b3;
             text-decoration: none;
             display: flex;
@@ -97,36 +98,59 @@
             gap: 5px;
         }
 
-        .link-pdf:hover {
+        .link-pdf-academi:hover {
             text-decoration: underline;
         }
 
-        .icone-pdf {
+        .icone-pdf-academi {
             width: 16px;
             height: 16px;
         }
 
-        .visto-ok {
+        .visto-ok-academi {
             color: #198754;
             font-weight: bold;
         }
-    </style>
-</head>
-<body>
 
-    <div class="seletor-topo">
-        <select class="input-filtro-topo">
+        /* Responsividade */
+        * { box-sizing: border-box; }
+        .seletor-topo-academi, .container-tabela-academi { width: 100%; max-width: 1000px; padding: 0 12px; margin: 0 auto; box-sizing: border-box; }
+        .barra-categoria-academi select, .select-categoria-academi { width: 100%; max-width: 400px; min-width: 0; background: #e2efff; }
+        .tabela-wrapper { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+        .table-academi { min-width: 700px; }
+
+        /* Mostrar / ocultar a tabela com CSS sem JavaScript
+           A tabela fica OCULTA por omissão e é exibida apenas quando a select de categoria tem a opção vazia selecionada */
+        .tabela-wrapper { display: none; }
+        .barra-categoria-academi:has(.select-categoria-academi option:checked[value=""]) ~ .tabela-wrapper,
+        .barra-categoria-academi:has(.select-categoria-academi option:checked:not([value])) ~ .tabela-wrapper {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .seletor-topo-academi { padding: 8px; }
+            .barra-categoria-academi { flex-direction: column; align-items: stretch; gap: 8px; padding: 10px; }
+            .btn-filtrar-academi { width: 100%; padding: 10px; }
+            .titulo-lista-academi { padding: 8px; font-size: 14px; }
+            .th-academi, .td-academi { padding: 8px; font-size: 13px; }
+            .table-academi { min-width: 0; width: 100%; display: block; }
+        }
+    </style>
+
+    <div class="seletor-topo-academi">
+        <select class="input-filtro-topo-academi">
             <option>2025/26 - CTeSP - Tecnologias e Programação de Sistemas de Informação</option>
         </select>
     </div>
 
-    <div class="container-tabela">
-        <span class="titulo-lista">Lista de Documentos Académicos</span>
+    <div class="container-tabela-academi">
+        <span class="titulo-lista-academi">Lista de Documentos Académicos</span>
         
-        <div class="barra-categoria">
+        <div class="barra-categoria-academi">
             <span>Filtrar por Categoria</span>
-            <select style="width: 400px; background: #e2efff;">
-                <option></option>
+            <select class="select-categoria-academi" style="background: #e2efff;">
+                <option value=""></option>
                 <option>Suplemento Diploma</option>
                 <option>Certificado de Conclusão</option>
                 <option>Certificado de Matricula</option>
@@ -140,52 +164,55 @@
                 <option>Declaração de matriculas , para fins sociais</option>
                 <option>Declaração de Aproveitamento</option>
             </select>
-            <button class="btn-filtrar">Filtrar</button>
+            <button class="btn-filtrar-academi">Filtrar</button>
         </div>
 
-        <table>
+        <div class="tabela-wrapper">
+        <table class="table-academi">
             <thead>
                 <tr>
-                    <th style="width: 60px;">Ano L.</th>
-                    <th>Ficheiro</th>
-                    <th style="width: 100px;">Categoria</th>
-                    <th style="width: 250px;">Curso</th>
-                    <th style="width: 150px;">V.</th>
+                    <th class="th-academi" style="width: 60px;">Ano L.</th>
+                    <th class="th-academi">Ficheiro</th>
+                    <th class="th-academi" style="width: 100px;">Categoria</th>
+                    <th class="th-academi" style="width: 250px;">Curso</th>
+                    <th class="th-academi" style="width: 150px;">V.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>2025/26</td>
-                    <td>
-                        <a href="atlas/pdfs/inscricao_2032624_1739291024_257.pdf" class="link-pdf">
-                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf" alt="pdf">
+                    <td class="td-academi">2025/26</td>
+                    <td class="td-academi">
+                        <a href="atlas/pdfs/inscricao_2032624_1739291024_257.pdf" class="link-pdf-academi">
+                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf-academi" alt="pdf">
                             Matrícula Cursos Técnicos Superiores Profissionais CTeSP - P697 - Fase Julho (2025/26) (11.21 KB)
                         </a>
                     </td>
-                    <td>Inscrições</td>
-                    <td>Tecnologias e Programação de Sistemas de Informação</td>
-                    <td>
-                        <span class="visto-ok">✔</span> 2025-09-30 13:49
+                    <td class="td-academi">Inscrições</td>
+                    <td class="td-academi">Tecnologias e Programação de Sistemas de Informação</td>
+                    <td class="td-academi">
+                        <span class="visto-ok-academi">✔</span> 2025-09-30 13:49
                     </td>
                 </tr>
                 <tr>
-                    <td>2024/25</td>
-                    <td>
-                        <a href="atlas/pdfs/inscricao_2032624_1759236567_943 (2).pdf" class="link-pdf">
-                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf" alt="pdf">
+                    <td class="td-academi">2024/25</td>
+                    <td class="td-academi">
+                        <a href="atlas/pdfs/inscricao_2032624_1759236567_943 (2).pdf" class="link-pdf-academi">
+                            <img src="https://cdn-icons-png.flaticon.com/16/337/337946.png" class="icone-pdf-academi" alt="pdf">
                             Matrícula no Curso Livre de Matemática Básica (preparação para as provas de maiores de 23 anos) (2024/25) (10.75 KB)
                         </a>
                     </td>
-                    <td>Inscrições</td>
-                    <td>Matemática Básica</td>
-                    <td>
-                        <span class="visto-ok">✔</span> 2025-02-11 16:24
+                    <td class="td-academi">Inscrições</td>
+                    <td class="td-academi">Matemática Básica</td>
+                    <td class="td-academi">
+                        <span class="visto-ok-academi">✔</span> 2025-02-11 16:24
                     </td>
                 </tr>
             </tbody>
         </table>
+        
+        </div>
     </div>
-
-</body>
+    <h5>Detalhe</h5>
+    <p><span>ℹ️</span>O Aluno não tem mais documentos associados</p>
 </body>
 </html>

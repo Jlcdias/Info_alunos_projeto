@@ -1,11 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SASUMa-Bolsas</title>
+    <title>SASUMA - Bolsas de Estudo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Classe wrapper para simular o body e isolar fontes/cores */
+        .sas-bols-wrapper {
+            font-family: 'Montserrat', sans-serif;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        /* Garantir box-sizing global para facilitar responsividade */
+        * { box-sizing: border-box; }
+
+        .sas-bols-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            padding-bottom: 40px; /* Espaço entre secções */
+        }
+
+        .sas-bols-title {
+            font-size: 48px;
+            color: #4a4a4a;
+            margin-bottom: 40px;
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        /* Contentor das Secções */
+        .sas-bols-grid-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        /* Estilo base dos cartões */
+        .sas-bols-item {
+            width: 200px;
+            min-width: 160px;
+            height: auto; /* permitir que o conteúdo expanda em telas pequenas */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s;
+            padding: 12px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .sas-bols-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Cores específicas de cada card */
+        .sas-bols-card-blandy { background-color: #e2e2e2; color: #f9bc35; }
+        .sas-bols-card-afa { background-color: #f9bc35; color: #113f67; }
+        .sas-bols-card-dges { background-color: #0d3d66; }
+        .sas-bols-card-santander { background-color: #ec1c24; }
+        .sas-bols-card-emergencia { background-color: #9cd6f1; }
+
+        /* Estilização interna dos textos nos cartões */
+        .sas-bols-card-title { font-size: 20px; display: block; font-weight: bold; }
+        .sas-bols-card-subtitle { font-size: 11px; text-transform: uppercase; font-weight: bold; margin-top: 5px; }
+        .sas-bols-text-small { font-size: 7px; }
+        .sas-bols-text-large { font-size: 16px; }
+
+        /* Texto Descritivo */
+        .sas-bols-description {
+            text-align: left;
+            font-size: 15px;
+            color: #666;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sas-bols-paragraph {
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .sas-bols-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .sas-bols-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Regras responsivas */
+        @media (max-width: 900px) {
+            .sas-bols-container { padding: 0 20px; }
+            .sas-bols-title { font-size: 36px; }
+            .sas-bols-grid-container { gap: 12px; }
+            .sas-bols-item { width: calc(50% - 12px); }
+            .sas-bols-description { font-size: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .sas-bols-wrapper { padding: 20px; }
+            .sas-bols-title { font-size: 24px; text-align: left; }
+            .sas-bols-container { text-align: left; padding-bottom: 20px; }
+            .sas-bols-item { width: 100%; min-width: 0; }
+            .sas-bols-card-title { font-size: 18px; }
+            .sas-bols-card-subtitle { font-size: 12px; }
+            .sas-bols-text-small { font-size: 10px; }
+        }
+    </style>
 </head>
 <body>
-    
+
+    <div class="sas-bols-wrapper">
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Bolsas de Estudo</h1>
+
+            <div class="sas-bols-grid-container">
+                <section class="sas-bols-item sas-bols-card-blandy">
+                    <strong class="sas-bols-card-title">BBΞ</strong>
+                    <span class="sas-bols-card-subtitle">Bolsa Blandy Educação</span>
+                </section>
+
+                <section class="sas-bols-item sas-bols-card-afa">
+                    <strong class="sas-bols-card-title">ΛFΛ</strong>
+                    <span class="sas-bols-card-subtitle">Bolsa Grupo AFA</span>
+                </section>
+
+                <section class="sas-bols-item sas-bols-card-dges">
+                    <strong class="sas-bols-card-title">DGES</strong>
+                    <span class="sas-bols-card-subtitle sas-bols-text-small">Direção-Geral do Ensino Superior</span>
+                </section>
+
+                <section class="sas-bols-item sas-bols-card-santander">
+                    <strong class="sas-bols-card-title">Santander</strong>
+                    <span class="sas-bols-card-subtitle">Universidades</span>
+                </section>
+
+                <section class="sas-bols-item sas-bols-card-emergencia">
+                    <strong class="sas-bols-card-title sas-bols-text-large">Fundo Emergência</strong>
+                </section>
+            </div>
+
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">Os SASUMa atribuem bolsas de estudo, bem como auxílios de emergência a alunos do 1º e 2º ciclos, tornando assim possível a realização e continuação dos estudos a estudantes que apresentem uma situação económica carenciada.</p>
+                <p class="sas-bols-paragraph">Os Serviços de Ação Social da Universidade da Madeira, estão integrados na Plataforma Informática da Direção.</p>
+            </article>
+        </div>
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Alimentação</h1>
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">Os Serviços de Acção Social da Universidade da Madeira dispõem quatro Snack-bares, um Restaurante Académico e uma Cantina, dos quais todos os alunos, pessoal docente e não docente têm acesso, bem como outros utente autorizados.</p>
+                <p class="sas-bols-paragraph">Snack-Bar dos Alunos, Snack-Bar dos Funcionários não docentes, docentes e investigadores; Cantina e Restaurante Académico no Campus Universitário da Penteada.</p>
+                <p class="sas-bols-paragraph">Snack-Bar do Colégio dos Jesuítas situado na Reitoria da Universidade da Madeira.</p>
+                <p class="sas-bols-paragraph">Snack-Bar da Residência Universitária situado na Rua de Santa Maria.</p>
+                <p class="sas-bols-paragraph">Para qualquer assunto relacionado com o Gabinete Alimentar deverá contatar o seguinte <b>e-mail: isadora.gomes@sas.uma.pt</b></p>
+            </article>
+        </div>
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Alojamento</h1>
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">Informações Gerais:</p>
+                <p class="sas-bols-paragraph">A Residência Nossa Senhora das Vitórias dispõe de 82 Quartos, um Snack-Bar aberto das 08:30 às 15:30, Receção aberta 24h, um serviço de venda automática de produtos alimentares, uma lavandaria, serviço de fotocopias, estacionamento mediante pagamento e ainda internet em todo o espaço.</p>
+                <p class="sas-bols-paragraph">É importante salientar que as instalações estão preparadas para pessoas com mobilidade reduzida.</p>
+                <p class="sas-bols-paragraph">Comissão de Residentes:</p>
+                <p class="sas-bols-paragraph">A Comissão de Residentes da Residência Universitária é constituída por um Presidente e dois Vice-presidentes, sendo imperativa a frequência destes alunos na Universidade da Madeira. Esta Comissão, tem como objectivo primordial representar e defender os direitos dos residentes perante os Serviços de Acção Social da Universidade da Madeira (SASUMa).</p>
+            </article>
+        </div>
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Avisos</h1>
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">ACEDA AOS AVISOS AQUI: <a href="https://www.uma.pt/sobre/servico-apoio-estudantes/accao-social/avisosecomunicados" class="sas-bols-link">AQUI</a></p>
+            </article>
+        </div>
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Noticias</h1>
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">ACEDA AS NOTICIAS AQUI: <a href="https://www.uma.pt/sobre/servico-apoio-estudantes/accao-social/noticiassas" class="sas-bols-link">NOVIDADES</a></p>
+            </article>
+        </div>
+
+        <div class="sas-bols-container">
+            <h1 class="sas-bols-title">SASUMA / Documentos</h1>
+            <article class="sas-bols-description">
+                <p class="sas-bols-paragraph">Os documentos que procura estarão aqui: <a href="https://www.uma.pt/sobre/servico-apoio-estudantes/accao-social/noticiassas" class="sas-bols-link">DOCUMENTOS</a></p>
+            </article>
+        </div>
+
+    </div>
+
 </body>
 </html>

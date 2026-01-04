@@ -151,6 +151,26 @@
   text-align: justify;
 }
 
+/* Responsividade */
+* { box-sizing: border-box; }
+.sumario-container { width: 100%; max-width: 850px; padding: 10px; box-sizing: border-box; }
+.sumario-linha { gap: 12px; }
+.sumario-input { min-width: 0; max-width: 100%; }
+.sumario-btn { min-width: 0; }
+.sumario-layout-grid { display: flex; gap: 15px; flex-wrap: wrap; }
+.sumario-col-esquerda, .sumario-col-direita { flex: 1 1 300px; min-width: 0; }
+.sumario-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sumario-tabela, .sumario-tabela-estado { min-width: 420px; }
+
+@media (max-width: 600px) {
+  .sumario-linha { flex-direction: column; align-items: stretch; }
+  .field-ano, .field-full, .field-turma, .field-aula { width: 100%; }
+  .sumario-btn { width: 100%; display: block; margin-top: 8px; }
+  .sumario-layout-grid { flex-direction: column; }
+  .sumario-col-esquerda, .sumario-col-direita { flex: 1 1 100%; }
+  .sumario-observacoes p { text-align: left; }
+}
+
 </style>
 <body>
     <div class="sumario-container">
@@ -243,6 +263,7 @@
     
     <div class="sumario-col-esquerda">
       <h4 class="sumario-tabela-titulo">Lista de Programa - Aula</h4>
+      <div class="sumario-table-wrapper">
       <table class="sumario-tabela">
         <thead>
           <tr>
@@ -288,10 +309,12 @@
           </tr>
           </tbody>
       </table>
+      </div>
     </div>
 
     <div class="sumario-col-direita">
       <h4 class="sumario-tabela-titulo">Sumário - Tópicos</h4>
+      <div class="sumario-table-wrapper">
       <table class="sumario-tabela">
         <thead>
           <tr>
@@ -304,8 +327,10 @@
           <tr><td>2.4</td><td>Estruturas de controle.</td></tr>
         </tbody>
       </table>
+      </div>
 
       <h4 class="sumario-tabela-titulo">Estado da Aula</h4>
+      <div class="sumario-table-wrapper">
       <table class="sumario-tabela-estado">
         <thead>
           <tr>
@@ -328,6 +353,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <div class="sumario-dados-bloco">
         <h4 class="sumario-tabela-titulo">Sumário - Dados</h4>

@@ -6,7 +6,14 @@
     <title>Estrutura</title>
 </head>
 <style>
-/* --- Contentor Principal --- */
+/* --- Contentor Principal e Reset Local --- */
+.inst-estrutura-body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* Box sizing global para facilitar responsividade */
+* { box-sizing: border-box; }
 .inst-estrutura-pesquisa {
     font-family: Arial, sans-serif;
     border: 1px solid #ccc;
@@ -74,6 +81,7 @@
 
 .inst-estrutura-full-width {
     flex: 1 1 100%;
+    width: 100%;
 }
 
 .inst-estrutura-label {
@@ -92,7 +100,11 @@
     height: 28px;
     flex: 1;
 }
-
+/* Permitir que selects e inputs encolham em ecrãs pequenos */
+.inst-estrutura-select,
+.inst-estrutura-select-blue,
+.inst-estrutura-input-blue,
+.inst-estrutura-input-gray { min-width: 0; }
 /* --- Botão --- */
 .inst-estrutura-btn-container {
     display: flex;
@@ -124,14 +136,17 @@
         width: 100%;
     }
 }
+
 .inst-estrutura-lista-container {
     font-family: Arial, sans-serif;
     border: 1px solid #ccc;
     padding: 15px;
     background-color: #fff;
     max-width: 450px;
+    width: 100%;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-}
+    margin: 10px auto; /* Centralizar se estiver fora */
+} 
 
 .inst-estrutura-lista-header {
     display: flex;
@@ -211,10 +226,12 @@
         gap: 5px;
     }
 }
+
 .inst-estrutura-tabs-pure-css {
     font-family: Arial, sans-serif;
     max-width: 600px;
-    width: 100%; /* Garante que ocupa a largura disponível */
+    width: 100%;
+    margin: 10px auto;
 }
 
 /* Barra de Navegação com Scroll Horizontal */
@@ -222,15 +239,15 @@
     display: flex;
     align-items: flex-end;
     gap: 2px;
-    overflow-x: auto; /* Ativa o scroll horizontal se necessário */
+    overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap; /* Impede que as tabs quebrem para a linha de baixo */
-    scrollbar-width: none; /* Esconde a scrollbar no Firefox */
-    -ms-overflow-style: none; /* Esconde a scrollbar no IE/Edge */
-    border-bottom: 1px solid #ccc; /* Linha de base para as tabs */
-}
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid #ccc;
+} 
 
-/* Esconder a scrollbar no Chrome/Safari para um aspeto mais limpo */
 .inst-estrutura-tabs-nav::-webkit-scrollbar {
     display: none;
 }
@@ -244,20 +261,25 @@
     font-size: 12px;
     text-align: center;
     line-height: 1.2;
-    min-width: 90px; /* Largura mínima para serem clicáveis no toque */
-    flex-shrink: 0; /* Impede que as tabs encolham para caber */
+    min-width: 90px;
+    flex-shrink: 0;
     display: inline-block;
 }
 
-/* Estilo da Tab Ativa */
-#tab-dados:checked ~ .inst-estrutura-tabs-nav .tab-label-dados,
-#tab-cargos:checked ~ .inst-estrutura-tabs-nav label[for="tab-cargos"],
-#tab-ficheiros:checked ~ .inst-estrutura-tabs-nav label[for="tab-ficheiros"],
-#tab-areas:checked ~ .inst-estrutura-tabs-nav label[for="tab-areas"] {
+/* Inputs Radio Escondidos */
+.inst-estrutura-radio-tab {
+    display: none;
+}
+
+/* Estilo da Tab Ativa (IDs atualizados) */
+#inst-estrutura-tab-dados:checked ~ .inst-estrutura-tabs-nav .inst-estrutura-tab-label-dados,
+#inst-estrutura-tab-cargos:checked ~ .inst-estrutura-tabs-nav label[for="inst-estrutura-tab-cargos"],
+#inst-estrutura-tab-ficheiros:checked ~ .inst-estrutura-tabs-nav label[for="inst-estrutura-tab-ficheiros"],
+#inst-estrutura-tab-areas:checked ~ .inst-estrutura-tabs-nav label[for="inst-estrutura-tab-areas"] {
     background-color: #fff;
     font-weight: bold;
     border-top: 2px solid #ccc;
-    margin-bottom: -1px; /* Sobrepõe a borda do painel */
+    margin-bottom: -1px;
     z-index: 2;
 }
 
@@ -265,16 +287,19 @@
 .inst-estrutura-panel {
     display: none;
     border: 1px solid #ccc;
-    border-top: none; /* Evita borda dupla com a barra de navegação */
+    border-top: none;
     padding: 15px;
     background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* Mostrar painel ativo */
-#tab-dados:checked ~ .inst-estrutura-panels #content-dados,
-#tab-cargos:checked ~ .inst-estrutura-panels #content-cargos,
-#tab-ficheiros:checked ~ .inst-estrutura-panels #content-ficheiros,
-#tab-areas:checked ~ .inst-estrutura-panels #content-areas {
+#inst-estrutura-tab-dados:checked ~ .inst-estrutura-panels #inst-estrutura-content-dados,
+#inst-estrutura-tab-cargos:checked ~ .inst-estrutura-panels #inst-estrutura-content-cargos,
+#inst-estrutura-tab-ficheiros:checked ~ .inst-estrutura-panels #inst-estrutura-content-ficheiros,
+#inst-estrutura-tab-areas:checked ~ .inst-estrutura-panels #inst-estrutura-content-areas {
     display: block;
 }
 /* Garante que o painel principal não deixe nada sair */
@@ -289,10 +314,10 @@
     overflow-x: hidden; /* Impede scroll horizontal dentro do painel */
 }
 
-/* Grelha de formulário ajustada para ser flexível */
+/* Grelha de formulário */
 .inst-estrutura-form-grid {
     display: grid;
-    grid-template-columns: 140px 1fr; /* Reduzi a largura da label para dar mais espaço ao input */
+    grid-template-columns: 140px 1fr;
     gap: 10px;
     align-items: center;
     margin-bottom: 20px;
@@ -300,31 +325,41 @@
     box-sizing: border-box;
 }
 
-/* Inputs cinzentos com largura controlada */
+/* Inputs cinzentos */
 .inst-estrutura-input-gray {
     background-color: #d3d3d3;
     border: 1px solid #aaa;
     padding: 3px 5px;
     font-size: 13px;
     height: 22px;
-    width: 100%; /* Garante que o input nunca seja maior que a sua célula na grelha */
-    box-sizing: border-box; /* Garante que a borda fique dentro dos 100% */
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Grupo inline (ex: Sigla + Abrv) reestruturado */
+/* Grupo inline */
 .inst-estrutura-inline-group {
     display: flex;
-    flex-wrap: wrap; /* Permite quebrar em ecrãs muito pequenos em vez de sair fora */
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
     width: 100%;
 }
 
-/* Campos secundários (Abrv, Data Fim, etc) */
-.inst-estrutura-inline-group .short {
-    flex: 1; /* Em vez de largura fixa, cresce conforme o espaço disponível */
+/* Campos curtos */
+.inst-estrutura-short {
+    flex: 1;
     min-width: 60px;
     max-width: 120px;
+}
+
+.inst-estrutura-subtitulo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: left;
+    width: 100%;
 }
 
 /* Labels das secções em Inglês */
@@ -337,10 +372,10 @@
     padding-top: 10px;
 }
 
-/* Media Query para ecrãs pequenos (Mobile) */
+/* Media Query para ecrãs pequenos */
 @media (max-width: 500px) {
     .inst-estrutura-form-grid {
-        grid-template-columns: 1fr; /* No mobile, label fica por cima do input */
+        grid-template-columns: 1fr;
         gap: 5px;
     }
     
@@ -353,6 +388,7 @@
         gap: 5px;
     }
 }
+
 /* Barra de Filtros */
 .inst-estrutura-filter-bar {
     display: flex;
@@ -368,7 +404,7 @@
     gap: 5px;
 }
 
-.filter-icon {
+.inst-estrutura-filter-icon {
     font-size: 12px;
     color: #666;
 }
@@ -404,7 +440,7 @@
     cursor: pointer;
 }
 
-/* Mensagem de Info com ícone azul */
+/* Mensagem de Info */
 .inst-estrutura-info-message {
     display: flex;
     align-items: center;
@@ -412,38 +448,32 @@
     padding: 10px 0;
 }
 
-.info-icon {
-    background-color: #0055ff; /* Azul da imagem */
-    color: white;
+.inst-estrutura-info-icon-blue {
+    background-color: #0066ff;
+    color: #ffffff;
     width: 18px;
     height: 18px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-family: serif;
+    font-size: 13px;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
-.inst-estrutura-info-message p {
+.inst-estrutura-info-message p, .inst-estrutura-info-text {
     font-size: 13px;
     color: #333;
     margin: 0;
+    line-height: 1.4;
 }
 
-/* Ajuste Mobile */
-@media (max-width: 600px) {
-    .inst-estrutura-filter-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .inst-estrutura-btn-filter {
-        width: 100%;
-    }
-}/* Container da Mensagem */
+/* Container da Mensagem (Info Box) */
 .inst-estrutura-info-box {
     display: flex;
-    align-items: flex-start; /* Alinha ao topo para textos longos */
+    align-items: flex-start;
     gap: 12px;
     padding: 10px 0;
     margin-top: 5px;
@@ -474,11 +504,22 @@
 }
 
 /* Ajuste de Margens para o Painel */
-#content-ficheiros {
+#inst-estrutura-content-ficheiros {
     min-height: 150px;
 }
+
+/* Regras responsivas adicionais */
+@media (max-width: 600px) {
+    .inst-estrutura-topo { flex-direction: column; align-items: stretch; gap: 10px; }
+    .inst-estrutura-field { min-width: auto; width: 100%; }
+    .inst-estrutura-select, .inst-estrutura-select-blue, .inst-estrutura-input-blue, .inst-estrutura-input-gray { width: 100%; min-width: 0; }
+    .inst-estrutura-btn-container { justify-content: center; }
+    .inst-estrutura-btn { width: 100%; box-sizing: border-box; }
+    .inst-estrutura-lista-container { padding: 10px; }
+    .inst-estrutura-tabs-nav { padding-bottom: 6px; }
+}
 </style>
-<body>
+<body class="inst-estrutura-body">
 
 <div class="inst-estrutura-pesquisa">
     <div class="inst-estrutura-topo">
@@ -581,6 +622,7 @@
         <button class="inst-estrutura-btn">Carregar Dados</button>
     </div>
 </div>
+
 <div class="inst-estrutura-lista-container">
     <div class="inst-estrutura-lista-header">
         <h3 class="inst-estrutura-lista-titulo">Lista de Instituições/Unidades</h3>
@@ -637,31 +679,32 @@
         </div>
     </div>
 </div>
+
 <div class="inst-estrutura-tabs-pure-css">
-    <input type="radio" name="tabs" id="tab-dados" checked>
-    <input type="radio" name="tabs" id="tab-cargos">
-    <input type="radio" name="tabs" id="tab-ficheiros">
-    <input type="radio" name="tabs" id="tab-areas">
+    <input type="radio" name="tabs" id="inst-estrutura-tab-dados" class="inst-estrutura-radio-tab" checked>
+    <input type="radio" name="tabs" id="inst-estrutura-tab-cargos" class="inst-estrutura-radio-tab">
+    <input type="radio" name="tabs" id="inst-estrutura-tab-ficheiros" class="inst-estrutura-radio-tab">
+    <input type="radio" name="tabs" id="inst-estrutura-tab-areas" class="inst-estrutura-radio-tab">
 
     <div class="inst-estrutura-tabs-nav">
-        <label for="tab-dados" class="tab-label-dados">Dados<br>Gerais</label>
-        <label for="tab-cargos" class="tab-label-outras"><u>Cargos</u></label>
-        <label for="tab-ficheiros" class="tab-label-outras"><u>Ficheiros</u></label>
-        <label for="tab-areas" class="tab-label-outras"><u>Áreas</u></label>
+        <label for="inst-estrutura-tab-dados" class="inst-estrutura-tab-label-dados">Dados<br>Gerais</label>
+        <label for="inst-estrutura-tab-cargos" class="inst-estrutura-tab-label-outras"><u>Cargos</u></label>
+        <label for="inst-estrutura-tab-ficheiros" class="inst-estrutura-tab-label-outras"><u>Ficheiros</u></label>
+        <label for="inst-estrutura-tab-areas" class="inst-estrutura-tab-label-outras"><u>Áreas</u></label>
     </div>
 
     <div class="inst-estrutura-panels">
-        <div class="inst-estrutura-panel" id="content-dados">
+        <div class="inst-estrutura-panel" id="inst-estrutura-content-dados">
             <h4 class="inst-estrutura-subtitulo">Dados da Instituição/Unidade</h4>
             <div class="inst-estrutura-form-grid">
                 <label>Designação:</label>
-                <input type="text" class="inst-estrutura-input-gray full-width">
+                <input type="text" class="inst-estrutura-input-gray inst-estrutura-full-width">
             
                 <label>Sigla:</label>
                 <div class="inst-estrutura-inline-group">
                     <input type="text" class="inst-estrutura-input-gray">
-                    <label class="inline-label">Abrv:</label>
-                    <input type="text" class="inst-estrutura-input-gray short">
+                    <label class="inst-estrutura-inline-label">Abrv:</label>
+                    <input type="text" class="inst-estrutura-input-gray inst-estrutura-short">
                 </div>
             
                 <label>Cód. MCTES:</label>
@@ -670,12 +713,12 @@
                 <label>Data Início (AAAA-MM-DD):</label>
                 <div class="inst-estrutura-inline-group">
                     <input type="text" class="inst-estrutura-input-gray">
-                    <label class="inline-label">Data Fim (AAAA-MM-DD):</label>
-                    <input type="text" class="inst-estrutura-input-gray short">
+                    <label class="inst-estrutura-inline-label">Data Fim (AAAA-MM-DD):</label>
+                    <input type="text" class="inst-estrutura-input-gray inst-estrutura-short">
                 </div>
             
                 <label>Missão:</label>
-                <textarea class="inst-estrutura-input-gray full-width"></textarea>
+                <textarea class="inst-estrutura-input-gray inst-estrutura-full-width"></textarea>
             </div>
         
             <h4 class="inst-estrutura-subtitulo">Contactos da Instituição/Unidade</h4>
@@ -683,54 +726,54 @@
                 <label>Tel:</label>
                 <div class="inst-estrutura-inline-group">
                     <input type="text" class="inst-estrutura-input-gray">
-                    <label class="inline-label">eMail:</label>
-                    <input type="text" class="inst-estrutura-input-gray short">
+                    <label class="inst-estrutura-inline-label">eMail:</label>
+                    <input type="text" class="inst-estrutura-input-gray inst-estrutura-short">
                 </div>
             
                 <label>Página Web:</label>
                 <div class="inst-estrutura-inline-group">
                     <input type="text" class="inst-estrutura-input-gray">
-                    <label class="inline-label">Fax:</label>
-                    <input type="text" class="inst-estrutura-input-gray short">
+                    <label class="inst-estrutura-inline-label">Fax:</label>
+                    <input type="text" class="inst-estrutura-input-gray inst-estrutura-short">
                 </div>
             
                 <label>Cod. Postal:</label>
                 <div class="inst-estrutura-inline-group">
                     <input type="text" class="inst-estrutura-input-gray">
-                    <label class="inline-label">Localidade:</label>
-                    <input type="text" class="inst-estrutura-input-gray short">
+                    <label class="inst-estrutura-inline-label">Localidade:</label>
+                    <input type="text" class="inst-estrutura-input-gray inst-estrutura-short">
                 </div>
             
                 <label>Morada:</label>
-                <input type="text" class="inst-estrutura-input-gray full-width">
+                <input type="text" class="inst-estrutura-input-gray inst-estrutura-full-width">
             </div>
         
             <div class="inst-estrutura-header-en">
                 <h4 class="inst-estrutura-subtitulo">Dados da Instituição/Unidade em Inglês</h4>
-                <span class="flag-en">🇬🇧</span>
+                <span class="inst-estrutura-flag-en">🇬🇧</span>
             </div>
             <div class="inst-estrutura-form-grid">
                 <label>Designação (EN):</label>
-                <input type="text" class="inst-estrutura-input-gray full-width">
+                <input type="text" class="inst-estrutura-input-gray inst-estrutura-full-width">
                 <label>Abrv (EN):</label>
-                <input type="text" class="inst-estrutura-input-gray full-width">
+                <input type="text" class="inst-estrutura-input-gray inst-estrutura-full-width">
                 <label>Missão (EN):</label>
-                <textarea class="inst-estrutura-input-gray full-width"></textarea>
+                <textarea class="inst-estrutura-input-gray inst-estrutura-full-width"></textarea>
             </div>
         </div>
 
-        <div class="inst-estrutura-panel" id="content-cargos">
-                    <h4 class="inst-estrutura-subtitulo">Cargos</h4>
-                    <h4 class="inst-estrutura-subtitulo">Lista de Pessoas com Cargos na Instituição/Unidade</h4>
+        <div class="inst-estrutura-panel" id="inst-estrutura-content-cargos">
+            <h4 class="inst-estrutura-subtitulo">Cargos</h4>
+            <h4 class="inst-estrutura-subtitulo">Lista de Pessoas com Cargos na Instituição/Unidade</h4>
                 
             <div class="inst-estrutura-filter-bar">
                 <div class="inst-estrutura-filter-item">
-                    <span class="filter-icon">⏳</span> <label>Cargo</label>
+                    <span class="inst-estrutura-filter-icon">⏳</span> <label>Cargo</label>
                     <input type="text" class="inst-estrutura-input-small">
                 </div>
             
                 <div class="inst-estrutura-filter-item">
-                    <span class="filter-icon">⏳</span> <label>Nome</label>
+                    <span class="inst-estrutura-filter-icon">⏳</span> <label>Nome</label>
                     <input type="text" class="inst-estrutura-input-large">
                 </div>
             
@@ -740,28 +783,28 @@
             <h4 class="inst-estrutura-subtitulo">Lista de Pessoas com Cargos na Instituição/Unidade</h4>
 
             <div class="inst-estrutura-info-message">
-                <div class="info-icon-blue">i</div><p>Sem resultados. Seleccione a instituição/unidade a editar.</p>
+                <div class="inst-estrutura-info-icon-blue">i</div><p>Sem resultados. Seleccione a instituição/unidade a editar.</p>
             </div>
         </div>
 
-        <div class="inst-estrutura-panel" id="content-ficheiros">
+        <div class="inst-estrutura-panel" id="inst-estrutura-content-ficheiros">
             <h4 class="inst-estrutura-subtitulo">Lista de Ficheiros Associados à Instituição/Unidade</h4>
 
             <div class="inst-estrutura-info-box">
-                <div class="info-icon-blue">i</div>
-                <p class="info-text">
+                <div class="inst-estrutura-info-icon-blue">i</div>
+                <p class="inst-estrutura-info-text">
                     Não foram encontrados ficheiros para a selecção efectuada, escolha ediatr uma instituição.
                 </p>
             </div>
 
         </div>
 
-        <div class="inst-estrutura-panel" id="content-areas">
+        <div class="inst-estrutura-panel" id="inst-estrutura-content-areas">
             <h4 class="inst-estrutura-subtitulo">Lista de Áreas Científicas da Instituição/Unidade</h4>
     
             <div class="inst-estrutura-info-box">
-                <div class="info-icon-blue">i</div>
-                <p class="info-text">Sem resultados.</p>
+                <div class="inst-estrutura-info-icon-blue">i</div>
+                <p class="inst-estrutura-info-text">Sem resultados.</p>
             </div>
         </div>
     </div>

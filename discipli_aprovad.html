@@ -6,295 +6,327 @@
     <title>Disciplinas Aprovadas</title>
 </head>
 <style>
+    /* Estilo Base Isolado */
+    .discipap-body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
     /* Container de Pesquisa */
-.curso-pesquisa-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
+    .discipap-curso-pesquisa-container {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
 
-.curso-pesquisa-bloco {
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fdfdfd;
-    max-width: 1000px;
-}
+    .discipap-curso-pesquisa-bloco {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #fdfdfd;
+        max-width: 1000px;
+    }
 
-.curso-pesquisa-titulo {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-}
+    .discipap-curso-pesquisa-titulo {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+    }
 
-/* Organização das Linhas */
-.curso-pesquisa-linha {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
+    /* Organização das Linhas */
+    .discipap-curso-pesquisa-linha {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
 
-.curso-pesquisa-label {
-    width: 120px;
-    font-size: 13px;
-    color: #333;
-}
+    .discipap-curso-pesquisa-label {
+        width: 120px;
+        font-size: 13px;
+        color: #333;
+    }
 
-.curso-pesquisa-input-group {
-    display: flex;
-    flex-grow: 1;
-    gap: 5px;
-}
+    .discipap-curso-pesquisa-input-group {
+        display: flex;
+        flex-grow: 1;
+        gap: 5px;
+    }
 
-/* Estilo dos Campos de Entrada */
-.curso-pesquisa-select, 
-.curso-pesquisa-input-text {
-    flex-grow: 1;
-    padding: 3px;
-    border: 1px solid #999;
-    font-size: 13px;
-}
+    /* Estilo dos Campos de Entrada */
+    .discipap-curso-pesquisa-select, 
+    .discipap-curso-pesquisa-input-text {
+        flex-grow: 1;
+        padding: 3px;
+        border: 1px solid #999;
+        font-size: 13px;
+    }
 
-.curso-pesquisa-select {
-    background-color: #e8f0fe; /* Tom azulado da imagem */
-}
+    .discipap-curso-pesquisa-select {
+        background-color: #e8f0fe; /* Tom azulado da imagem */
+    }
 
-.curso-pesquisa-input-text {
-    background-color: #f0f0f0; /* Época Normalza para campos desativados/readonly */
-}
+    .discipap-curso-pesquisa-input-text {
+        background-color: #f0f0f0; /* Época Normalza para campos desativados/readonly */
+    }
 
-/* Botão Pesquisar */
-.curso-pesquisa-btn {
-    padding: 2px 20px;
-    border: 1px solid #999;
-    background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
-    cursor: pointer;
-    font-size: 13px;
-    border-radius: 3px;
-}
+    /* Botão Pesquisar */
+    .discipap-curso-pesquisa-btn {
+        padding: 2px 20px;
+        border: 1px solid #999;
+        background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 100%);
+        cursor: pointer;
+        font-size: 13px;
+        border-radius: 3px;
+    }
 
-.curso-pesquisa-btn:hover {
-    background: #eee;
-}
-.curso-tabela-base {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 11px;
-}
+    .discipap-curso-pesquisa-btn:hover {
+        background: #eee;
+    }
 
-.curso-tabela-base th {
-    background-color: #ffebcc; /* Bege */
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-}
+    .discipap-curso-tabela-base {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+    }
 
-.curso-tabela-base td {
-    border: 1px solid #eee;
-    padding: 6px;
-}
-.curso-bloco-tabela, .curso-container-interno {
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-.curso-subtitulo {
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-.curso-info-detalhe {
-    background-color: #f9f9f9;
-    border-left: 3px solid #7a9db9; /* Destaque lateral azul */
-    padding: 10px 15px;
-    margin-bottom: 15px;
-    font-size: 11px;
-    line-height: 1.6;
-    color: #333;
-}
+    .discipap-curso-tabela-base th {
+        background-color: #ffebcc; /* Bege */
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .discipap-curso-tabela-base td {
+        border: 1px solid #eee;
+        padding: 6px;
+    }
+
+    .discipap-curso-bloco-tabela, .discipap-curso-container-interno {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .discipap-curso-subtitulo {
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .discipap-curso-info-detalhe {
+        background-color: #f9f9f9;
+        border-left: 3px solid #7a9db9; /* Destaque lateral azul */
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        font-size: 11px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* Regras responsivas */
+    * { box-sizing: border-box; }
+    .discipap-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; }
+    .discipap-curso-tabela-base { min-width: 640px; }
+    .discipap-curso-pesquisa-select, .discipap-curso-pesquisa-input-text { min-width: 0; width: 100%; }
+
+    @media (max-width: 600px) {
+        .discipap-curso-pesquisa-linha { flex-direction: column; align-items: stretch; gap: 8px; }
+        .discipap-curso-pesquisa-label { width: auto; }
+        .discipap-curso-pesquisa-input-group { flex-direction: column; gap: 8px; }
+        .discipap-curso-pesquisa-btn { width: 100%; }
+        .discipap-curso-subtitulo { font-size: 14px; }
+        .discipap-curso-info-detalhe { font-size: 13px; padding: 8px; }
+        .discipap-curso-tabela-base th, .discipap-curso-tabela-base td { padding: 6px; font-size: 12px; }
+    }
+
 </style>
-<body>
-        <div class="curso-pesquisa-container">
-        <div class="curso-pesquisa-bloco">
-            <h4 class="curso-pesquisa-titulo">Pesquisa de Cursos</h4>
+<body class="discipap-body">
 
-            <form class="curso-pesquisa-form">
-                <div class="curso-pesquisa-linha">
-                    <label for="selecao-curso" class="curso-pesquisa-label">Curso</label>
-                    <div class="curso-pesquisa-input-group">
-                        <select id="selecao-curso" class="curso-pesquisa-select">
+    <div class="discipap-curso-pesquisa-container">
+        <div class="discipap-curso-pesquisa-bloco">
+            <h4 class="discipap-curso-pesquisa-titulo">Pesquisa de Cursos</h4>
+
+            <form class="discipap-curso-pesquisa-form">
+                <div class="discipap-curso-pesquisa-linha">
+                    <label for="selecao-curso" class="discipap-curso-pesquisa-label">Curso</label>
+                    <div class="discipap-curso-pesquisa-input-group">
+                        <select id="selecao-curso" class="discipap-curso-pesquisa-select">
                             <option value=""></option>
                             <option value="tpsi">Tecnologias e Programação de Sistemas de Informação</option>
                             <option value="design">Matématica Básica</option>
                         </select>
-                        <button type="submit" class="curso-pesquisa-btn">Pesquisar...</button>
+                        <button type="submit" class="discipap-curso-pesquisa-btn">Pesquisar...</button>
                     </div>
                 </div>
 
-                <div class="curso-pesquisa-linha">
-                    <label for="ano-lectivo" class="curso-pesquisa-label">Ano Lectivo</label>
-                    <input type="text" id="ano-lectivo" class="curso-pesquisa-input-text" readonly value="2025/2026">
+                <div class="discipap-curso-pesquisa-linha">
+                    <label for="ano-lectivo" class="discipap-curso-pesquisa-label">Ano Lectivo</label>
+                    <input type="text" id="ano-lectivo" class="discipap-curso-pesquisa-input-text" readonly value="2025/2026">
                 </div>
             </form>
         </div>
     </div>
-    <div class="curso-bloco-inscricoes">
-        <div class="curso-container-interno">
-            <h4 class="curso-subtitulo">Disciplina</h4>
-            <div class="curso-info-detalhe">
+
+    <div class="discipap-curso-bloco-inscricoes">
+        <div class="discipap-curso-container-interno">
+            <h4 class="discipap-curso-subtitulo">Disciplina</h4>
+            <div class="discipap-curso-info-detalhe">
                 <p>Para cursos de Bolonha deve ser consultado o plano de conclusão de modo a saber em que áreas ou níveis faltam disciplinas ao aluno. Enquanto que nos cursos pré-bolonha o aluno tinha de ter aprovadas todas as disciplinas do plano de estudos, em Bolonha é definido um plano de conclusão com os ECTS a realizar por área e nível.
                 Em Bolonha um aluno está em condições de concluir o curso quando tiver aprovadas disciplinas que cumpram todas áreas e níveis definidas no plano de conclusão. Devido a isto podem acontecer situações em que o aluno não tem aprovadas todas as disciplinas do curso mas cumpre as regras do plano de conclusão.
                 No menu 'Curso > Plano de Conclusão' o aluno pode verificar em que áreas e níveis é que estão em falta de modo a concluir o curso.</p>
+            </div>
+            <div class="discipap-table-wrapper">
+            <table class="discipap-curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>ALAp</th>
+                        <th>Disciplina</th>
+                        <th>A</th>
+                        <th>S</th>
+                        <th>U.C.</th>
+                        <th>C</th>
+                        <th>Tipo Apr.</th>
+                        <th>Data Apr.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Técnicas de Expressão do Português</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>5.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Matemática</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>5.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Introdução à Programação</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Sistemas Operativos e Redes</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Design Hipermédia</td>
+                        <td>1</td>
+                        <td>S1</td>
+                        <td>6.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Inglês Técnico</td>
+                        <td>1</td>
+                        <td>S2</td>
+                        <td>5.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Programação Orientada por Objetos</td>
+                        <td>1</td>
+                        <td>S2</td>
+                        <td>6.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Desenvolvimento Web - Back-End</td>
+                        <td>1</td>
+                        <td>S2</td>
+                        <td>6.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Desenvolvimento Web - Front-End</td>
+                        <td>1</td>
+                        <td>S2</td>
+                        <td>6.50</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Sistemas Gestores de Bases de Dados I</td>
+                        <td>1</td>
+                        <td>S2</td>
+                        <td>6.00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            
+            <h4 class="discipap-curso-subtitulo">Matrículas / Inscrições em Cursos</h4>
+            <div class="discipap-table-wrapper">
+            <table class="discipap-curso-tabela-base">
+                <thead>
+                    <tr>
+                        <th>LY</th>
+                        <th>Curso</th>
+                        <th>Ramo</th>
+                        <th>Ano Letivo Plano</th>
+                        <th>Ingresso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024/25</td>
+                        <td>CTESP- Tecnologias e Programação de Sistemas de Informação</td>
+                        <td>Sem Ramos- Especialidades</td>
+                        <td>2024-09-10</td>
+                        <td>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional)</td>
+                    </tr>
+                    <tr>
+                        <td>2024/25</td>
+                        <td>Matématica Básica Nivel B</td>
+                        <td>Sem Ramos- Especialidades</td>
+                        <td>2024-09-10</td>
+                        <td>Prova de Acesso</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
         </div>
-        <table class="curso-tabela-base">
-        <thead>
-            <tr>
-                <th>ALAp</th>
-                <th>Disciplina</th>
-                <th>A</th>
-                <th>S</th>
-                <th>U.C.</th>
-                <th>C</th>
-                <th>Tipo Apr.</th>
-                <th>Data Apr.</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td>Técnicas de Expressão do Português</td>
-                <td>1</td>
-                <td>S1</td>
-                <td>5.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Matemática</td>
-                <td>1</td>
-                <td>S1</td>
-                <td>5.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Introdução à Programação</td>
-                <td>1</td>
-                <td>S1</td>
-                <td>6.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Sistemas Operativos e Redes</td>
-                <td>1</td>
-                <td>S1</td>
-                <td>6.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Design Hipermédia</td>
-                <td>1</td>
-                <td>S1</td>
-                <td>6.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Inglês Técnico</td>
-                <td>1</td>
-                <td>S2</td>
-                <td>5.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Programação Orientada por Objetos</td>
-                <td>1</td>
-                <td>S2</td>
-                <td>6.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Desenvolvimento Web - Back-End</td>
-                <td>1</td>
-                <td>S2</td>
-                <td>6.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Desenvolvimento Web - Front-End</td>
-                <td>1</td>
-                <td>S2</td>
-                <td>6.50</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Sistemas Gestores de Bases de Dados I</td>
-                <td>1</td>
-                <td>S2</td>
-                <td>6.00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-        </table>
-        
-        <h4 class="curso-subtitulo">Matrículas / Inscrições em Cursos</h4>
-        <table class="curso-tabela-base">
-            <thead>
-                <tr>
-                    <th>LY</th>
-                    <th>Curso</th>
-                    <th>Ramo</th>
-                    <th>Ano Letivo Plano</th>
-                    <th>Ingresso</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2024/25</td>
-                    <td>CTESP- Tecnologias e Programação de Sistemas de Informação</td>
-                    <td>Sem Ramos- Especialidades</td>
-                    <td>2024-09-10</td>
-                    <td>Titulares de curso de ensino secundário ou de habilitação legalmente equivalente (para acesso ao curso técnico superior profissional)</td>
-
-                </tr>
-                <tr>
-                    <td>2024/25</td>
-                    <td>Matématica Básica Nivel B</td>
-                    <td>Sem Ramos- Especialidades</td>
-                    <td>2024-09-10</td>
-                    <td>Prova de Acesso</td>
-                </tr>
-            </tbody>
-        </table>
-    
     </div>
 </body>
 </html>

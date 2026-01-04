@@ -6,34 +6,19 @@
     <title>Novos Processos</title>
 </head>
 <body>
-    <body>
 <style>
-        /* --- ESTILOS GERAIS --- */
-        body { 
-            font-family: Arial, sans-serif; 
-            font-size: 11px; 
-            background-color: #f4f4f4; 
-            padding: 20px; 
-            color: #333;
-        }
+        body { font-family: Arial, sans-serif; font-size: 12px; background-color: #f4f4f4; padding: 20px; }
 
-        /* --- CONTENTOR DE ABAS --- */
-        .tabs-container { 
-            max-width: 1000px; 
-            margin: auto; 
-            background: #fff; 
-            border: 1px solid #ccc; 
-        }
+        /* Contentor Principal */
+        .tabs-container-list-proc { max-width: 1000px; margin: auto; background: #fff; border: 1px solid #ccc; }
 
-        .tab-input { display: none; }
+        /* Esconder os inputs radio */
+        .tab-input-list-proc { display: none; }
 
-        .tabs-header { 
-            display: flex; 
-            background: #eee; 
-            border-bottom: 1px solid #ccc; 
-        }
+        /* Estilização dos Separadores (Labels) */
+        .tabs-header-list-proc { display: flex; background: #eee; border-bottom: 1px solid #ccc; }
         
-        .tab-label { 
+        .tab-label-list-proc { 
             flex: 1; 
             padding: 10px; 
             text-align: center; 
@@ -43,246 +28,209 @@
             transition: background 0.2s;
         }
 
-        .tab-label:hover { background: #e0e0e0; }
+        .tab-label-list-proc:hover { background: #e0e0e0; }
 
-        .tab-content { 
-            display: none; 
-            padding: 15px; 
-            background: #fff;
-        }
+        /* Conteúdo das Abas - Escondido por padrão */
+        .tab-content-list-proc { display: none; padding: 20px; border-top: none; }
 
-        /* Lógica de Ativação das Abas */
-        #tab1:checked ~ .tabs-header label[for="tab1"],
-        #tab2:checked ~ .tabs-header label[for="tab2"],
-        #tab3:checked ~ .tabs-header label[for="tab3"] {
+        /* Lógica de Ativação (CSS Magic) com os novos IDs e Classes */
+        #tab1-list-proc:checked ~ .tabs-header-list-proc label[for="tab1-list-proc"],
+        #tab2-list-proc:checked ~ .tabs-header-list-proc label[for="tab2-list-proc"],
+        #tab3-list-proc:checked ~ .tabs-header-list-proc label[for="tab3-list-proc"] {
             background: #fff;
             border-bottom: 2px solid #fff;
             margin-bottom: -1px;
             color: #000;
         }
 
-        #tab1:checked ~ #content1,
-        #tab2:checked ~ #content2,
-        #tab3:checked ~ #content3 { display: block; }
+        #tab1-list-proc:checked ~ #content1-list-proc,
+        #tab2-list-proc:checked ~ #content2-list-proc,
+        #tab3-list-proc:checked ~ #content3-list-proc { display: block; }
 
-        /* --- COMPONENTES DE INTERFACE --- */
-        .info-bar { 
-            background: #fff3cd; 
-            border: 1px solid #ffeeba; 
-            padding: 8px 12px; 
-            margin-bottom: 15px; 
-            border-radius: 4px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+        /* Estilos específicos */
+        .info-bar-list-proc { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .info-bar-list-proc a { color: blue; text-decoration: none; margin: 0 5px; }
+        .msg-erro-list-proc { color: #0056b3; display: flex; align-items: center; gap: 5px; margin-top: 10px; }
+        .grid-form-list-proc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f9f9f9; padding: 15px; border: 1px solid #ddd; }
+        
+        /* Estilos de input globais mantidos, mas classes específicas criadas abaixo */
+        input, select, textarea { width: 100%; border: 1px solid #ccc; padding: 4px; background: #e2efff; }
+        
+        .btn-guardar-list-proc, .btn-pesquisar-list-proc { float: right; padding: 5px 20px; background: linear-gradient(#fff, #ddd); border: 1px solid #999; border-radius: 4px; cursor: pointer; }
+
+        /* Classes auxiliares identificadas no HTML */
+        .bloco-seccao-list-proc { margin-bottom: 15px; }
+        .coluna-campos-list-proc { display: flex; flex-direction: column; gap: 10px; }
+        .linha-form-list-proc { display: flex; align-items: center; margin-bottom: 5px; }
+        .label-fixa-list-proc { min-width: 100px; display: inline-block; }
+        .input-estilizado-list-proc { width: 100%; }
+        .coluna-justificacao-list-proc { display: flex; flex-direction: column; }
+        .titulo-negrito-list-proc { font-weight: bold; display: block; margin-bottom: 5px; }
+        .icone-i-list-proc { margin-right: 5px; }
+
+        /* Responsividade */
+        * { box-sizing: border-box; }
+        .tabs-container-list-proc { width: 100%; max-width: 1000px; padding: 0 12px; }
+        .tabs-header-list-proc { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .tab-label-list-proc { flex: 0 0 auto; min-width: 140px; }
+        .grid-duo-list-proc { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .tabs-header-list-proc { flex-direction: column; }
+            .tab-label-list-proc { min-width: 0; border-right: none; border-bottom: 1px solid #ddd; text-align: left; padding: 12px; }
+            .tab-label-list-proc:last-child { border-bottom: none; }
+
+            .grid-form-list-proc { grid-template-columns: 1fr; padding: 12px; }
+            .grid-duo-list-proc { grid-template-columns: 1fr; }
+            .linha-form-list-proc { flex-direction: column; align-items: stretch; gap: 6px; }
+            .label-fixa-list-proc { min-width: 0; width: 100%; display: block; }
+            input[type="file"] { width: 100%; }
+            .btn-guardar-list-proc, .btn-pesquisar-list-proc { width: 100%; float: none; display: block; margin-top: 8px; padding: 10px; }
+            .info-bar-list-proc { flex-direction: column; gap: 8px; align-items: flex-start; }
+            .msg-erro-list-proc { justify-content: flex-start; }
+            .coluna-justificacao-list-proc textarea { width: 100%; }
+            .tab-content-list-proc { padding: 12px; }
         }
 
-        .info-bar a { color: #0056b3; text-decoration: none; font-weight: bold; }
-
-        .icone-i { 
-            background: #0055ff; 
-            color: white; 
-            border-radius: 50%; 
-            width: 14px; 
-            height: 14px; 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 10px; 
-            font-weight: bold; 
-            margin-right: 5px;
-        }
-
-        .bloco-seccao { 
-            border: 1px solid #ccc; 
-            padding: 12px; 
-            margin-bottom: 15px; 
-            position: relative;
-        }
-
-        .titulo-negrito { 
-            font-weight: bold; 
-            display: block; 
-            margin-bottom: 10px; 
-            background: #fff;
-            padding: 0 5px;
-        }
-
-        /* --- FORMULÁRIOS --- */
-        .grid-form { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-        }
-
-        .linha-form { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 6px; 
-            gap: 10px; 
-        }
-
-        .label-fixa { width: 120px; flex-shrink: 0; }
-
-        input, select, textarea { 
-            width: 100%; 
-            border: 1px solid #ccc; 
-            padding: 3px; 
-            background: #e2efff; 
-            font-size: 11px;
-        }
-
-        textarea { resize: vertical; }
-
-        /* --- BOTÕES --- */
-        .btn-pesquisar, .btn-guardar { 
-            padding: 4px 20px; 
-            background: linear-gradient(#ffffff, #e0e0e0); 
-            border: 1px solid #999; 
-            border-radius: 4px; 
-            cursor: pointer; 
-            font-weight: bold;
-            font-size: 11px;
-        }
-
-        .btn-pesquisar:hover { background: #f0f0f0; }
-
-        /* --- MENSAGENS --- */
-        .msg-erro { 
-            color: #0056b3; 
-            display: flex; 
-            align-items: center; 
-            gap: 5px; 
-            margin-top: 10px; 
-        }
     </style>
 </head>
 <body>
 
-<div class="tabs-container">
-    <input type="radio" name="tabs" id="tab1" class="tab-input" checked>
-    <input type="radio" name="tabs" id="tab2" class="tab-input">
-    <input type="radio" name="tabs" id="tab3" class="tab-input">
+<div class="tabs-container-list-proc">
+    <input type="radio" name="tabs" id="tab1-list-proc" class="tab-input-list-proc" checked>
+    <input type="radio" name="tabs" id="tab2-list-proc" class="tab-input-list-proc">
+    <input type="radio" name="tabs" id="tab3-list-proc" class="tab-input-list-proc">
 
-    <div class="tabs-header">
-        <label for="tab1" class="tab-label">Novo/Alterar</label>
-        <label for="tab2" class="tab-label">Plano de Formação</label>
-        <label for="tab3" class="tab-label">Documentos e Histórico</label>
+    <div class="tabs-header-list-proc">
+        <label for="tab1-list-proc" class="tab-label-list-proc">Novo/Alterar</label>
+        <label for="tab2-list-proc" class="tab-label-list-proc">Plano de Formação</label>
+        <label for="tab3-list-proc" class="tab-label-list-proc">Documentos e Histórico</label>
     </div>
 
-    <div id="content1" class="tab-content">
-        <div class="info-bar">
-            <span><span class="icone-i">i</span> <a href="https://infoalunos.uma.pt/modulos/creditacoes/html/creditacoes_precario.html?T=1767376008&TPESQ=PESQ_CREDITACOES_INFOEDICAO_NOVO&TPESQANT=PESQ_CREDITACOES_INFOEDICAO_NOVO&IDM=PT&IdCreditacaoProcesso=-1&NPAG=&NumAluno=2032624&ProcessoEstadoPesq=&ProcessoNumAlunoPesq=&ProcessoNomeAlunoPesq=&IdIdioma=1&SubmetidoNovoProcesso=&SubmetidoNovoProcessoComErro=&TORDANT=&CORDANT=&SCRANT=/modulos/creditacoes/index.php&NV_MOD=MOD_CREDITACOES&NV_EAGR=EAGR_CRDEDIT&NV_MOD_ANT=MOD_CREDITACOES&NV_EAGR_ANT=EAGR_CRDEDIT&NV_TAB=&NV_TAB_ANT=">[ Preçário ]</a></span>
-            <span>? <a href="https://infoalunos.uma.pt/modulos/creditacoes/html/creditacoes.html?T=1767376008&TPESQ=PESQ_CREDITACOES_INFOEDICAO_NOVO&TPESQANT=PESQ_CREDITACOES_INFOEDICAO_NOVO&IDM=PT&IdCreditacaoProcesso=-1&NPAG=&NumAluno=2032624&ProcessoEstadoPesq=&ProcessoNumAlunoPesq=&ProcessoNomeAlunoPesq=&IdIdioma=1&SubmetidoNovoProcesso=&SubmetidoNovoProcessoComErro=&TORDANT=&CORDANT=&SCRANT=/modulos/creditacoes/index.php&NV_MOD=MOD_CREDITACOES&NV_EAGR=EAGR_CRDEDIT&NV_MOD_ANT=MOD_CREDITACOES&NV_EAGR_ANT=EAGR_CRDEDIT&NV_TAB=&NV_TAB_ANT=">[ Ajuda e Descrição do Processo ]</a> <a href="lista_processos.html">[ Voltar à Lista ]</a></span>
+<div id="content1-list-proc" class="tab-content-list-proc">
+        <div class="info-bar-list-proc">
+            <span><span class="icone-i-list-proc">ℹ️</span> <a href="#">[ Preçário ]</a></span>
+            <span>ℹ️<a href="#">[ Ajuda e Descrição do Processo ]</a> <a href="lista_processos.html">[ Voltar à Lista ]</a> </span>
         </div>
 
-        <div style="text-align: right; margin-bottom: 10px;">
-            <button class="btn-guardar">Guardar Processo</button>
-        </div>
+    <div style="text-align: right; margin-bottom: 15px;">
+        <button class="btn-pesquisar-list-proc">Guardar Processo</button>
+    </div>
 
-        <div class="bloco-seccao">
-            <div class="grid-form">
-                <div class="coluna-campos">
-                    <div class="linha-form">
-                        <span class="label-fixa">Ano Letivo:*</span>
-                        <select>
-                            <option>2025/26</option>
-                        </select>
-                    </div>
-                    <div class="linha-form">
-                        <span class="label-fixa">Curso (a acreditar):*</span>
-                        <select>
-                            <option>Selecione o curso...</option>
-                        </select>
-                    </div>
-                    <div class="linha-form">
-                        <span class="label-fixa">Alterar Estado:</span>
-                        <select><option></option></select>
-                    </div>
+    <div class="bloco-seccao-list-proc">
+        <div class="grid-form-list-proc">
+            <div class="coluna-campos-list-proc">
+                <div class="linha-form-list-proc">
+                    <span class="label-fixa-list-proc">Ano Letivo:*</span>
+                    <select class="input-estilizado-list-proc">
+                        <option value="">2024/25</option>
+                        <option value="">2025/26</option>
+                        <option value="">2026/27</option>
+                    </select>
                 </div>
-                <div class="coluna-justificacao">
-                    <div class="linha-form" style="align-items: flex-start;">
-                        <span class="label-fixa">Justificação Actual:</span>
-                        <textarea style="height: 55px;"></textarea>
-                    </div>
+                <div class="linha-form-list-proc">
+                    <span class="label-fixa-list-proc">Curso:*</span>
+                    <select class="input-estilizado-list-proc">
+                        <option value="">Selecione o curso a acreditar...</option>
+                        <option value="">CTESP</option>
+                        <option value="">Egenharia Informatica</option>
+                    </select>
                 </div>
-            </div>
-        </div>
-
-        <div class="bloco-seccao">
-            <span class="titulo-negrito">1. Formação Académica Original</span>
-            <div class="grid-form" style="background: #f9f9f9; padding: 10px; border: 1px solid #eee;">
-                <div>
-                    <div class="linha-form">
-                        <span style="width: 40px;">Inst:</span>
-                        <input type="text">
-                    </div>
-                    <div class="linha-form">
-                        <span style="width: 40px;">UCurr:</span>
-                        <input type="text">
-                    </div>
+                <div class="linha-form-list-proc">
+                    <span class="label-fixa-list-proc">Alterar Estado:</span>
+                    <select class="input-estilizado-list-proc">
+                        <option value=""></option>
+                    </select>
                 </div>
-                <div>
-                    <div class="linha-form">
-                        <span style="width: 40px;">Curso:</span>
-                        <input type="text">
-                    </div>
-                    <div class="linha-form">
-                        <span style="width: 40px;">Prog:</span>
-                        <select><option></option></select>
-                    </div>
-                </div>
-            </div>
-            <p style="color: red; font-size: 10px; margin-top: 5px;">
-                "E": Formação Externa. Quando tem esta indicação a formação não é da Universidade da Madeira e deve ser verificada.
-            </p>
-        </div>
-
-        <div class="bloco-seccao">
-            <div class="linha-form">
-                <span class="label-fixa">Anexar Documento 1:</span>
-                <input type="file" style="background: none; border: none;">
-            </div>
-            <div class="linha-form">
-                <span class="label-fixa">Anexar Documento 2:</span>
-                <input type="file" style="background: none; border: none;">
             </div>
             
-            <div style="text-align: right; margin-top: 15px;">
-                <span style="font-size: 10px; margin-right: 15px;">Os campos assinalados com * são de preenchimento obrigatório.</span>
-                <button class="btn-guardar">Guardar Processo</button>
+            <div class="coluna-justificacao-list-proc">
+                <div class="linha-form-list-proc" style="align-items: flex-start;">
+                    <span class="label-fixa-list-proc">Justificação Actual:</span>
+                    <textarea class="input-estilizado-list-proc" style="height: 60px;"></textarea>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="content2" class="tab-content">
-        <div class="info-bar">
-            <span>ℹ️ <a href="#">[ Preçário ]</a></span>
-            <span>? <a href="#">[ Ajuda ]</a> <a href="#">[ Voltar ]</a></span>
+    <div class="bloco-seccao-list-proc">
+        <span class="titulo-negrito-list-proc">1. Formação Académica Original</span>
+        <div class="grid-form-list-proc" style="background-color: #fcfcfc;">
+            <div class="linha-form-list-proc">
+                <span style="width: 40px;">Inst:</span>
+                <input type="text" class="input-estilizado-list-proc">
+                <span style="margin-left: 10px;">Curso:</span>
+                <input type="text" class="input-estilizado-list-proc">
+            </div>
+            <div class="linha-form-list-proc">
+                <span>UCurr:</span>
+                <input type="text" class="input-estilizado-list-proc">
+                <span style="margin-left: 10px;">Prog:</span>
+                <select class="input-estilizado-list-proc"><option></option></select>
+            </div>
+            <div class="linha-form-list-proc">
+                <span>Unid:</span>
+                <input type="text" class="input-estilizado-list-proc">
+                <span style="margin-left: 10px;">class:</span>
+                <select class="input-estilizado-list-proc"><option></option></select>
+            </div>
+                <div class="linha-form-list-proc">
+                <span>Nivel:</span>
+                <input type="text" class="input-estilizado-list-proc">
+                <span style="margin-left: 10px;">Prog:</span>
+                <select class="input-estilizado-list-proc"><option></option></select>
+            </div>
         </div>
-        <div class="msg-erro">
-            <span class="icone-i">i</span> Sem resultados. Seleccione um processo de creditação.
+        <p style="color: red; font-size: 10px; margin-top: 5px;">
+            "E": Formação Externa. Quando tem esta indicação a formação não é da Universidade da Madeira e deve ser verificada.
+        </p>
+    </div>
+
+    <div class="bloco-seccao-list-proc">
+        <div class="linha-form-list-proc">
+            <span class="label-fixa-list-proc">Anexar Documento 1:</span>
+            <input type="file" style="font-size: 11px;">
+        </div>
+        <div class="linha-form-list-proc">
+            <span class="label-fixa-list-proc">Anexar Documento 2:</span>
+            <input type="file" style="font-size: 11px;">
+        </div>
+        
+        <div style="text-align: right; margin-top: 20px;">
+            <span style="font-size: 10px; margin-right: 20px;">Os campos assinalados com * são de preenchimento obrigatório.</span>
+            <button class="btn-pesquisar-list-proc">Guardar Processo</button>
+        </div>
+    </div>
+</div>
+
+    <div id="content2-list-proc" class="tab-content-list-proc">
+        <div class="info-bar-list-proc">
+            <span><span class="icone-i-list-proc">ℹ️</span> <a href="#">[ Preçário ]</a></span>
+            <span>ℹ️<a href="#">[ Ajuda e Descrição do Processo ]</a> <a href="lista_processos.html">[ Voltar à Lista ]</a> </span>
+        </div>
+        <div class="msg-erro-list-proc">
+            <span>ℹ️</span> Sem resultados. Seleccione um processo de creditação.
         </div>
     </div>
 
-    <div id="content3" class="tab-content">
-        <div class="info-bar">
-            <span>ℹ️ <a href="#">[ Preçário ]</a></span>
-            <span>? <a href="#">[ Ajuda ]</a> <a href="#">[ Voltar ]</a></span>
+    <div id="content3-list-proc" class="tab-content-list-proc">
+        <div class="info-bar-list-proc">
+            <span><span class="icone-i-list-proc">ℹ️</span> <a href="#">[ Preçário ]</a></span>
+            <span>ℹ️<a href="#">[ Ajuda e Descrição do Processo ]</a> <a href="lista_processos.html">[ Voltar à Lista ]</a> </span>
         </div>
-        <div class="grid-form">
+        <div class="grid-duo-list-proc">
             <div>
                 <strong>Histórico dos Estados do Processo</strong>
-                <p class="msg-erro">⚠️ Seleccione um processo.</p>
+                <p class="msg-erro-list-proc">⚠️</p>
             </div>
             <div>
-                <strong>Documentos Associados</strong>
-                <p class="msg-erro">ℹ️ Não foram encontrados ficheiros.</p>
+                <strong>Documentos Associados ao Processo</strong>
+                <p class="msg-erro-list-proc">ℹ️ Não foram encontrados ficheiros ou não seleccionou um processo.</p>
             </div>
         </div>
     </div>
 </div>
 
-</body>
 </body>
 </html>

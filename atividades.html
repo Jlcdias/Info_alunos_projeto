@@ -6,316 +6,340 @@
     <title>Atividades Académicas do Aluno</title>
 </head>
 <style>
-    .curso-atv-acad-container {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    border: 1px solid #d3d3d3;
-    padding: 15px 20px;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.curso-atv-acad-titulo {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.curso-atv-acad-content {
-    font-size: 12px;
-    line-height: 1.6;
-    color: #333;
-    text-align: justify; /* Para manter o alinhamento de bloco do print */
-}
-
-.curso-atv-acad-content p {
-    margin-bottom: 15px;
-}
-
-.curso-atv-acad-link {
-    color: #0055cc;
-    text-decoration: none;
-}
-
-.curso-atv-acad-link:hover {
-    text-decoration: underline;
-}
-
-.curso-atv-acad-flag {
-    font-size: 14px;
-    vertical-align: middle;
-    margin: 0 2px;
-}
-
-/* Responsividade para telemóveis */
-@media (max-width: 600px) {
-    .curso-atv-acad-container {
-        padding: 10px;
-    }
-    .curso-atv-acad-content {
-        text-align: left; /* Melhora leitura em telas pequenas */
-        font-size: 13px; /* Aumenta ligeiramente para toque/leitura mobile */
-    }
-}
-/* Espaçamento entre as divs principais */
-.curso-atv-acad-margin-top {
-    margin-top: 20px;
-}
-
-/* Estrutura de Linhas e Grelha */
-.curso-atv-acad-form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.curso-atv-acad-form-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.curso-atv-acad-column {
-    flex: 1 1 45%; /* Duas colunas em desktop */
-    min-width: 300px;
-}
-
-/* Campos Individuais */
-.curso-atv-acad-field {
-    margin-bottom: 10px;
-}
-
-.curso-atv-acad-flex-2 {
-    flex: 2 1 400px;
-}
-
-.curso-atv-acad-label {
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-/* Estilização dos Inputs (seguindo o tom azul claro da imagem) */
-.curso-atv-acad-input, 
-.curso-atv-acad-select, 
-.curso-atv-acad-textarea {
-    width: 100%;
-    padding: 4px;
-    border: 1px solid #ababab;
-    background-color: #e8f0fe; /* Fundo azulado conforme o print */
-    font-size: 13px;
-    box-sizing: border-box;
-}
-
-.curso-atv-acad-textarea {
-    height: 60px;
-    resize: vertical;
-}
-
-/* Ajuste Mobile */
-@media (max-width: 768px) {
-    .curso-atv-acad-column {
-        flex: 1 1 100%; /* Uma coluna em telemóvel */
-    }
-    
-    .curso-atv-acad-form-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .curso-atv-acad-form-row {
-        display: block; /* Remove o flex horizontal para evitar espaços vazios */
+    /* Estilo base isolado */
+    .atv-acad-body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
 
-    .curso-atv-acad-field {
-        width: 100%;
-        margin-bottom: 15px; /* Espaço uniforme apenas entre campos */
+    /* Box sizing global para facilitar responsividade */
+    * { box-sizing: border-box; }
+
+    .atv-acad-container {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        border: 1px solid #d3d3d3;
+        padding: 15px 20px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
-    .curso-atv-acad-label {
-        margin-bottom: 2px; /* Aproxima a label do respetivo input */
-        width: 100%;
+    .atv-acad-titulo {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        margin-top: 0;
+        margin-bottom: 15px;
     }
 
-    .curso-atv-acad-input, 
-    .curso-atv-acad-select, 
-    .curso-atv-acad-textarea {
+    .atv-acad-content {
+        font-size: 12px;
+        line-height: 1.6;
+        color: #333;
+        text-align: justify;
+    }
+
+    .atv-acad-content p {
+        margin-bottom: 15px;
+    }
+
+    .atv-acad-link {
+        color: #0055cc;
+        text-decoration: none;
+    }
+
+    .atv-acad-link:hover {
+        text-decoration: underline;
+    }
+
+    .atv-acad-flag {
+        font-size: 14px;
+        vertical-align: middle;
+        margin: 0 2px;
+    }
+
+    /* Responsividade para telemóveis */
+    @media (max-width: 600px) {
+        .atv-acad-container {
+            padding: 10px;
+        }
+        .atv-acad-content {
+            text-align: left;
+            font-size: 13px;
+        }
+    }
+
+    /* Espaçamento entre as divs principais */
+    .atv-acad-margin-top {
+        margin-top: 20px;
+    }
+
+    /* Estrutura de Linhas e Grelha */
+    .atv-acad-form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .atv-acad-form-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .atv-acad-column {
+        flex: 1 1 45%; /* Duas colunas em desktop */
+        min-width: 200px; /* Permitir encolher mais em ecrãs pequenos */
+    }
+
+    /* Campos Individuais */
+    .atv-acad-field {
+        margin-bottom: 10px;
+    }
+
+    .atv-acad-flex-2 {
+        flex: 2 1 400px;
+    }
+
+    .atv-acad-label {
         display: block;
-        width: 100% !important; /* Força o preenchimento total da largura */
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 4px;
     }
 
+    /* Estilização dos Inputs */
+    .atv-acad-input, 
+    .atv-acad-select, 
+    .atv-acad-textarea {
+        width: 100%;
+        min-width: 0;
+        padding: 4px;
+        border: 1px solid #ababab;
+        background-color: #e8f0fe; /* Fundo azulado */
+        font-size: 13px;
+        box-sizing: border-box;
+    }
 
-}
+    .atv-acad-textarea {
+        height: 60px;
+        resize: vertical;
+    }
+
+    /* Ajuste Mobile */
+    @media (max-width: 768px) {
+        .atv-acad-column {
+            flex: 1 1 100%;
+            min-width: auto; /* Permite encolher sem causar overflow */
+        }
+        
+        .atv-acad-form-row {
+            flex-direction: column;
+            gap: 10px;
+            display: block; 
+        }
+
+        .atv-acad-field {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .atv-acad-label {
+            margin-bottom: 2px;
+            width: 100%;
+        }
+
+        .atv-acad-input, 
+        .atv-acad-select, 
+        .atv-acad-textarea {
+            display: block;
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        .atv-acad-textarea { height: 80px; }
+        .atv-acad-titulo { font-size: 15px; }
+    }
+
+    @media (max-width: 480px) {
+        .atv-acad-container { padding: 10px; }
+        .atv-acad-textarea { height: 100px; }
+        .atv-acad-titulo { font-size: 14px; }
+    }
 </style>
-<body>
-    <div class="curso-atv-acad-container">
-    <h3 class="curso-atv-acad-titulo">Editar Actividade Académicas do Aluno</h3>
-    
-    <div class="curso-atv-acad-content">
-        <p>
-            Nesta área o aluno deve introduzir, caso existam, as actividades académicas (no máximo de cinco, de acordo com a Recomendação nº4/2008 do CRUP) 
-            em que esteve envolvido de modo a que possam ser incluídas no Suplemento ao Diploma (apenas para os cursos adaptados a Bolonha). 
-            As actividades são descritas em Português <span class="curso-atv-acad-flag">🇵🇹</span> e Inglês <span class="curso-atv-acad-flag">🇬🇧</span> devendo ser entregues, posteriormente, ao Director de Curso os documentos comprovativos das mesmas.
-        </p>
+<body class="atv-acad-body">
+
+    <div class="atv-acad-container">
+        <h3 class="atv-acad-titulo">Editar Actividade Académicas do Aluno</h3>
         
-        <p>
-            No Sidoc (<a href="https://sidoc.uma.pt" class="curso-atv-acad-link">https://sidoc.uma.pt</a>) o Director de Curso, a partir dos documentos entregues, confirma as actividades introduzidas pelo aluno bloqueando-as, remetendo em seguida os documentos para o Sector Académico, onde serão anexados ao respectivo processo.
-        </p>
+        <div class="atv-acad-content">
+            <p>
+                Nesta área o aluno deve introduzir, caso existam, as actividades académicas (no máximo de cinco, de acordo com a Recomendação nº4/2008 do CRUP) 
+                em que esteve envolvido de modo a que possam ser incluídas no Suplemento ao Diploma (apenas para os cursos adaptados a Bolonha). 
+                As actividades são descritas em Português <span class="atv-acad-flag">🇵🇹</span> e Inglês <span class="atv-acad-flag">🇬🇧</span> devendo ser entregues, posteriormente, ao Director de Curso os documentos comprovativos das mesmas.
+            </p>
+            
+            <p>
+                No Sidoc (<a href="https://sidoc.uma.pt" class="atv-acad-link">https://sidoc.uma.pt</a>) o Director de Curso, a partir dos documentos entregues, confirma as actividades introduzidas pelo aluno bloqueando-as, remetendo em seguida os documentos para o Sector Académico, onde serão anexados ao respectivo processo.
+            </p>
+            
+            <p>
+                Posteriormente o Sector Académico, antes de emitir o Suplemento ao Diploma, valida as actividades confirmadas pelo Director de Curso.
+            </p>
+        </div>
+    </div>
+
+    <div class="atv-acad-container atv-acad-margin-top">
+        <h3 class="atv-acad-titulo">Actividade 1</h3>
         
-        <p>
-            Posteriormente o Sector Académico, antes de emitir o Suplemento ao Diploma, valida as actividades confirmadas pelo Director de Curso.
-        </p>
-    </div>
-</div>
-<div class="curso-atv-acad-container curso-atv-acad-margin-top">
-    <h3 class="curso-atv-acad-titulo">Actividade 1</h3>
-    
-    <div class="curso-atv-acad-form-row">
-        <div class="curso-atv-acad-field curso-atv-acad-flex-2">
-            <label class="curso-atv-acad-label">Tipo de Actividade:</label>
-            <select class="curso-atv-acad-select">
-                <option value=""></option>
-                <option value="">Académico</option>
-                <option value="">Cargo Académico</option>
-                <option value="">Atividades Desportivas(Associadas a UMA)</option>
-                <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
-            </select>
+        <div class="atv-acad-form-row">
+            <div class="atv-acad-field atv-acad-flex-2">
+                <label class="atv-acad-label">Tipo de Actividade:</label>
+                <select class="atv-acad-select">
+                    <option value=""></option>
+                    <option value="">Académico</option>
+                    <option value="">Cargo Académico</option>
+                    <option value="">Atividades Desportivas(Associadas a UMA)</option>
+                    <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
+                </select>
+            </div>
+            
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Início (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
+            </div>
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Fim (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
+            </div>
         </div>
+
+        <div class="atv-acad-form-grid">
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (PT) 🇵🇹</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (PT)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (EN) 🇬🇧</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (EN)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="atv-acad-container atv-acad-margin-top">
+        <h3 class="atv-acad-titulo">Actividade 2</h3>
         
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Início (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
+        <div class="atv-acad-form-row">
+            <div class="atv-acad-field atv-acad-flex-2">
+                <label class="atv-acad-label">Tipo de Actividade:</label>
+                <select class="atv-acad-select">
+                    <option value=""></option>
+                    <option value="">Académico</option>
+                    <option value="">Cargo Académico</option>
+                    <option value="">Atividades Desportivas(Associadas a UMA)</option>
+                    <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
+                </select>
+            </div>
+            
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Início (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
+            </div>
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Fim (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
+            </div>
         </div>
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Fim (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
+
+        <div class="atv-acad-form-grid">
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (PT) 🇵🇹</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (PT)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (EN) 🇬🇧</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (EN)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="curso-atv-acad-form-grid">
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (PT) 🇵🇹</label>
-                <input type="text" class="curso-atv-acad-input">
-            </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (PT)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
-            </div>
-        </div>
-
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (EN) 🇬🇧</label>
-                <input type="text" class="curso-atv-acad-input">
-            </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (EN)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="curso-atv-acad-container curso-atv-acad-margin-top">
-    <h3 class="curso-atv-acad-titulo">Actividade 2</h3>
-    
-    <div class="curso-atv-acad-form-row">
-        <div class="curso-atv-acad-field curso-atv-acad-flex-2">
-            <label class="curso-atv-acad-label">Tipo de Actividade:</label>
-            <select class="curso-atv-acad-select">
-                <option value=""></option>
-                <option value="">Académico</option>
-                <option value="">Cargo Académico</option>
-                <option value="">Atividades Desportivas(Associadas a UMA)</option>
-                <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
-            </select>
-        </div>
+    <div class="atv-acad-container atv-acad-margin-top">
+        <h3 class="atv-acad-titulo">Actividade 3</h3>
         
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Início (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
-        </div>
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Fim (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
-        </div>
-    </div>
-
-    <div class="curso-atv-acad-form-grid">
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (PT) 🇵🇹</label>
-                <input type="text" class="curso-atv-acad-input">
+        <div class="atv-acad-form-row">
+            <div class="atv-acad-field atv-acad-flex-2">
+                <label class="atv-acad-label">Tipo de Actividade:</label>
+                <select class="atv-acad-select">
+                    <option value=""></option>
+                    <option value="">Académico</option>
+                    <option value="">Cargo Académico</option>
+                    <option value="">Atividades Desportivas(Associadas a UMA)</option>
+                    <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
+                </select>
             </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (PT)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
+            
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Início (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
             </div>
-        </div>
-
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (EN) 🇬🇧</label>
-                <input type="text" class="curso-atv-acad-input">
-            </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (EN)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="curso-atv-acad-container curso-atv-acad-margin-top">
-    <h3 class="curso-atv-acad-titulo">Actividade 3</h3>
-    
-    <div class="curso-atv-acad-form-row">
-        <div class="curso-atv-acad-field curso-atv-acad-flex-2">
-            <label class="curso-atv-acad-label">Tipo de Actividade:</label>
-            <select class="curso-atv-acad-select">
-                <option value=""></option>
-                <option value="">Académico</option>
-                <option value="">Cargo Académico</option>
-                <option value="">Atividades Desportivas(Associadas a UMA)</option>
-                <option value="">Atividades de Voluntariado(Associadas a UMA)</option>
-            </select>
-        </div>
-        
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Início (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
-        </div>
-        <div class="curso-atv-acad-field">
-            <label class="curso-atv-acad-label">Data Fim (AAAA-MM-DD)</label>
-            <input type="text" class="curso-atv-acad-input">
-        </div>
-    </div>
-
-    <div class="curso-atv-acad-form-grid">
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (PT) 🇵🇹</label>
-                <input type="text" class="curso-atv-acad-input">
-            </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (PT)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
+            <div class="atv-acad-field">
+                <label class="atv-acad-label">Data Fim (AAAA-MM-DD)</label>
+                <input type="text" class="atv-acad-input">
             </div>
         </div>
 
-        <div class="curso-atv-acad-column">
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Local (EN) 🇬🇧</label>
-                <input type="text" class="curso-atv-acad-input">
+        <div class="atv-acad-form-grid">
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (PT) 🇵🇹</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (PT)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
             </div>
-            <div class="curso-atv-acad-field">
-                <label class="curso-atv-acad-label">Descrição (EN)</label>
-                <textarea class="curso-atv-acad-textarea"></textarea>
+
+            <div class="atv-acad-column">
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Local (EN) 🇬🇧</label>
+                    <input type="text" class="atv-acad-input">
+                </div>
+                <div class="atv-acad-field">
+                    <label class="atv-acad-label">Descrição (EN)</label>
+                    <textarea class="atv-acad-textarea"></textarea>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
 </body>
 </html>

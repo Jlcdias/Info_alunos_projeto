@@ -424,7 +424,30 @@
 .disciplina-btn-footer{
     border-radius: 10%;
 }
-</style>
+/* Responsividade global */
+* { box-sizing: border-box; }
+.disciplina-wrapper { width: 100%; max-width: 1000px; padding: 10px; box-sizing: border-box; }
+.disciplina-select { min-width: 0; max-width: 100%; width: 100%; }
+.disciplina-linha { gap: 10px; }
+.disciplina-btn-pesquisar, .disciplina-btn-footer, .disciplina-button-ui { min-width: 0; }
+.disciplina-tab-menu { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.disciplina-tab-item { flex: 0 0 auto; min-width: 110px; }
+.disciplina-grid-objetivos, .disciplina-grid-layout { grid-template-columns: 1fr; }
+.gray-box { min-height: auto; }
+.disciplina-tabela-wrapper { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+.disciplina-tabela, .disciplina-tabela-programa, .disciplina-tabela-docentes, .disciplina-tabela-documentos { min-width: 640px; }
+
+@media (max-width: 600px) {
+  .disciplina-linha { flex-direction: column; align-items: stretch; }
+  .field-ano, .field-full { width: 100%; }
+  .disciplina-btn-pesquisar, .disciplina-btn-footer, .disciplina-button-ui { width: 100%; display: block; margin-top: 8px; }
+  .disciplina-titulo { font-size: 14px; }
+  .gray-box { min-height: 80px; padding: 10px; }
+  .disciplina-card-info h4 { font-size: 14px; }
+  .disciplina-tabela th, .disciplina-tabela td, .disciplina-tabela-programa td, .disciplina-tabela-programa th, .disciplina-tabela-docentes td, .disciplina-tabela-docentes th, .disciplina-tabela-documentos td, .disciplina-tabela-documentos th { font-size: 12px; padding: 6px; }
+  .disciplina-grid-objetivos { gap: 12px; }
+  .disciplina-link-gestao { flex-direction: column; align-items: flex-start; gap: 8px; }
+}</style>
 <body>
     <div class="disciplina-wrapper">
   
@@ -474,8 +497,7 @@
   </div>
 
   <div class="disciplina-bloco-lista">
-    <h3 class="disciplina-titulo">Lista de Disciplinas</h3>
-    <table class="disciplina-tabela">
+    <h3 class="disciplina-titulo">Lista de Disciplinas</h3>    <div class="disciplina-tabela-wrapper">    <table class="disciplina-tabela">
       <thead>
         <tr>
           <th>AL</th>
@@ -501,6 +523,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <div class="disciplina-legenda">
       AL - Ano Lectivo | ALP - Ano Lectivo do Plano | S - Semestre | UC - Unidades de Crédito | CH - Carga Horária
     </div>
@@ -609,6 +632,7 @@
 
   <h4 class="disciplina-titulo">Conteúdo Programático:</h4>
   
+  <div class="disciplina-tabela-wrapper">
   <table class="disciplina-tabela-programa">
     <thead>
       <tr>
@@ -690,9 +714,10 @@
       </tr>
     </tbody>
   </table>
+  </div>
 
   </div>
-</div>
+</div> 
     
 <div class="disciplina-pane pane-4">
 <div class="disciplina-grid-objetivos">
@@ -727,6 +752,7 @@
     <div class="disciplina-pane pane-5">
 <h4 class="disciplina-titulo-tabela">Corpo Docente</h4>
   
+  <div class="disciplina-tabela-wrapper">
   <table class="disciplina-tabela-docentes">
     <thead>
       <tr>
@@ -782,6 +808,7 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>
 <div class="disciplina-pane pane-6">
             <div class="disciplina-filtro-container">
@@ -803,6 +830,7 @@
     </div>
   </div>
 
+  <div class="disciplina-tabela-wrapper">
   <table class="disciplina-tabela-documentos">
     <thead>
       <tr>
@@ -839,7 +867,7 @@
       </tr>
       </tbody>
   </table>
-        </div>
+  </div>
     <div class="disciplina-tab-footer">
       <label>Relatório a imprimir</label>
       <select class="disciplina-select-footer">

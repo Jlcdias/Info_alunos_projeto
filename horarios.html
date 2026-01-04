@@ -7,20 +7,20 @@
 </head>
 <style>
 /* 1. Contentor Principal e Fontes */
-.curso-horario-container {
+.hor-curso-horario-container {
     font-family: Arial, sans-serif;
     padding: 10px;
 }
 
 /* 2. Navegação (Hoje e Meses) */
-.curso-horario-nav-row {
+.hor-curso-horario-nav-row {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
 }
 
-.curso-horario-btn-hoje {
+.hor-curso-horario-btn-hoje {
     padding: 6px 16px;
     border: 1px solid #ccc;
     background: white;
@@ -28,19 +28,19 @@
     cursor: pointer;
 }
 
-.curso-horario-mes-selector {
+.hor-curso-horario-mes-selector {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.curso-horario-mes-item {
+.hor-curso-horario-mes-item {
     display: none; /* Escondido por padrão, controlado pelos rádios */
     align-items: center;
     gap: 10px;
 }
 
-.curso-horario-btn-seta {
+.hor-curso-horario-btn-seta {
     width: 30px;
     height: 30px;
     border: 1px solid #ccc;
@@ -55,19 +55,19 @@
     user-select: none;
 }
 
-.curso-horario-btn-seta.disabled {
+.hor-curso-horario-btn-seta.hor-disabled {
     opacity: 0.3;
     cursor: not-allowed;
 }
 
 /* 3. Tabs (Aulas / Avaliação) */
-.curso-horario-tabs-row {
+.hor-curso-horario-tabs-row {
     display: flex;
     gap: 8px;
     margin-bottom: 20px;
 }
 
-.curso-horario-tab-label {
+.hor-curso-horario-tab-label {
     padding: 8px 20px;
     border: 1px solid #0066cc;
     color: #0066cc;
@@ -78,37 +78,33 @@
 }
 
 /* 4. Lógica de Visibilidade (Radios) */
-.curso-horario-logic, 
-.curso-horario-logic-mes, 
-.curso-horario-logic-aba { 
+.hor-curso-horario-logic, 
+.hor-curso-horario-logic-mes, 
+.hor-curso-horario-logic-aba { 
     display: none; 
 }
 
-/* Troca de Meses */
-#mes-jan:checked ~ .curso-horario-nav-row #nav-jan { display: flex; }
-#mes-fev:checked ~ .curso-horario-nav-row #nav-fev { display: flex; }
-#mes-mar:checked ~ .curso-horario-nav-row #nav-mar { display: flex; }
-#mes-abr:checked ~ .curso-horario-nav-row #nav-abr { display: flex; }
+/* Troca de Meses - Seletores atualizados com IDs hor- */
+#hor-mes-jan:checked ~ .hor-curso-horario-nav-row #hor-nav-jan { display: flex; }
+#hor-mes-fev:checked ~ .hor-curso-horario-nav-row #hor-nav-fev { display: flex; }
+#hor-mes-mar:checked ~ .hor-curso-horario-nav-row #hor-nav-mar { display: flex; }
+#hor-mes-abr:checked ~ .hor-curso-horario-nav-row #hor-nav-abr { display: flex; }
 
 /* Troca de Abas e Botão Ativo */
-.curso-horario-view { display: none; }
+.hor-curso-horario-view { display: none; }
 
-#aba-aulas:checked ~ .curso-horario-content .view-aulas,
-#curso-horario-radio-aulas:checked ~ #curso-horario-view-aulas { display: block; }
+#hor-aba-aulas:checked ~ .hor-curso-horario-content .hor-view-aulas { display: block; }
+#hor-aba-aval:checked ~ .hor-curso-horario-content .hor-view-aval { display: block; }
 
-#aba-aval:checked ~ .curso-horario-content .view-aval,
-#curso-horario-radio-aval:checked ~ #curso-horario-view-aval { display: block; }
-
-#aba-aulas:checked ~ .curso-horario-tabs-row label[for="aba-aulas"],
-#curso-horario-radio-aulas:checked ~ .curso-horario-tabs-row label[for="curso-horario-radio-aulas"],
-#aba-aval:checked ~ .curso-horario-tabs-row label[for="aba-aval"],
-#curso-horario-radio-aval:checked ~ .curso-horario-tabs-row label[for="curso-horario-radio-aval"] {
+/* Estilo do botão ativo */
+#hor-aba-aulas:checked ~ .hor-curso-horario-tabs-row label[for="hor-aba-aulas"],
+#hor-aba-aval:checked ~ .hor-curso-horario-tabs-row label[for="hor-aba-aval"] {
     background-color: #0066cc;
     color: white;
 }
 
 /* 5. Scroll e Tabela (O Coração do Horário) */
-.curso-horario-scroll {
+.hor-curso-horario-scroll {
     overflow: auto;
     max-height: 600px; /* Ativa o scroll vertical */
     border: 1px solid #e0e0e0;
@@ -117,13 +113,13 @@
     position: relative;
 }
 
-.curso-horario-tabela {
+.hor-curso-horario-tabela {
     width: 100%;
     border-collapse: collapse;
     min-width: 900px;
 }
 
-.curso-horario-tabela thead th {
+.hor-curso-horario-tabela thead th {
     position: sticky;
     top: 0;
     background-color: white;
@@ -132,7 +128,7 @@
     padding: 15px 5px;
 }
 
-.curso-horario-hora {
+.hor-curso-horario-hora {
     position: sticky;
     left: 0;
     background-color: #fdfdfd;
@@ -142,15 +138,15 @@
     font-size: 11px;
 }
 
-.curso-horario-tabela td {
+.hor-curso-horario-tabela td {
     border: 1px solid #f0f0f0;
     height: 35px;
     vertical-align: top;
     padding: 2px;
 }
 
-/* 6. Cards e Cores (Igual ao teu print) */
-.curso-horario-card {
+/* 6. Cards e Cores */
+.hor-curso-horario-card {
     border-radius: 6px;
     padding: 8px;
     color: white;
@@ -159,15 +155,16 @@
     box-sizing: border-box;
 }
 
-.bg-turquesa { background-color: #72cfd5; }
-.bg-turquesa-escuro { background-color: #4db6ac; }
-.bg-coral { background-color: #e57373; }
-.bg-coral-claro { background-color: #ef9a9a; }
-.bg-amarelo { background-color: #ffb74d; }
-.bg-roxo { background-color: #7986cb; }
-.bg-azul-forte { background-color: #42a5f5; }
+.hor-bg-turquesa { background-color: #72cfd5; }
+.hor-bg-turquesa-escuro { background-color: #4db6ac; }
+.hor-bg-coral { background-color: #e57373; }
+.hor-bg-coral-claro { background-color: #ef9a9a; }
+.hor-bg-amarelo { background-color: #ffb74d; }
+.hor-bg-roxo { background-color: #7986cb; }
+.hor-bg-azul-forte { background-color: #42a5f5; }
+
 /* Títulos de Data */
-.curso-horario-data-title {
+.hor-curso-horario-data-title {
     font-size: 14px;
     font-weight: bold;
     margin: 20px 0 10px 0;
@@ -176,7 +173,7 @@
 }
 
 /* Card de Avaliação */
-.curso-horario-aval-card {
+.hor-curso-horario-aval-card {
     display: flex;
     align-items: center;
     background-color: #f4f7f8;
@@ -187,7 +184,7 @@
 }
 
 /* Ícone Lateral */
-.curso-horario-aval-icon {
+.hor-curso-horario-aval-icon {
     width: 45px;
     height: 45px;
     border: 2px solid;
@@ -199,83 +196,110 @@
 }
 
 /* Informação da Avaliação */
-.curso-horario-aval-info strong {
+.hor-curso-horario-aval-info strong {
     display: block;
     font-size: 13px;
     color: #333;
     margin-bottom: 4px;
 }
 
-.curso-horario-aval-info p {
+.hor-curso-horario-aval-info p {
     margin: 0;
     font-size: 13px;
     color: #555;
     margin-bottom: 4px;
 }
 
-.curso-horario-aval-info small {
+.hor-curso-horario-aval-info small {
     color: #777;
     font-size: 11px;
 }
 
 /* Cores das Bordas e Ícones */
-.border-turquesa { border-left: 5px solid #72cfd5; }
-.icon-turquesa { color: #72cfd5; border-color: #72cfd5; }
+.hor-border-turquesa { border-left: 5px solid #72cfd5; }
+.hor-icon-turquesa { color: #72cfd5; border-color: #72cfd5; }
 
-.border-roxo { border-left: 5px solid #7986cb; }
-.icon-roxo { color: #7986cb; border-color: #7986cb; }
+.hor-border-roxo { border-left: 5px solid #7986cb; }
+.hor-icon-roxo { color: #7986cb; border-color: #7986cb; }
 
-.border-coral { border-left: 5px solid #e57373; }
-.icon-coral { color: #e57373; border-color: #e57373; }
+.hor-border-coral { border-left: 5px solid #e57373; }
+.hor-icon-coral { color: #e57373; border-color: #e57373; }
+
+/* Responsividade */
+* { box-sizing: border-box; }
+.hor-curso-horario-container { width: 100%; max-width: 1000px; padding: 10px; box-sizing: border-box; }
+.hor-curso-horario-scroll { overflow: auto; overflow-x: auto; -webkit-overflow-scrolling: touch; max-height: 60vh; }
+.hor-curso-horario-mes-texto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; display: inline-block; }
+
+/* Ensure nav and tabs can wrap if needed */
+.hor-curso-horario-nav-row, .hor-curso-horario-mes-selector, .hor-curso-horario-tabs-row { flex-wrap: wrap; }
+
+@media (max-width: 600px) {
+    .hor-curso-horario-nav-row { flex-direction: column; align-items: stretch; gap: 8px; }
+    .hor-curso-horario-mes-selector { flex-direction: row; align-items: center; justify-content: space-between; }
+    .hor-curso-horario-btn-hoje, .hor-curso-horario-btn-seta, .hor-curso-horario-tab-label { width: 100%; }
+    .hor-curso-horario-tab-label { padding: 10px; font-size: 13px; text-align: center; }
+    .hor-curso-horario-tabela { min-width: 720px; font-size: 12px; }
+    .hor-curso-horario-tabela thead th { padding: 10px 6px; font-size: 12px; }
+    .hor-curso-horario-tabela td { padding: 6px 4px; height: auto; }
+    .hor-curso-horario-hora { position: sticky; left: 0; z-index: 6; min-width: 44px; font-size: 11px; }
+    .hor-curso-horario-card { font-size: 12px; padding: 6px; }
+    .hor-curso-horario-aval-card { flex-direction: column; align-items: stretch; padding: 12px; gap: 12px; }
+    .hor-curso-horario-aval-icon { width: 40px; height: 40px; margin-right: 0; border-radius: 6px; }
+    .hor-curso-horario-aval-info strong { font-size: 13px; }
+    .hor-curso-horario-data-title { font-size: 13px; }
+}
 </style>
-<div class="curso-horario-container">
-    <input type="radio" name="curso-horario-mes" id="mes-jan" class="curso-horario-logic-mes" checked>
-    <input type="radio" name="curso-horario-mes" id="mes-fev" class="curso-horario-logic-mes">
-    <input type="radio" name="curso-horario-mes" id="mes-mar" class="curso-horario-logic-mes">
-    <input type="radio" name="curso-horario-mes" id="mes-abr" class="curso-horario-logic-mes">
+<body>
 
-    <input type="radio" name="curso-horario-aba" id="aba-aulas" class="curso-horario-logic-aba" >
-    <input type="radio" name="curso-horario-aba" id="aba-aval" class="curso-horario-logic-aba"checked>
+<div class="hor-curso-horario-container">
+    <input type="radio" name="hor-curso-horario-mes" id="hor-mes-jan" class="hor-curso-horario-logic-mes" checked>
+    <input type="radio" name="hor-curso-horario-mes" id="hor-mes-fev" class="hor-curso-horario-logic-mes">
+    <input type="radio" name="hor-curso-horario-mes" id="hor-mes-mar" class="hor-curso-horario-logic-mes">
+    <input type="radio" name="hor-curso-horario-mes" id="hor-mes-abr" class="hor-curso-horario-logic-mes">
 
-    <div class="curso-horario-nav-row">
-        <button type="button" class="curso-horario-btn-hoje">Hoje</button>
-        <div class="curso-horario-mes-selector">
-            <div class="curso-horario-mes-item" id="nav-jan">
-                <span class="curso-horario-btn-seta disabled">&lt;</span>
-                <span class="curso-horario-mes-texto">Janeiro 2026</span>
-                <label for="mes-fev" class="curso-horario-btn-seta">&gt;</label>
+    <input type="radio" name="hor-curso-horario-aba" id="hor-aba-aulas" class="hor-curso-horario-logic-aba">
+    <input type="radio" name="hor-curso-horario-aba" id="hor-aba-aval" class="hor-curso-horario-logic-aba" checked>
+
+    <div class="hor-curso-horario-nav-row">
+        <button type="button" class="hor-curso-horario-btn-hoje">Hoje</button>
+        <div class="hor-curso-horario-mes-selector">
+            <div class="hor-curso-horario-mes-item" id="hor-nav-jan">
+                <span class="hor-curso-horario-btn-seta hor-disabled">&lt;</span>
+                <span class="hor-curso-horario-mes-texto">Janeiro 2026</span>
+                <label for="hor-mes-fev" class="hor-curso-horario-btn-seta">&gt;</label>
             </div>
-            <div class="curso-horario-mes-item" id="nav-fev">
-                <label for="mes-jan" class="curso-horario-btn-seta">&lt;</label>
-                <span class="curso-horario-mes-texto">Fevereiro 2026</span>
-                <label for="mes-mar" class="curso-horario-btn-seta">&gt;</label>
+            <div class="hor-curso-horario-mes-item" id="hor-nav-fev">
+                <label for="hor-mes-jan" class="hor-curso-horario-btn-seta">&lt;</label>
+                <span class="hor-curso-horario-mes-texto">Fevereiro 2026</span>
+                <label for="hor-mes-mar" class="hor-curso-horario-btn-seta">&gt;</label>
             </div>
-            <div class="curso-horario-mes-item" id="nav-mar">
-                <label for="mes-fev" class="curso-horario-btn-seta">&lt;</label>
-                <span class="curso-horario-mes-texto">Março 2026</span>
-                <label for="mes-abr" class="curso-horario-btn-seta">&gt;</label>
+            <div class="hor-curso-horario-mes-item" id="hor-nav-mar">
+                <label for="hor-mes-fev" class="hor-curso-horario-btn-seta">&lt;</label>
+                <span class="hor-curso-horario-mes-texto">Março 2026</span>
+                <label for="hor-mes-abr" class="hor-curso-horario-btn-seta">&gt;</label>
             </div>
-            <div class="curso-horario-mes-item" id="nav-abr">
-                <label for="mes-mar" class="curso-horario-btn-seta">&lt;</label>
-                <span class="curso-horario-mes-texto">Abril 2026</span>
-                <span class="curso-horario-btn-seta disabled">&gt;</span>
+            <div class="hor-curso-horario-mes-item" id="hor-nav-abr">
+                <label for="hor-mes-mar" class="hor-curso-horario-btn-seta">&lt;</label>
+                <span class="hor-curso-horario-mes-texto">Abril 2026</span>
+                <span class="hor-curso-horario-btn-seta hor-disabled">&gt;</span>
             </div>
         </div>
     </div>
 
-    <div class="curso-horario-tabs-row">
-        <label for="aba-aulas" class="curso-horario-tab-label">Aulas</label>
-        <label for="aba-aval" class="curso-horario-tab-label">Avaliação</label>
+    <div class="hor-curso-horario-tabs-row">
+        <label for="hor-aba-aulas" class="hor-curso-horario-tab-label">Aulas</label>
+        <label for="hor-aba-aval" class="hor-curso-horario-tab-label">Avaliação</label>
     </div>
 
-    <div class="curso-horario-content">
+    <div class="hor-curso-horario-content">
         
-        <div class="curso-horario-view view-aulas">
-            <div class="curso-horario-scroll">
-                <table class="curso-horario-tabela">
+        <div class="hor-curso-horario-view hor-view-aulas">
+            <div class="hor-curso-horario-scroll">
+                <table class="hor-curso-horario-tabela">
                     <thead>
                         <tr>
-                            <th class="curso-horario-col-hora"></th>
+                            <th class="hor-curso-horario-col-hora"></th>
                             <th>05<br><small>SEGUNDA-FEIRA</small></th>
                             <th>06<br><small>TERÇA-FEIRA</small></th>
                             <th>07<br><small>QUARTA-FEIRA</small></th>
@@ -285,110 +309,110 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="curso-horario-hora">09:00</td>
-                            <td rowspan="8"><div class="curso-horario-card bg-turquesa"><strong>Introdução à Programação</strong><p>09:00-13:00</p></div></td>
-                            <td rowspan="2"><div class="curso-horario-card bg-coral"><strong>Design Hipermédia</strong><p>09:00-10:00</p></div></td>
+                            <td class="hor-curso-horario-hora">09:00</td>
+                            <td rowspan="8"><div class="hor-curso-horario-card hor-bg-turquesa"><strong>Introdução à Programação</strong><p>09:00-13:00</p></div></td>
+                            <td rowspan="2"><div class="hor-curso-horario-card hor-bg-coral"><strong>Design Hipermédia</strong><p>09:00-10:00</p></div></td>
                             <td></td><td></td>
-                            <td rowspan="6"><div class="curso-horario-card bg-turquesa-escuro"><strong>Introdução à Programação</strong><p>08:00-12:00</p></div></td>
+                            <td rowspan="6"><div class="hor-curso-horario-card hor-bg-turquesa-escuro"><strong>Introdução à Programação</strong><p>08:00-12:00</p></div></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">09:30</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">09:30</td><td></td><td></td></tr>
                         <tr>
-                            <td class="curso-horario-hora">10:00</td>
-                            <td rowspan="4"><div class="curso-horario-card bg-coral-claro"><strong>Design Hipermédia</strong><p>10:00-12:00</p></div></td>
+                            <td class="hor-curso-horario-hora">10:00</td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-coral-claro"><strong>Design Hipermédia</strong><p>10:00-12:00</p></div></td>
                             <td></td><td></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">10:30</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">10:30</td><td></td><td></td></tr>
                         <tr>
-                            <td class="curso-horario-hora">11:00</td>
+                            <td class="hor-curso-horario-hora">11:00</td>
                             <td></td>
-                            <td rowspan="4"><div class="curso-horario-card bg-amarelo"><strong>Sistemas Operativos e Redes</strong><p>11:00-13:00</p></div></td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-amarelo"><strong>Sistemas Operativos e Redes</strong><p>11:00-13:00</p></div></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">11:30</td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">12:00</td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">12:30</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">11:30</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">12:00</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">12:30</td><td></td><td></td><td></td><td></td></tr>
                     
-                        <tr><td class="curso-horario-hora">13:00</td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">13:30</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">13:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">13:30</td><td></td><td></td><td></td><td></td><td></td></tr>
                         <tr>
-                            <td class="curso-horario-hora">14:00</td>
+                            <td class="hor-curso-horario-hora">14:00</td>
                             <td></td>
-                            <td rowspan="4"><div class="curso-horario-card bg-amarelo"><strong>Sistemas Operativos e Redes</strong><p>14:00-16:00</p></div></td>
-                            <td rowspan="8"><div class="curso-horario-card bg-coral"><strong>Design Hipermédia</strong><p>14:00-18:00</p></div></td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-amarelo"><strong>Sistemas Operativos e Redes</strong><p>14:00-16:00</p></div></td>
+                            <td rowspan="8"><div class="hor-curso-horario-card hor-bg-coral"><strong>Design Hipermédia</strong><p>14:00-18:00</p></div></td>
                             <td></td><td></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">14:30</td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">15:00</td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">15:30</td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">14:30</td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">15:00</td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">15:30</td><td></td><td></td><td></td></tr>
                         <tr>
-                            <td class="curso-horario-hora">16:00</td>
+                            <td class="hor-curso-horario-hora">16:00</td>
                             <td></td><td></td>
-                            <td rowspan="4"><div class="curso-horario-card bg-roxo"><strong>Matemática</strong><p>16:00-18:00</p></div></td>
-                            <td rowspan="4"><div class="curso-horario-card bg-roxo"><strong>Matemática</strong><p>16:00-18:00</p></div></td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-roxo"><strong>Matemática</strong><p>16:00-18:00</p></div></td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-roxo"><strong>Matemática</strong><p>16:00-18:00</p></div></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">16:30</td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">17:00</td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">17:30</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">16:30</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">17:00</td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">17:30</td><td></td><td></td></tr>
                     
                         <tr>
-                            <td class="curso-horario-hora">18:00</td>
+                            <td class="hor-curso-horario-hora">18:00</td>
                             <td></td><td></td><td></td>
-                            <td rowspan="4"><div class="curso-horario-card bg-azul-forte"><strong>Técnicas de Português</strong><p>18:00-20:00</p></div></td>
+                            <td rowspan="4"><div class="hor-curso-horario-card hor-bg-azul-forte"><strong>Técnicas de Português</strong><p>18:00-20:00</p></div></td>
                             <td></td>
                         </tr>
-                        <tr><td class="curso-horario-hora">18:30</td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">19:00</td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">19:30</td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">20:00</td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">20:30</td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td class="curso-horario-hora">21:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">18:30</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">19:00</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">19:30</td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">20:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">20:30</td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td class="hor-curso-horario-hora">21:00</td><td></td><td></td><td></td><td></td><td></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="curso-horario-view view-aval">
-            <h5 class="curso-horario-data-title">09 JANEIRO - SEXTA-FEIRA</h5>
+        <div class="hor-curso-horario-view hor-view-aval">
+            <h5 class="hor-curso-horario-data-title">09 JANEIRO - SEXTA-FEIRA</h5>
             
-            <div class="curso-horario-aval-card border-turquesa">
-                <div class="curso-horario-aval-icon icon-turquesa">
+            <div class="hor-curso-horario-aval-card hor-border-turquesa">
+                <div class="hor-curso-horario-aval-icon hor-icon-turquesa">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Projeto - Introdução à Programação</p>
                     <small>08:00 - 12:00 | Sala n.º 31</small>
                 </div>
             </div>
 
-            <div class="curso-horario-aval-card border-roxo">
-                <div class="curso-horario-aval-icon icon-roxo">
+            <div class="hor-curso-horario-aval-card hor-border-roxo">
+                <div class="hor-curso-horario-aval-icon hor-icon-roxo">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Frequência - Matemática</p>
                     <small>16:00 - 18:00 | Anfiteatro n.º 1</small>
                 </div>
             </div>
-            <h5 class="curso-horario-data-title">15 JANEIRO - Quarta-FEIRA</h5>
+            <h5 class="hor-curso-horario-data-title">15 JANEIRO - Quarta-FEIRA</h5>
             
-            <div class="curso-horario-aval-card border-coral">
-                <div class="curso-horario-aval-icon icon-coral">
+            <div class="hor-curso-horario-aval-card hor-border-coral">
+                <div class="hor-curso-horario-aval-icon hor-icon-coral">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Frequência - Design Hipermédia_CTeSP_TPSI</p>
                     <small>14:00 - 16:00 | Sala n.º 31</small>
                 </div>
             </div>
-            <h5 class="curso-horario-data-title">22 JANEIRO - Quinta-FEIRA</h5>
+            <h5 class="hor-curso-horario-data-title">22 JANEIRO - Quinta-FEIRA</h5>
 
-            <div class="curso-horario-aval-card border-roxo">
-                <div class="curso-horario-aval-icon icon-roxo">
+            <div class="hor-curso-horario-aval-card hor-border-roxo">
+                <div class="hor-curso-horario-aval-icon hor-icon-roxo">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Época Recurso - Introdução à Programação_CTeSP_TPSI</p>
                     <small>16:00 - 18:00 | Anfiteatro n.º 1</small>
@@ -396,13 +420,13 @@
             </div>
 
 
-            <h5 class="curso-horario-data-title">26 JANEIRO - Segunda-FEIRA</h5>
+            <h5 class="hor-curso-horario-data-title">26 JANEIRO - Segunda-FEIRA</h5>
 
-            <div class="curso-horario-aval-card border-roxo">
-                <div class="curso-horario-aval-icon icon-roxo">
+            <div class="hor-curso-horario-aval-card hor-border-roxo">
+                <div class="hor-curso-horario-aval-icon hor-icon-roxo">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Época Recurso - Matemática_CTeSP_TPSI</p>
                     <small>16:00 - 18:00 | Sala de Aula nº14</small>
@@ -410,33 +434,34 @@
             </div>
         </div>
 
-            <h5 class="curso-horario-data-title">28 JANEIRO - Quarta-FEIRA</h5>
+            <h5 class="hor-curso-horario-data-title">28 JANEIRO - Quarta-FEIRA</h5>
 
-            <div class="curso-horario-aval-card border-roxo">
-                <div class="curso-horario-aval-icon icon-roxo">
+            <div class="hor-curso-horario-aval-card hor-border-roxo">
+                <div class="hor-curso-horario-aval-icon hor-icon-roxo">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Época Recurso - Sistemas Operativos e Redes_CTeSP_TPSI</p>
                     <small>16:00 - 18:00 | Sala de Aula nº14</small>
                 </div>
             </div>
             
-            <h5 class="curso-horario-data-title">30 JANEIRO - SEXTA-FEIRA</h5>
+            <h5 class="hor-curso-horario-data-title">30 JANEIRO - SEXTA-FEIRA</h5>
 
-            <div class="curso-horario-aval-card border-roxo">
-                <div class="curso-horario-aval-icon icon-roxo">
+            <div class="hor-curso-horario-aval-card hor-border-roxo">
+                <div class="hor-curso-horario-aval-icon hor-icon-roxo">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                 </div>
-                <div class="curso-horario-aval-info">
+                <div class="hor-curso-horario-aval-info">
                     <strong>CTeSP - Tecnologias e Programação de Sistemas de Informação</strong>
                     <p>Avaliação - Época Recurso - Técnicas de Expressão do Português_CTeSP_TPSI</p>
                     <small>16:00 - 18:00 | Sala de Aula nº14</small>
                 </div>
             </div>
 
-    </div> </div> 
+    </div>
+</div>
 
-
+</body>
 </html>

@@ -1,36 +1,125 @@
-body{
+/* Reset básico */
+* {
+    margin: 0;
     padding: 0;
-    margin:0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Ocupa 100% da altura do ecrã */
+    display: grid;
+    
+    /* Define as colunas: Menu (250px) e Conteúdo (o resto) */
+    grid-template-columns: 250px 1fr;
+    
+    /* Define as linhas: Header (85px), Conteúdo (automático), Footer (60px) */
+    grid-template-rows: 85px 1fr 60px;
+    
+    /* Desenha o mapa do site */
+    grid-template-areas: 
+        "header header"
+        "menu   conteudo"
+        "footer footer";
+}
 
-header{
-    display: flex;
+/* --- HEADER --- */
+header {
+    grid-area: header; /* Coloca na área definida acima */
     background-color: rgb(28, 115, 177);
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    padding: 0 20px;
+    color: white;
+    border-bottom: 4px solid #dba823; /* Detalhe amarelo comum na UMa */
 }
 
-.logo_uma{
-    padding-right: 3px;
-
-}
-.site_name{
-    display: flex;
-    align-self: center;
-    font-size: 47.5%;
-    
+.site_name h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
 }
 
-.login_icone{
-    display: flex; 
-    align-content: center;
-    background-color: #fff;
-    border-radius: 50%;
-}
-
-sidebar{
+.login_icone {
     background-color: white;
-    
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+}
+
+/* --- MENU LATERAL (ASIDE) --- */
+aside {
+    grid-area: menu;
+    background-color: #f8f9fa; /* Cinzento claro */
+    border-right: 1px solid #ddd;
+    overflow-y: auto; /* Permite scroll se o menu for muito grande */
+    padding: 20px 10px;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside li {
+    margin-bottom: 10px;
+}
+
+aside a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+    display: block;
+    padding: 5px;
+}
+
+aside a:hover {
+    color: rgb(28, 115, 177);
+    font-weight: bold;
+}
+
+/* Estilo para os titulos das categorias (Geral, Serviços, etc) */
+aside span {
+    font-weight: bold;
+    color: rgb(28, 115, 177);
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+aside ul ul {
+    margin-left: 15px; /* Indentação dos submenus */
+}
+
+/* --- CONTEÚDO CENTRAL (MAIN + IFRAME) --- */
+main {
+    grid-area: conteudo;
+    position: relative;
+    overflow: hidden; /* Evita barras de scroll duplas */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* --- FOOTER --- */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.75rem;
+    border-top: 2px solid rgb(28, 115, 177);
+}
+
+footer a {
+    color: #dba823;
+    text-decoration: none;
 }

@@ -3,99 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Lista Processos</title>
 </head>
-<body>
-<style>
-        body { font-family: Arial, sans-serif; font-size: 12px; background-color: #f4f4f4; padding: 20px; }
-
-        /* Contentor Principal */
-        .tabs-container-list-proc { max-width: 1000px; margin: auto; background: #fff; border: 1px solid #ccc; }
-
-        /* Esconder os inputs radio */
-        .tab-input-list-proc { display: none; }
-
-        /* Estilização dos Separadores (Labels) */
-        .tabs-header-list-proc { display: flex; background: #eee; border-bottom: 1px solid #ccc; }
-        
-        .tab-label-list-proc { 
-            flex: 1; 
-            padding: 10px; 
-            text-align: center; 
-            cursor: pointer; 
-            font-weight: bold; 
-            border-right: 1px solid #ccc;
-            transition: background 0.2s;
-        }
-
-        .tab-label-list-proc:hover { background: #e0e0e0; }
-
-        /* Conteúdo das Abas - Escondido por padrão */
-        .tab-content-list-proc { display: none; padding: 20px; border-top: none; }
-
-        /* Lógica de Ativação (CSS Magic) com os novos IDs e Classes */
-        #tab1-list-proc:checked ~ .tabs-header-list-proc label[for="tab1-list-proc"],
-        #tab2-list-proc:checked ~ .tabs-header-list-proc label[for="tab2-list-proc"],
-        #tab3-list-proc:checked ~ .tabs-header-list-proc label[for="tab3-list-proc"] {
-            background: #fff;
-            border-bottom: 2px solid #fff;
-            margin-bottom: -1px;
-            color: #000;
-        }
-
-        #tab1-list-proc:checked ~ #content1-list-proc,
-        #tab2-list-proc:checked ~ #content2-list-proc,
-        #tab3-list-proc:checked ~ #content3-list-proc { display: block; }
-
-        /* Estilos específicos */
-        .info-bar-list-proc { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; margin-bottom: 15px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
-        .info-bar-list-proc a { color: blue; text-decoration: none; margin: 0 5px; }
-        .msg-erro-list-proc { color: #0056b3; display: flex; align-items: center; gap: 5px; margin-top: 10px; }
-        .grid-form-list-proc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f9f9f9; padding: 15px; border: 1px solid #ddd; }
-        
-        /* Estilos de input globais mantidos, mas classes específicas criadas abaixo */
-        input, select, textarea { width: 100%; border: 1px solid #ccc; padding: 4px; background: #e2efff; }
-        
-        .btn-guardar-list-proc, .btn-pesquisar-list-proc { float: right; padding: 5px 20px; background: linear-gradient(#fff, #ddd); border: 1px solid #999; border-radius: 4px; cursor: pointer; }
-
-        /* Classes auxiliares identificadas no HTML */
-        .bloco-seccao-list-proc { margin-bottom: 15px; }
-        .coluna-campos-list-proc { display: flex; flex-direction: column; gap: 10px; }
-        .linha-form-list-proc { display: flex; align-items: center; margin-bottom: 5px; }
-        .label-fixa-list-proc { min-width: 100px; display: inline-block; }
-        .input-estilizado-list-proc { width: 100%; }
-        .coluna-justificacao-list-proc { display: flex; flex-direction: column; }
-        .titulo-negrito-list-proc { font-weight: bold; display: block; margin-bottom: 5px; }
-        .icone-i-list-proc { margin-right: 5px; }
-
-        /* Responsividade */
-        * { box-sizing: border-box; }
-        .tabs-container-list-proc { width: 100%; max-width: 1000px; padding: 0 12px; }
-        .tabs-header-list-proc { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .tab-label-list-proc { flex: 0 0 auto; min-width: 140px; }
-        .grid-duo-list-proc { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-        @media (max-width: 600px) {
-            body { padding: 12px; }
-            .tabs-header-list-proc { flex-direction: column; }
-            .tab-label-list-proc { min-width: 0; border-right: none; border-bottom: 1px solid #ddd; text-align: left; padding: 12px; }
-            .tab-label-list-proc:last-child { border-bottom: none; }
-
-            .grid-form-list-proc { grid-template-columns: 1fr; padding: 12px; }
-            .grid-duo-list-proc { grid-template-columns: 1fr; }
-            .linha-form-list-proc { flex-direction: column; align-items: stretch; gap: 6px; }
-            .label-fixa-list-proc { min-width: 0; width: 100%; display: block; }
-            input[type="file"] { width: 100%; }
-            .btn-guardar-list-proc, .btn-pesquisar-list-proc { width: 100%; float: none; display: block; margin-top: 8px; padding: 10px; }
-            .info-bar-list-proc { flex-direction: column; gap: 8px; align-items: flex-start; }
-            .msg-erro-list-proc { justify-content: flex-start; }
-            .coluna-justificacao-list-proc textarea { width: 100%; }
-            .tab-content-list-proc { padding: 12px; }
-        }
-
-    </style>
-</head>
-<body>
+<body id="list-procbody">
 
 <div class="tabs-container-list-proc">
     <input type="radio" name="tabs" id="tab1-list-proc" class="tab-input-list-proc" checked>

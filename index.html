@@ -3,23 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InfoAlunos : Serviço de Informação</title>
+    <title>InfoAlunos : Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="indexbody">
 
-    <header>
+    <input type="checkbox" id="logentr_trigger">
+
+    <div class="logentr_overlay">
+        <div class="logentr_box">
+            <img src="/img/logo_uma.png" alt="Logo UMa" class="logentr_img">
+            <h2 class="logentr_titulo">Autenticação</h2>
+            
+            <label class="logentr_label">Utilizador</label>
+            <input type="text" class="logentr_input" placeholder="ex: 2021500">
+            
+            <label class="logentr_label">Password</label>
+            <input type="password" class="logentr_input" placeholder="******">
+
+            <label for="logentr_trigger" class="logentr_btn">
+                Entrar
+            </label>
+        </div>
+    </div>
+
+    <header class="indexheader">
         <div class="logo_uma">
             <img src="/img/logo_uma.png" alt="logotipo_uma" height="60px">
         </div>
+
         <div class="site_name">
             <h1>InfoAlunos - Serviço de Informação dos Alunos - v3.1.4</h1>
         </div>
-        <div class="login_icone">
-            <img src="svg/person-border-svgrepo-com.svg" alt="icon" width="40px" height="40px">
+    
+        <div class="area-utilizador">
+            <div class="logout-button">
+                <a href=".">Sair</a>
+            </div>
+
+            <div class="login_icone">
+                <img src="svg/person-border-svgrepo-com.svg" alt="icon" width="40px" height="40px">
+            </div>
         </div>
     </header>
-
+    
     <aside>
         <nav>
             <ul>
@@ -27,7 +54,8 @@
                     <a href="home.html" target="conteudo-principal">Início</a>
                 </li>
                 <li>
-                    <span>Geral</span> <ul>
+                    <span>Geral</span> 
+                    <ul>
                         <li><a href="processos.html" target="conteudo-principal">Processos</a></li>
                         <li><a href="dadospessoais.html" target="conteudo-principal">Dados Pessoais</a></li>
                         <li><a href="privacidade.html" target="conteudo-principal">Privacidade</a></li>
@@ -39,25 +67,86 @@
                     <ul>
                         <li><a href="pagamentos.html" target="conteudo-principal">Pagamentos</a></li>
                         <li><a href="matriculas.html" target="conteudo-principal">Matrículas</a></li>
-                        <li><a href="inscricao_turmas.html" target="conteudo-principal">Inscrição Turmas</a></li>
+                        <li><a href="inscricão_turmas.html" target="conteudo-principal">Inscrição Turmas</a></li>
+                        <li><a href="requirementos.html" target="conteudo-principal">Requirementos</a></li>
+                        <li><a href="cartao.html" target="conteudo-principal">Cartão Universitário</a></li>
+                        <li><a href="bolsas.html" target="conteudo-principal">SASUMA-Bolsas</a></li>
                     </ul>
                 </li>
                 <li>
-                    <span>Curso</span>
+                    <span>Concursos</span>
+                        <ul>
+                            <li><a href="candidaturas.html" target="conteudo-principal">Candidaturas</a></li>
+                        </ul>
+                </li>
+                <li>
+                    <span>Avaliação</span>
                     <ul>
-                        <li><a href="horarios.html" target="conteudo-principal">Horários</a></li>
                         <li><a href="pautas.html" target="conteudo-principal">Pautas</a></li>
+                        <li><a href="reclamacaonotas.html" target="conteudo-principal">Reclamação Notas</a></li>
+                        <li><a href="inqueritos.html" target="conteudo-principal">Inquéritos</a></li>
+                        <li><a href="resultados_inquéritos.html" target="conteudo-principal">Resultado Inquéritos</a></li>
+                        <li><a href="inqueritos_raides.html" target="conteudo-principal">Inquéritos RAIDES</a></li>
                     </ul>
                 </li>
-                </ul>
+                <li>
+                    <span>Creditações</span>
+                    <ul>
+                        <li><a href="lista_processos.html" target="conteudo-principal">Lista Processos</a></li>
+                        <li><a href="novos_processos.html" target="conteudo-principal">Novo Processo</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Documentos</span>
+                    <ul>
+                        <li><a href="academicos.html" target="conteudo-principal">Académico</a></li>
+                        <li><a href="declaracoes.html" target="conteudo-principal">Declarações</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Aula</span>
+                    <ul>
+                        <li><a href="calendarios.html" target="conteudo-principal">Calendários</a></li>
+                        <li><a href="sumarios.html" target="conteudo-principal">Súmarios</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Disciplina</span>
+                    <ul>
+                        <li><a href="cursos.html" target="conteudo-principal">Ficha</a></li>
+                        <li><a href="programa.html" target="conteudo-principal">Programa</a></li>
+                        <li><a href="ficheiros.html" target="conteudo-principal">Ficheiros</a></li>
+                    </ul>
+                </li>                
+                <li>
+                    <span>Curso</span>
+                    <ul>
+                        <li><a href="ficha_curricular.html" target="conteudo-principal">Ficha Curricular</a></li>
+                        <li><a href="horarios.html" target="conteudo-principal">Horários</a></li>
+                        <li><a href="historico_matriculas.html" target="conteudo-principal">Hisórico Matrículas</a></li>
+                        <li><a href="discipli_aprovad.html" target="conteudo-principal">Histórico Disciplinas Aprovadas</a></li>
+                        <li><a href="transcricao_bolonha.html" target="conteudo-principal">Transcrição para Bolonha</a></li>
+                        <li><a href="plano_conclusao.html" target="conteudo-principal">Plano Conclusão</a></li>
+                        <li><a href="quadro_prescricao.html" target="conteudo-principal">Quadro de Prescrição</a></li>
+                        <li><a href="atividades.html" target="conteudo-principal">Atividades Académicas do Aluno</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span>Instituição</span>
+                    <ul>
+                        <li><a href="estrutura.html" target="conteudo-principal">Estrutura Orgânica</a></li>
+                    </ul>
+                </li>
+                <li><a href="eleiçoes.html" target="conteudo-principal">Eleições</a></li>
+            </ul>   
         </nav>
     </aside>
 
-    <main>
-        <iframe name="conteudo-principal" src="dadospessoais.html" frameborder="0"></iframe>
+    <main class="indexmain">
+        <iframe id="indexiframe" name="conteudo-principal" src="dadospessoais.html" frameborder="0"></iframe>
     </main>
 
-    <footer>
+    <footer id="indexroda">
         <p>
             &copy; Universidade da Madeira - Gabinete de Desenvolvimento
             <a href="https://www.uma.pt" target="_blank">Proteção de Dados</a>

@@ -6,118 +6,121 @@
     <title class="reclam-not">Reclamação de Notas</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="reclam-not">
+<body id="requerimbody">
 
-<div class="portal-container reclam-not">
-    <input type="radio" name="abas" id="tab-lista" class="radio-tab reclam-not" checked>
-    <input type="radio" name="abas" id="tab-novo" class="radio-tab reclam-not">
+<div class="requerim-main-container">
+    <input type="radio" name="main-tabs" id="tab-lista" checked>
+    <input type="radio" name="main-tabs" id="tab-novo">
 
-    <div class="abas-navegacao reclam-not">
-        <label for="tab-lista" class="aba-item reclam-not">Lista de Requerimentos</label>
-        <label for="tab-novo" class="aba-item reclam-not">Submeter Novo/Detalhe</label>
+    <div class="requerim-tabs-header">
+        <label for="tab-lista" class="requerim-tab-label">Lista de Relcamações</label>
+        <label for="tab-novo" class="requerim-tab-label">Submeter Novo/Detalhe</label>
     </div>
 
-    <div id="painel-lista" class="conteudo-aba reclam-not">
-        <p class="reclam-not"><strong class="reclam-not">Para inserir uma nova reclamação clique no tabulador 'Submeter Novo/Detalhe'.</strong></p>
-        <div class="msg-informativa reclam-not">
-                    <select class="select-custom reclam-not">
-                        <option class="reclam-not">Técnicas de Expressão do Português</option>
-                        <option class="reclam-not">Matématica</option>
-                        <option class="reclam-not">Design</option>
-                    </select>
-                    <button class="btn-pesquisar botao-estilizado reclam-not">Pesquisa</button>
-            <span class="icone-azul reclam-not">i</span> Sem resultados
-        </div>
-    </div>
-
-    <div id="painel-novo" class="conteudo-aba reclam-not">
+    <div class="requerim-tab-content" id="content-lista">
+        <p><strong>Para inserir um novo requerimento clique no tabulador 'Submeter Novo/Detalhe'.</strong></p>
         
-        <span class="titulo-bloco reclam-not">Despacho</span>
-        <div class="grupo-formulario reclam-not">
-            <div class="coluna reclam-not">
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Data do Despacho:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Despacho:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Justificação:</span>
-                    <textarea class="campo-textarea reclam-not"></textarea>
-                </div>
-            </div>
-            <div class="coluna reclam-not">
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Cod. Entrada:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Data Entrada:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Origem:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
+        <div style="margin: 10px 0;">
+            Pesquisar por Tipo de Pedido:
+             <select style="width: 200px;">
+                <option></option>
+                <option>Urgente</option>
+                <option>Normal</option>
+            </select>
+            Filtrar por Despacho: <select style="width: 150px;"><option></option></select>
+            <button class="requerim-btn">Filtrar Lista</button>
+        </div>
+
+        <div class="requerim-alert-warning">
+            <h2>Detalhe Requirementos</h2>
+            <span style="color: orange; font-weight: bold;">⚠️</span>
+            <span>Os pedidos com emolumentos só serão processados após boa cobrança. Consulte no menu Serviços > Pagamentos.</span>
+        </div>
+
+        <table class="requerim-table">
+            <thead>
+                <tr>
+                    <th>Cod. Entrada</th>
+                    <th>Tipo</th>
+                    <th>Ano Lectivo Assunto</th>
+                    <th>Data Pedido</th>
+                    <th>Despacho Obs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">5759/25</a></td>
+                    <td>Reclamação</td>
+                    <td>2025/26 - Boa noite, venho por este meio solicitar a anulação...</td>
+                    <td>2025-10-02</td>
+                    <td>Em Análise</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="requerim-tab-content" id="content-novo">
+        <div class="requerim-form-grid">
+            <div class="requerim-section-title">Despacho</div>
+            <label>Data do Despacho:</label><input type="text" disabled>
+            <label>Cod. Entrada:</label><input type="text" disabled>
+            <label>Despacho:</label><input type="text" disabled>
+            <label>Data Entrada:</label><input type="text" disabled>
+            
+            <div class="requerim-section-title">Pedido</div>
+            <label>Curso:</label>
+            <select>
+                <option>(11024) Tecnologias e Programação de Sistemas de Informação</option>
+            </select>
+            <label>Nº Aluno:</label><input type="text" value="2032624">
+            
+            <label>Ano Lectivo:</label><input type="text" value="2025/26">
+            <label>Entidade:</label><input type="text" value="João Leonardo Caires Dias">
+            
+            <label>Pedido:</label>
+            <select>
+                <option value="reclame">Reclamação</option>
+                <option value="anul_mat">Anulação de Matrícula/Inscrição</option>
+                <option value="cert_mat">Certificado de Matrícula (10 Eur)</option>
+                </select>
+            <label>Data do Pedido:</label><input type="text" value="2026-01-02">
+            
+            <label>Assunto:</label>
+            <textarea style="grid-column: span 3; height: 80px;"></textarea>
+            
+            <label>Taxa Urgência:</label>
+            <div style="grid-column: span 3;"><input type="checkbox" style="width: auto;"></div>
+
+            <label>Anexar Documento:</label>
+            <input type="file" style="grid-column: span 3; background: transparent; border: none;">
+
+            <div class="requerim-section-title">Expedição por Correio</div>
+            <label>País:</label>
+            <select>
+                <option value="PT" selected>Portugal</option>
+                <option value="BR">Brasil</option>
+                <option value="AO">Angola</option>
+            </select>
+            <div style="grid-column: span 2;"></div>
+            
+            <label>Morada:</label>
+            <input type="text" style="grid-column: span 3;">
+            
+            <label>Código Postal:</label>
+            <div style="display: flex; gap: 5px; grid-column: span 3;">
+                <input type="text" style="width: 60px;"> - <input type="text" style="width: 40px;">
+                <input type="text" placeholder="Localidade">
             </div>
         </div>
 
-        <span class="titulo-bloco reclam-not">Pedido</span>
-        <div class="grupo-formulario reclam-not">
-            <div class="coluna reclam-not">
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Ano Lectivo:</span>
-                    <select class="campo-input reclam-not">
-                        <option class="reclam-not">2024/25</option>
-                    </select>
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Disciplina:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Pauta:</span>
-                    <input type="text" class="campo-input reclam-not">
-                </div>
-            </div>
-            <div class="coluna reclam-not">
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Nº Aluno:</span>
-                    <input type="text" class="campo-input reclam-not" value="2032624">
-                </div>
-                <div class="campo-linha reclam-not">
-                    <span class="campo-label reclam-not">Entidade:</span>
-                    <input type="text" class="campo-input reclam-not" value="João Leonardo Caires Dias">
-                </div>
-            </div>
+        <div class="requerim-button-bar">
+            <button class="requerim-btn">Limpar Campos (Novo Pedido)</button>
+            <button class="requerim-btn" disabled>Cancelar Processo</button>
+            <button class="requerim-btn" style="font-weight: bold;">Guardar Processo</button>
         </div>
-
-        <div class="campo-linha reclam-not" style="padding: 0 15px;">
-            <span class="campo-label reclam-not">Assunto:</span>
-            <textarea class="campo-textarea reclam-not"></textarea>
-        </div>
-
-        <div class="barra-acoes reclam-not">
-            <button class="botao-estilizado reclam-not">Limpar Campos (Novo Pedido)</button>
-            <button class="botao-estilizado reclam-not">Cancelar Processo</button>
-            <button class="botao-estilizado reclam-not">Guardar Processo</button>
-        </div>
-
-        <div class="reclam-not" style="display: flex; justify-content: space-between; padding: 20px;">
-            <div class="seccao-final reclam-not">
-                <span class="titulo-bloco reclam-not">Emolumentos do Processo</span>
-                <div class="icone-azul reclam-not">i</div>
-            </div>
-            <div class="seccao-final reclam-not">
-                <span class="titulo-bloco reclam-not">Histórico dos Estados do Processo</span>
-                <div class="icone-azul reclam-not">i</div>
-            </div>
-        </div>
-
     </div>
 </div>
+
 
 </body>
 </html>

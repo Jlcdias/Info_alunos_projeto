@@ -9,7 +9,7 @@
 <body class="indexbody">
 <!-- PAGINA LOGIN -->
     <input type="checkbox" id="logentr_trigger">
-
+<!-- Container <div></div> para login para fazer a distribuição do elementos no interior -->
     <div class="logentr_overlay">
         <div class="logentr_box">
             <img src="img/logo_uma.png" alt="Logo UMa" class="logentr_img">
@@ -46,23 +46,23 @@
             </div>
         </div>
     </header>
-<!-- MENU NAVEGAÇÃO LATERAL    -->
+<!-- MENU NAVEGAÇÃO LATERAL OU PRINCIPAL    -->
     <aside>
         <nav>
             <ul>
                 <li>
-                    <a href="home.html" target="conteudo-principal">Início</a>
+                    <a href="inicio.html" target="conteudo-principal">Início</a>
                 </li>
                 <li>
-                    <span>Geral</span> 
-                    <ul>
+                    <span>Geral</span> <!-- DEFINE O TEMA ASSOCIADO AO ITEM DO MENU DENTRO DO MESMO  (<span>) span serve apenas para indicar o elemento em linha , e serviu me para dar cor no css    -->
+                    <ul>     <!--      LIGAÇÕES PARA AS PAGINAS DE PROCESSOS , DADOS PESSOAIS , PRIVACIDADE , AJUDA -->
                         <li><a href="processos.html" target="conteudo-principal">Processos</a></li>
                         <li><a href="dadospessoais.html" target="conteudo-principal">Dados Pessoais</a></li>
                         <li><a href="privacidade.html" target="conteudo-principal">Privacidade</a></li>
                         <li><a href="ajuda.html" target="conteudo-principal">Ajuda</a></li>
                     </ul>
                 </li>
-                <li>
+                <li>   <!--      LIGAÇÕES PARA AS PAGAMENTOS , MATRICULAS , INSCRIÇÃO TURMAS , REQUIREMENTOS , SASUMA-Bolsas-->
                     <span>Serviços</span>
                     <ul>
                         <li><a href="pagamentos.html" target="conteudo-principal">Pagamentos</a></li>
@@ -92,6 +92,7 @@
                 <li>
                     <span>Creditações</span>
                     <ul>
+                        <!-- HIPERLIGAÇOES PARA AS PAGINAS REPLICADO POR TODO O CODIGO -->
                         <li><a href="lista_processos.html" target="conteudo-principal">Lista Processos</a></li>
                         <li><a href="novos_processos.html" target="conteudo-principal">Novo Processo</a></li>
                     </ul>
@@ -143,12 +144,17 @@
     </aside>
 
     <main class="indexmain">
-        <iframe id="indexiframe" name="conteudo-principal" src="inicio" frameborder="0"></iframe>
+        <iframe id="indexiframe" name="conteudo-principal" src="inicio.html" frameborder="0"></iframe>
     </main>
-
+<!--  Rodapé  -->
     <footer id="indexroda">
+        <!-- IMG rEPLICADO POR VARIAS PARTES DO CODIGO-->
+        <div class="logo_uma">
+            <img src="img/logo_uma.png" alt="logotipo_uma" height="60px">
+        </div>
         <p>
             &copy; Universidade da Madeira - Gabinete de Desenvolvimento
+            <!-- HIPERLIGAÇÃO REPLICADO POR TODO O CODIGO -->
             <a href="https://www.uma.pt" target="_blank">Proteção de Dados</a>
             <br>Colégio dos Jesuitas, Funchal
         </p>

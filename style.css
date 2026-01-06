@@ -168,7 +168,50 @@ indexmain { grid-area: conteudo; position: relative; overflow: hidden; }
 }
 
 #indexroda a { color: #dba823; text-decoration: none; }
+/* =========================================
+   PÁGINA: INICIO 
+   ========================================= */
+/* Contentor Principal */
+        .inicio {
+            display: grid;
+            gap: 20px;
+            padding: 20px;
+            /* No Desktop: 2 colunas com tamanhos iguais */
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                "pautas pagamentos"
+                "processos processos"
+                "vazio avisos";
+        }
 
+        /* Configuração de cada Bloco */
+        .div-inicio  { grid-area: pautas; }     /* Pautas */
+        .div-inicio1 { grid-area: pagamentos; } /* Pagamentos */
+        .div-inicio2 { grid-area: processos; }  /* Processos */
+        .div-inicio3 { grid-area: avisos; }     /* Avisos */
+
+        /* Estilo visual genérico (similar à imagem) */
+        .inicio > div {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 15px;
+            min-height: 150px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+/* RESPONSIVIDADE (Telemóvel) */
+@media (max-width: 768px) {
+.inicio {
+    /* No telemóvel: tudo passa a ter apenas 1 coluna */
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "pautas"
+    "pagamentos"
+    "processos"
+    "avisos";
+    }
+}
 /* =========================================
    PÁGINA: PROCESSOS (Proceed)
    ========================================= */
@@ -486,7 +529,7 @@ indexmain { grid-area: conteudo; position: relative; overflow: hidden; }
 .sas-bols-text-large { font-size: 16px; }
 .sas-bols-description { text-align: left; font-size: 15px; color: #666; max-width: 1000px; margin: 0 auto; }
 .sas-bols-paragraph { margin-bottom: 15px; margin-top: 0; }
-.sas-bols-link { color: #007bff; text-decoration: none; font-weight: bold; }
+.sas-bols-link,.h3-inicio { color: #007bff; text-decoration: none; font-weight: bold; }
 .sas-bols-link:hover { text-decoration: underline; }
 
 @media (max-width: 900px) {
@@ -1678,3 +1721,66 @@ body.reclam-not {
     .eleicao-info-item p { font-size: 13px; }
     .eleicao-sub-info { margin-left: 0; font-size: 12px; }
 }
+
+
+/* =========================================
+   PÁGINA: ERRO
+   ========================================= */
+/* Estilos baseados apenas em classes para evitar conflitos */
+        .paginderro-wrapper {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .paginderro-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .paginderro-titulo-grande {
+            font-size: 120px;
+            font-weight: 900;
+            color: #2c3e50;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .paginderro-subtitulo {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .paginderro-texto {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #777;
+        }
+
+        .paginderro-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .paginderro-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .paginderro-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }

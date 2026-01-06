@@ -3,9 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Inicio</title>
 </head>
 <body>
-    
+
+<div class="inicio">
+    <!-- SECÇÃO PAUTAS COM TABELA NO INTERIOR REPLICADO EM OUTRAS PARTES DO CODIGO EM DIFERENTES ZONAS E COM OUTROS CONTEUDOS-->
+    <div class="div-inicio">
+        <h3 class="h3-inicio">Últimas Pautas</h3>
+        <table class="tabela-resultados pauta">
+            <thead class="pauta">
+                <tr class="pauta">
+                    <th class="pauta">Pauta</th>
+                    <th class="pauta">Estado</th>
+                    <th class="pauta">Avaliação</th>
+                    <th class="pauta">Curso</th>
+                    <th class="pauta">Cadeira</th>
+                    <th class="pauta">Sem</th>
+                </tr>
+            </thead>
+            <tbody class="pauta">
+                <tr class="pauta">
+                    <td class="pauta">60455</td>
+                    <td class="pauta"><strong class="pauta">D</strong></td>
+                    <td class="pauta">Época Normal</td>
+                    <td class="pauta">Matemática Básica</td>
+                    <td class="pauta">Matemática Básica</td>
+                    <td class="pauta">S1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- SECÇÃO LISTA DE PAGAMENTOS REPLICADO EM OUTRAS PARTES DO CODIGO EM DIFERENTES ZONAS E COM OUTROS CONTEUDOS-->
+    <div class="div-inicio1">
+        <h3 class="h3-inicio">Pagamentos por Liquidar</h3>
+        <table class="pagam-table">
+        <thead>
+            <tr>
+                <th>AL</th> <th>B</th>  <th>Refª MB</th>
+                <th>Serviço</th>
+                <th>Obs</th>
+                <th>Data Emissão</th>
+                <th>Data Lim.</th>
+                <th>Data Pag.</th>
+                <th>Valor</th>
+                <th>Pagar c/ Cartão</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>5ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td>
+                <td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>6ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>2025/26</td><td>N</td><td>203262405</td><td>7ª Prestação de Propinas de CET's</td><td></td><td>2025-09-30</td><td>2026-01-31</td><td>-</td><td>77.44 EUR</td><td align="center"><input type="checkbox"></td>
+            </tr>
+            
+            <tr>
+                <td class="pagam-late-payment">2025/26</td>
+                <td class="pagam-late-payment">N</td>
+                <td class="pagam-late-payment">203262413</td>
+                <td class="pagam-late-payment">Coima - Até 15 dias seguidos após o termo do prazo</td>
+                <td></td>
+                <td class="pagam-late-payment">2025-09-30</td>
+                <td class="pagam-late-payment">2025-10-15</td>
+                <td>-</td>
+                <td class="pagam-late-payment">15.00 EUR</td>
+                <td align="center"><input type="checkbox"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- SECÇÃO LISTA PROCESSOS COM TABELA NO INTERIOR REPLICADO EM OUTRAS PARTES DO CODIGO EM DIFERENTES ZONAS E COM OUTROS CONTEUDOS-->
+    <div class="div-inicio2">
+        <h3 class="h3-inicio">Lista de Processos do Aluno</h3>
+        <table class="proceed-tabela">
+            <thead>
+                <tr>
+                    <th class="proceed-head">Nº Requer.</th>
+                    <th class="proceed-head">Processo Assunto</th>
+                    <th class="proceed-head">Data Entrada</th>
+                    <th class="proceed-head">Despacho</th>
+                    <th class="proceed-head">Data Saída</th>
+                    <th class="proceed-head">Observações</th>
+                </tr>
+            </thead>
+            
+            <tr>
+                <td class="proceed-data">5824/25</td>
+                <td class="proceed-data">Venho por este meio expressar o meu descontentamento com a constante instabilidade da rede Wi-Fi no campus.
+                     A falta de ligação fiável tem dificultado gravemente o acesso aos materiais de estudo e a entrega de trabalhos. 
+                     Solicito uma intervenção urgente dos serviços técnicos para garantir a qualidade mínima do serviço prestado.</td>
+                <td class="proceed-data">2025-11-02</td>
+                <td class="proceed-data">Em Análise</td>
+                <td class="proceed-data">2025-11-02</td>
+                <td class="proceed-data"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- SECÇÃO AVISOS COM UMA LISTA DENTRO REPLICADO EM OUTRAS PARTES DO CODIGO EM DIFERENTES ZONAS E COM OUTROS CONTEUDOS -->
+    <div class="div-inicio3">
+        <h3 class="h3-inicio">🛈Avisos</h3>
+        <ul>
+            <li>
+              <a href="pagina_erro.html">Aviso universitário: Período de inscrições para exames de época especial aberto.</a>
+            </li>
+            <li>
+              <a href="pagina_erro.html">Aviso universitário: Data limite para a entrega de teses e dissertações de mestrado.</a>
+            </li>
+            <li>
+              <a href="pagina_erro.html">Aviso universitário: Renovação de bolsas de estudo e apoios sociais para o próximo semestre.</a>
+            </li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
